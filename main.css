@@ -1,0 +1,21 @@
+.title {
+  color: #313060;
+  font-family: Arial;
+  text-align: center;
+}
+
+.header {
+  background-color: aqua;
+}
+
+.data {
+  font-family: Arial;
+  font-size: 20px;
+  display: table-cell;
+  
+}
+
+.section {
+  display: block;
+
+}
