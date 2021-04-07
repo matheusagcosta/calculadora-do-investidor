@@ -5,7 +5,7 @@
 }
 
 .header {
-  background-color: rgb(8, 121, 121);
+  background-color: yellow;
 }
 
 .data button {
@@ -17,4 +17,10 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.section table {
+  background-color: #E2DDF8;
+  border: 10px solid #E2DDF8;
+  border-radius: 15px;
 }
