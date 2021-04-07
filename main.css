@@ -8,7 +8,7 @@
   background-color: yellow;
 }
 
-.data button {
+.section button {
   border-radius: 80%;
   font-size: 20px;
   background-color: lightgreen;
@@ -19,8 +19,12 @@
   margin-right: auto;
 }
 
-.section table {
+.section  {
   background-color: #E2DDF8;
   border: 10px solid #E2DDF8;
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial;
+  font-size: 20px;
 }

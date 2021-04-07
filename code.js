@@ -7,10 +7,28 @@ function calcPrice(qnt=Array, price=Array) {
       tot += qnt[i]*price[i]
     }
     avgPrice = tot/qnt.length
-
-    html += "<table align='center'><tr><td>Quantidade:</td><td>Preço Médio:</td></tr></table>"
+    
+    html += `
+    <div class="data" id="data">
+        <table align="center" > 
+          <tr>
+            <td>Quantidade:</td>
+            <td>Preço Médio:</td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text">
+            </td>
+            <td>
+              <input type="text">
+            </td>
+          </tr>
+        </table> 
+    </div>
+    `;
+    
     content_table = document.getElementById("data")
-    content_table.innerHTML = html
+    content_table.innerHTML += html
 
     return tot, avgPrice
 }
