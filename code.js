@@ -17,10 +17,10 @@ function calcPrice(qnt=Array, price=Array) {
           </tr>
           <tr>
             <td>
-              <input type="text">
+              <input type="number" id="quantityN">
             </td>
             <td>
-              <input type="text">
+              <input type="number" id="priceN">
             </td>
           </tr>
         </table> 
