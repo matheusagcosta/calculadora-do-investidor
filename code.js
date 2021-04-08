@@ -1,14 +1,21 @@
 var avgPrice = 0
 var tot = 0
+var arrTot
 
-function calcPrice(qnt=Array, price=Array) {
-    html = ""
-    for (i= 0; i< qnt.length; i++) {
-      tot += qnt[i]*price[i]
-    }
-    avgPrice = tot/qnt.length
+function calcPrice() {
     
-    html += `
+    var quantityN = document.getElementById("quantityN").value
+    var priceN = document.getElementById("priceN").value
+
+    
+    
+    
+    
+    //avgPrice = avgPrice.toFixed(2)
+    //attFooter()
+    
+    html1 = ""
+    html1 += `
     <div class="data" id="data">
         <br>
         <table align="center" > 
@@ -30,7 +37,13 @@ function calcPrice(qnt=Array, price=Array) {
     `;
     
     content_table = document.getElementById("data")
-    content_table.innerHTML += html
+    content_table.innerHTML += html1
 
-    return tot, avgPrice
+}
+
+function attFooter() {
+  var changeFooter = document.getElementById("footer-data")
+  var html2 = ""
+  html2 = "Total Quantity: " + tot + "Average Price: R$" + avgPrice
+  changeFooter.innerHTML = html2
 }
