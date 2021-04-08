@@ -10,6 +10,7 @@ function calcPrice(qnt=Array, price=Array) {
     
     html += `
     <div class="data" id="data">
+        <br>
         <table align="center" > 
           <tr>
             <td>Quantidade:</td>
@@ -17,10 +18,11 @@ function calcPrice(qnt=Array, price=Array) {
           </tr>
           <tr>
             <td>
-              <input type="number" id="quantityN">
+              <input type="number" id="quantityN" min=0>
             </td>
             <td>
-              <input type="number" id="priceN">
+              <span>R$</span>
+              <input type="number" id="priceN" min=0>
             </td>
           </tr>
         </table> 
