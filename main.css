@@ -5,8 +5,16 @@
 }
 
 .header {
-  background-color: yellow;
+  background-color: #E2DDF8;
   text-align: center;
+  margin: 30px;
+  border-radius: 7px;
+}
+
+.header button {
+  background-color: white;
+  font-family: Arial;
+  font-size: 15px;
 }
 
 .section button {
