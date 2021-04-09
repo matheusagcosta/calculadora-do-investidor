@@ -78,4 +78,12 @@ button, button:focus {
   padding-top: 20px;
 }
 
+.footer #quantidade {
+  position: fixed;
+  right: 50%;
+}
 
+.footer #preco {
+  position: fixed;
+  left: 51.6%;
+}

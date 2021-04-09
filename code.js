@@ -46,8 +46,8 @@ function attFooter() {
 
   var html2 = `
   <label> Quantidade Total: &nbsp;&nbsp; Preço Médio: </label> <br>
-  <span> `+ tot +`</span>
-  <span>R$ `+ avgPrice +`</span>
+  <span id="quantidade"> `+ tot +`</span>
+  <span id="preco"> R$`+ avgPrice +`</span>
   `;
   
   changeFooter.innerHTML = html2
