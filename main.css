@@ -6,6 +6,7 @@ button, button:focus {
   border: 0;
   outline: 0;
   cursor: pointer;
+  transition: 1s ease;
 }
 
 .title {
@@ -44,9 +45,10 @@ button, button:focus {
   margin-right: auto;
   margin-left: auto;
   position: relative;
+  
 }
 
-.section button {
+#add {
   border-radius: 50px;
   width: 30px;
   height: 30px;
@@ -59,6 +61,18 @@ button, button:focus {
   margin-right: auto;
   justify-content: center;
   text-align: center;
+}
+
+.trash {
+  background-color: #db2828e3;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+  justify-content: center;
+  border-radius: 50px;
+  position: relative;
+  left: 7%;
+  
 }
 
 .section input {
@@ -83,12 +97,12 @@ button, button:focus {
   padding-top: 20px;
 }
 
-.footer #quantidade {
+.quantidade {
   position: fixed;
   right: 50%;
 }
 
-.footer #preco {
+.preco {
   position: fixed;
   left: 51.6%;
 }

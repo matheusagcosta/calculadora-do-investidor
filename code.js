@@ -17,11 +17,10 @@ function calcPrice() {
     html1 = ""
     html1 += `
     <div class="data" id="data">
-        <br>
         <table align="center" > 
           <tr>
-            <td>Quantidade:</td>
-            <td>Preço Médio:</td>
+            <td id="quantidade">Quantidade:</td>
+            <td id="preco">Preço Médio:</td>
           </tr>
           <tr>
             <td>
@@ -30,6 +29,9 @@ function calcPrice() {
             <td>
               <span>R$</span>
               <input type="number" id="priceN" min=0>
+            </td>
+            <td>
+              <button class="trash" id="" onClick="wipeOut()">🔥</button>
             </td>
           </tr>
         </table> 
@@ -46,8 +48,8 @@ function attFooter() {
 
   var html2 = `
   <label> Quantidade Total: &nbsp;&nbsp; Preço Médio: </label> <br>
-  <span id="quantidade"> `+ tot +`</span>
-  <span id="preco"> R$`+ avgPrice +`</span>
+  <span class="quantidade"> `+ tot +`</span>
+  <span class="preco"> R$`+ avgPrice +`</span>
   `;
   
   changeFooter.innerHTML = html2

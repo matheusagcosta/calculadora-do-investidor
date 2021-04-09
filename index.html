@@ -49,17 +49,20 @@
               <span>R$</span>
               <input type="number" id="priceN" min=0>
             </td>
+            <td>
+              <button class="trash" id="" onClick="wipeOut()">🔥</button>
+            </td>
           </tr>
         </table> 
     </div>
-    <button onClick="calcPrice()">+</button>
+    <button id="add" onClick="calcPrice()">+</button>
+
   </div>
 
   <footer class= "footer" id= "footer">
     <label> Quantidade Total: &nbsp;&nbsp; Preço Médio: </label> <br>
-    <span id="quantidade">0</span>
-    <span id="preco">R$</span>
-    
+    <span class="quantidade">0</span>
+    <span class="preco">R$</span>
   </footer>
 
 
