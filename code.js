@@ -4,15 +4,15 @@ var arrTot
 
 function calcPrice() {
     
-    var quantityN = document.getElementById("quantityN").value
-    var priceN = document.getElementById("priceN").value
+    //var quantityN = document.getElementById("quantityN").value
+    //var priceN = document.getElementById("priceN").value
 
     
     
     
     
     //avgPrice = avgPrice.toFixed(2)
-    //attFooter()
+    attFooter()
     
     html1 = ""
     html1 += `
@@ -42,8 +42,13 @@ function calcPrice() {
 }
 
 function attFooter() {
-  var changeFooter = document.getElementById("footer-data")
-  var html2 = ""
-  html2 = "Total Quantity: " + tot + "Average Price: R$" + avgPrice
+  var changeFooter = document.getElementById("footer")
+
+  var html2 = `
+  <label> Quantidade Total: &nbsp;&nbsp; Preço Médio: </label> <br>
+  <span> `+ tot +`</span>
+  <span>R$ `+ avgPrice +`</span>
+  `;
+  
   changeFooter.innerHTML = html2
 }
