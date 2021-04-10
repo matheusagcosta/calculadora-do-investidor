@@ -75,7 +75,7 @@ function calcPrice() {
   }
   document.getElementById("section").innerHTML += html
   
-
+  tot=arrValues.length
   attFooter()
    
 }
