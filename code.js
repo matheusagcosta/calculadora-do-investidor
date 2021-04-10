@@ -5,36 +5,41 @@ count = 0
 function calcPrice() {
       
   html = `
-    <div class="data" id="data${count}" style="visibility: visible;">
-        <table align="center" > 
-          <tr>
-            <td id="quantidade">Quantidade:</td>
-            <td id="preco">Preço Médio:</td>
-          </tr>
-          <tr>
-            <td>
-              <label><input type="number" id="quantityN${count}" min=0></label>
-            </td>
-            <td>
-              <span>R$</span>
-              <label><input type="number" id="priceN${count}" min=0></label>
-            </td>
-            <td id="trash${count}">
-              <button class="trash" onClick="wipeOut()" style="visibility: visible;" >🔥</button>
-            </td>
-          </tr>
-        </table> 
+  <br>
+    <div class="section" id="section${count}">
+      <div class="data" id="data" style="visibility: visible;">
+          <table align="center" > 
+            <tr>
+              <td id="quantidade">Quantidade:</td>
+              <td id="preco">Preço Médio:</td>
+            </tr>
+            <tr>
+              <td>
+                <label><input type="number" id="quantityN${count}" min=0></label>
+              </td>
+              <td>
+                <span>R$</span>
+                <label><input type="number" id="priceN${count}" min=0></label>
+              </td>
+              <td id="trash${count}">
+                <button class="trash" onClick="wipeOut()" style="visibility: visible;" >🔥</button>
+              </td>
+            </tr>
+          </table> 
+      </div>
     </div>
   `;
   
   if (count == 0) {
     document.getElementById("trash").style.visibility = "visible";
     document.getElementById("section").innerHTML += html
+  } else {
+    document.getElementById(`section${count-1}`).innerHTML += html
   }
 
 
   attFooter()
-  coount ++
+  count ++
 }
 
 function attFooter() {
