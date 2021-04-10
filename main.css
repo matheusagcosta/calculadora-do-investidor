@@ -1,3 +1,9 @@
+:root {
+  --colorDarkBlue: #313060;
+  --colorWhite: #FFF;
+  --colorRed: #FF0000;
+}
+
 body {
   font-family: Arial;
   background-color: white(27, 57, 190);
@@ -17,7 +23,7 @@ input {
 }
 
 .title {
-  color: #313060;
+  color: var(--colorDarkBlue);
   text-align: center;
 }
 
@@ -26,19 +32,46 @@ input {
   text-align: center;
   margin: 30px;
   border-radius: 7px;
-  height: 80px;
+  padding: 25px;
+
 }
 
-.header button {
-  background-color: #313060;
-  color: white;
+.header_navigation {
+  display: flex;
+}
+
+.header__link {
   font-family: Arial;
   font-size: 20px;
   position: relative;
-  transform: translateY(20px);
   border-radius: 10px;
-  height: 40px;
-  
+  padding: 10px;
+  text-decoration: none;
+}
+
+.header__link:not(:first-of-type) {
+  margin-left: 10px;
+}
+
+.header__link:not(.is-active) {
+  color: var(--colorDarkBlue);
+}
+
+.header__link.is-active {
+  background-color: var(--colorDarkBlue);
+  color: var(--colorWhite);
+}
+
+.header__icon {
+  fill: var(--colorDarkBlue);
+}
+
+.header__link.is-active .header__icon {
+  fill: var(--colorWhite);
+}
+
+.container {
+  padding-bottom: 200px;
 }
 
 .section  {
