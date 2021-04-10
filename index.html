@@ -43,21 +43,20 @@
           </tr>
           <tr>
             <td>
-              <input type="number" id="quantityN" min=0>
+              <label><input type="number" id="quantityN" min=0></label>
             </td>
             <td>
               <span>R$</span>
-              <input type="number" id="priceN" min=0>
+              <label><input type="number" id="priceN" min=0></label>
             </td>
-            <td id="trash">
-              <button class="trash" onClick="wipeOut()" style="visibility: hidden;">🔥</button>
+            <td>
+              <button class="trash" id="trash" onClick="wipeOut()" style="visibility: hidden;" >🔥</button>
             </td>
           </tr>
         </table> 
     </div>
-    <button id="add" onClick="calcPrice()">+</button>
-
   </div>
+  <button id="add" onClick="calcPrice()">+</button>
 
   <footer class= "footer" id= "footer">
     <label> Quantidade Total: &nbsp;&nbsp; Preço Médio: </label> <br>
