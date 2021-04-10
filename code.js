@@ -22,8 +22,8 @@ function calcPrice() {
             <label><input type="number" id="priceN${count+1}" min=0 value=0.00>
             </label>
           </td>
-          <td id="trash${count+1}">
-            <button class="trash" onClick="wipeOut()" style="visibility: visible;" >🔥</button>
+          <td>
+            <button class="trash" id="trash${count+1}" onClick="wipeOut(${count+1})" style="visibility: visible;" >🔥</button>
           </td>
         </tr>
       </table> 
@@ -35,9 +35,8 @@ function calcPrice() {
   } else {
     document.getElementById(`data${count}`).innerHTML += html
   }
-
-  //quantidade = `quantityN${count}`
-  //tot = document.getElementById(quantidade).value;
+ 
+  //tot = document.getElementById(`quantityN${count}`).value;
   
   attFooter()
   count ++ 
@@ -54,6 +53,6 @@ function attFooter() {
   changeFooter.innerHTML = html2
 }
 
-function wipeOut() {
-    //document.getElementById(this).remove()
+function wipeOut(x) {
+    document.getElementById(`data${x}`).remove()
 }
