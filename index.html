@@ -33,7 +33,7 @@
   <div class= "title">
     <h1>Calcular Preço Médio</h1>
   </div>
-  
+
   <div class="section" id="section">
     <div class="data" id="data0" style="visibility: visible;">
         <table align="center" > 
@@ -43,11 +43,13 @@
           </tr>
           <tr>
             <td>
-              <label><input type="number" id="quantityN0" min=0></label>
+              <label><input id="quantityN0" min=0 value=0>
+              </label>
             </td>
             <td>
               <span>R$</span>
-              <label><input type="number" id="priceN0" min=0></label>
+              <label><input id="priceN0" min=0 value=0.00>
+              </label>
             </td>
             <td>
               <button class="trash" id="trash0" onClick="wipeOut()" style="visibility: hidden;" >🔥</button>
