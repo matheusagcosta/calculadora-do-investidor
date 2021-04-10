@@ -3,10 +3,37 @@ var tot = 0
 var count = 0
 var arrValues = []
 var arrTemp = []
+var quant
+var price
+var verifQ
+var verifP
 
 function calcPrice() {
   count ++
 
+  verifQ = document.getElementById(`quantityN${count-1}`).value 
+  verifP = document.getElementById(`priceN${count-1}`).value
+
+  if (!(parseFloat(verifQ))) {
+    verifQ = 0
+  }
+  if (!(parseFloat(verifP))) {
+    verifP = 0
+  }
+  if (verifQ<0) {
+    verifQ = 0
+  }
+  if (verifP<0) {
+    verifP = 0
+  }
+
+  arrTemp.push(parseFloat(verifQ))
+  arrTemp.push(parseFloat(verifP))
+  arrValues.push(arrTemp)
+  arrTemp=[]
+  
+  
+  quant = price = "0"
   var html = `
   <div class="data" id="data${count}" style="visibility: visible;">
       <table align="center" > 
@@ -16,12 +43,12 @@ function calcPrice() {
         </tr>
         <tr>
           <td>
-            <label><input type="number" id="quantityN${count}" min="0" value="">
+            <label><input type="text" id="quantityN${count}" min="0" value="${quant}">
             </label>
           </td>
           <td>
             <span>R$</span>
-            <label><input type="number" id="priceN${count}" min="0" value="">
+            <label><input type="text" id="priceN${count}" min="0" value="${price}">
             </label>
           </td>
           <td>
@@ -31,7 +58,16 @@ function calcPrice() {
       </table> 
   </div>
   `;
- 
+  
+  for (i=0; i < count; i++) {
+    if (arrValues[i][0] != -1 && arrValues[i][1] != -1) {
+      document.getElementById(`quantityN${i}`).value = toString(arrValues[i][0])
+      document.getElementById(`priceN${i}`).value = toString(arrValues[i][1])
+    }
+  }
+
+
+
   if (count == 0) {
     document.getElementById(`trash${count}`).style.visibility = "hidden";
   } else {
@@ -39,17 +75,7 @@ function calcPrice() {
   }
   document.getElementById("section").innerHTML += html
   
-  
-  quant = document.getElementById(`quantityN${count}`).value
-  prc = document.getElementById(`priceN${count}`).value
-  if (quant!=0 && prc!=0.00) {
-    arrTemp.push(document.getElementById(`quantityN${count}`).value)
-    arrTemp.push(document.getElementById(`priceN${count}`).value)
-    arrValues.push(arrTemp)
-  }
-  
-  tot = quant
-  avgPrice
+
   attFooter()
    
 }
@@ -67,4 +93,6 @@ function attFooter() {
 
 function wipeOut(x) {
     document.getElementById(`data${x}`).remove()
+    arrValues[x][0] = -1
+    arrValues[x][1] = -1
 }
