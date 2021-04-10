@@ -7,7 +7,7 @@ function calcPrice() {
   html = `
   
     
-      <div class="data" id="data${count}" style="visibility: visible;">
+      <div class="data" id="data${count+1}" style="visibility: visible;">
           <table align="center" > 
             <tr>
               <td id="quantidade">Quantidade:</td>
@@ -15,13 +15,13 @@ function calcPrice() {
             </tr>
             <tr>
               <td>
-                <label><input type="number" id="quantityN${count}" min=0></label>
+                <label><input type="number" id="quantityN${count+1}" min=0></label>
               </td>
               <td>
                 <span>R$</span>
-                <label><input type="number" id="priceN${count}" min=0></label>
+                <label><input type="number" id="priceN${count+1}" min=0></label>
               </td>
-              <td id="trash${count}">
+              <td id="trash${count+1}">
                 <button class="trash" onClick="wipeOut()" style="visibility: visible;" >🔥</button>
               </td>
             </tr>
@@ -31,15 +31,16 @@ function calcPrice() {
   `;
   
   if (count == 0) {
-    document.getElementById("trash").style.visibility = "visible";
-    document.getElementById("data").innerHTML += html
+    document.getElementById("trash0").style.visibility = "visible";
+    document.getElementById("data0").innerHTML += html
   } else {
-    document.getElementById(`data${count-1}`).innerHTML += html
+    document.getElementById(`data${count}`).innerHTML += html
   }
 
-
+  
+  
   attFooter()
-  count ++
+  count ++ 
 }
 
 function attFooter() {
