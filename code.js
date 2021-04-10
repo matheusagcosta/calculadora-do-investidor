@@ -35,9 +35,16 @@ function calcPrice() {
   } else {
     document.getElementById(`data${count}`).innerHTML += html
   }
- 
-  //tot = document.getElementById(`quantityN${count}`).value;
-  
+  /*
+  quant = document.getElementById(`quantityN${count}`).value
+  prc = document.getElementById(`priceN${count}`).value
+
+  if (quant!=0 && prc!=0.00) {
+    arrTemp.push(document.getElementById(`quantityN${count}`).value)
+    arrTemp.push(document.getElementById(`priceN${count}`).value)
+    arrValues.push(arrTemp)
+  }
+  */
   attFooter()
   count ++ 
 }
