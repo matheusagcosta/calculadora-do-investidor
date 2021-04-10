@@ -5,9 +5,9 @@ count = 0
 function calcPrice() {
       
   html = `
-  <br>
-    <div class="section" id="section${count}">
-      <div class="data" id="data" style="visibility: visible;">
+  
+    
+      <div class="data" id="data${count}" style="visibility: visible;">
           <table align="center" > 
             <tr>
               <td id="quantidade">Quantidade:</td>
@@ -27,14 +27,14 @@ function calcPrice() {
             </tr>
           </table> 
       </div>
-    </div>
+    
   `;
   
   if (count == 0) {
     document.getElementById("trash").style.visibility = "visible";
-    document.getElementById("section").innerHTML += html
+    document.getElementById("data").innerHTML += html
   } else {
-    document.getElementById(`section${count-1}`).innerHTML += html
+    document.getElementById(`data${count-1}`).innerHTML += html
   }
 
 
