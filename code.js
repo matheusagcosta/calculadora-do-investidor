@@ -1,6 +1,5 @@
 var avgPrice = 0
 var tot = 0
-var totP = 0
 var products = 0
 var arrValues = []
 var arrTemp = []
@@ -75,8 +74,12 @@ function calcPrice() {
     // calculations
     tot += verifQ
     products += verifQ*verifP
-    totP += verifP
-    avgPrice = (products/totP).toFixed(2)  
+    if (arrValues.length == 1) {
+      avgPrice = arrValues[0][1]
+    } else {
+      avgPrice = (products/tot).toFixed(2)
+    }
+      
 
     // footer
     attFooter()
