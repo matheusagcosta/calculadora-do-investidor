@@ -1,5 +1,7 @@
 var avgPrice = 0
 var tot = 0
+var totP = 0
+var products = 0
 var arrValues = []
 var arrTemp = []
 var verifQ
@@ -18,7 +20,7 @@ function calcPrice() {
     
   } else {
     
-    // value validation system start
+    // value validation
     if (!(parseFloat(verifQ))) {
       verifQ = 0
     }
@@ -33,15 +35,17 @@ function calcPrice() {
       verifP = 0
       verifQ = 0
     }
-    // value validation system end
     
-    // array system
-    arrTemp.push(parseFloat(verifQ))
-    arrTemp.push(parseFloat(verifP))
+    // array addition
+    verifQ = parseFloat(verifQ)
+    verifP = parseFloat(verifP)
+    arrTemp.push(verifQ)
+    arrTemp.push(verifP)
     arrValues.push(arrTemp)
     arrTemp=[]
 
-    // data creation system
+
+    // data creation
     var html = `
     <div class="data" id="data${x}" style="visibility: visible;">
         <table align="center" > 
@@ -69,8 +73,12 @@ function calcPrice() {
     document.getElementById("section").innerHTML += html
     
     // calculations
+    tot += verifQ
+    products += verifQ*verifP
+    totP += verifP
+    avgPrice = (products/totP).toFixed(2)  
 
-    tot += 
+    // footer
     attFooter()
    
   }
@@ -97,4 +105,5 @@ function wipeOut(y) {
     document.getElementById(`trash${u}`).id.innerHTML = `trash${u-1}`
     document.getElementById(`wipeOut(${u})`).onclick.innerHTML = `wipeOut(${u-1})`
   }
+  attFooter()
 }
