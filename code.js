@@ -8,63 +8,69 @@ var x = 0
 
 function calcPrice() {
   x ++
-
+  // input validation system 
   verifQ = document.getElementById(`quantityN${x-1}`).value 
   verifP = document.getElementById(`priceN${x-1}`).value
 
-  if (!(parseFloat(verifQ))) {
-    verifQ = 0
-  }
-  if (!(parseFloat(verifP))) {
-    verifP = 0
-    verifQ = 0
-  }
-  if (verifQ<0) {
-    verifQ = 0
-  }
-  if (verifP<0) {
-    verifP = 0
-    verifQ = 0
-  }
+  if (verifQ == "" && verifP == "") {
+    alert("escreve aí poha")
+    x--
+    
+  } else {
+    
+    // value validation system start
+    if (!(parseFloat(verifQ))) {
+      verifQ = 0
+    }
+    if (!(parseFloat(verifP))) {
+      verifP = 0
+      verifQ = 0
+    }
+    if (verifQ<0) {
+      verifQ = 0
+    }
+    if (verifP<0) {
+      verifP = 0
+      verifQ = 0
+    }
+    // value validation system end
 
-  arrTemp.push(parseFloat(verifQ))
-  arrTemp.push(parseFloat(verifP))
-  arrValues.push(arrTemp)
-  arrTemp=[]
+    arrTemp.push(parseFloat(verifQ))
+    arrTemp.push(parseFloat(verifP))
+    arrValues.push(arrTemp)
+    arrTemp=[]
 
-  
-  var html = `
-  <div class="data" id="data${x}" style="visibility: visible;">
-      <table align="center" > 
-        <tr>
-          <td id="quantidade">Quantidade:</td>
-          <td id="preco">Preço Médio:</td>
-        </tr>
-        <tr>
-          <td>
-            <label><input type="text" id="quantityN${x}" min="0" value="">
-            </label>
-          </td>
-          <td>
-            <span>R$</span>
-            <label><input type="text" id="priceN${x}" min="0" value="">
-            </label>
-          </td>
-          <td>
-            <button class="trash" id="trash${x}" onclick="wipeOut(${x})" style="visibility: visible;" >🔥</button>
-          </td>
-        </tr>
-      </table> 
-  </div>
-  `;
+    
+    var html = `
+    <div class="data" id="data${x}" style="visibility: visible;">
+        <table align="center" > 
+          <tr>
+            <td id="quantidade">Quantidade:</td>
+            <td id="preco">Preço Médio:</td>
+          </tr>
+          <tr>
+            <td>
+              <label><input type="text" id="quantityN${x}" min="0" value="">
+              </label>
+            </td>
+            <td>
+              <span>R$</span>
+              <label><input type="text" id="priceN${x}" min="0" value="">
+              </label>
+            </td>
+            <td>
+              <button class="trash" id="trash${x}" onclick="wipeOut(${x})" style="visibility: visible;" >🔥</button>
+            </td>
+          </tr>
+        </table> 
+    </div>
+    `;
 
-
-  
-  document.getElementById("section").innerHTML += html
-  
-  
-  attFooter()
+    document.getElementById("section").innerHTML += html
+    
+    attFooter()
    
+  }
 }
 
 function attFooter() {
