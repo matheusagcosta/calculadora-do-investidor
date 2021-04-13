@@ -13,7 +13,7 @@ function calcPrice() {
   verifP = document.getElementById(`priceN${x-1}`).value
 
   if (verifQ == "" && verifP == "") {
-    alert("escreve aí poha")
+    console.log("escreve aí poha")
     x--
     
   } else {
@@ -34,13 +34,14 @@ function calcPrice() {
       verifQ = 0
     }
     // value validation system end
-
+    
+    // array system
     arrTemp.push(parseFloat(verifQ))
     arrTemp.push(parseFloat(verifP))
     arrValues.push(arrTemp)
     arrTemp=[]
 
-    
+    // data creation system
     var html = `
     <div class="data" id="data${x}" style="visibility: visible;">
         <table align="center" > 
@@ -50,24 +51,26 @@ function calcPrice() {
           </tr>
           <tr>
             <td>
-              <label><input type="text" id="quantityN${x}" min="0" value="">
+              <label><input type="text" id="quantityN${x}" min="0" value="" required>
               </label>
             </td>
             <td>
               <span>R$</span>
-              <label><input type="text" id="priceN${x}" min="0" value="">
+              <label><input type="text" id="priceN${x}" min="0" value="" required>
               </label>
             </td>
             <td>
-              <button class="trash" id="trash${x}" onclick="wipeOut(${x})" style="visibility: visible;" >🔥</button>
+              <button class="trash" id="trash${x}" onclick="wipeOut(${x})" style="visibility: visible;">🔥</button>
             </td>
           </tr>
         </table> 
     </div>
     `;
-
     document.getElementById("section").innerHTML += html
     
+    // calculations
+
+    tot += 
     attFooter()
    
   }
