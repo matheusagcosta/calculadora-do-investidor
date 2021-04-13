@@ -17,12 +17,14 @@ function calcPrice() {
   }
   if (!(parseFloat(verifP))) {
     verifP = 0
+    verifQ = 0
   }
   if (verifQ<0) {
     verifQ = 0
   }
   if (verifP<0) {
     verifP = 0
+    verifQ = 0
   }
 
   arrTemp.push(parseFloat(verifQ))
@@ -56,14 +58,7 @@ function calcPrice() {
   </div>
   `;
 
-  if (arrValues.length == 0) {
-    document.getElementById(`trash0`).style.visibility = "hidden";
-  }
-  if (x==1 && arrValues.length == 1) {
-    document.getElementById(`trash0`).style.visibility = "hidden";
-  } else {
-    document.getElementById(`trash0`).style.visibility = "visible";
-  } 
+
   
   document.getElementById("section").innerHTML += html
   
