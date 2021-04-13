@@ -29,10 +29,6 @@ function calcPrice() {
   arrTemp.push(parseFloat(verifP))
   arrValues.push(arrTemp)
   arrTemp=[]
-  
-  for (u=1; u < arrValues.length; u++) {
-
-  }
 
   
   var html = `
@@ -53,7 +49,7 @@ function calcPrice() {
             </label>
           </td>
           <td>
-            <button class="trash" id="trash${x}" onClick="wipeOut(${x})" style="visibility: visible;" >🔥</button>
+            <button class="trash" id="trash${x}" onclick="wipeOut(${x})" style="visibility: visible;" >🔥</button>
           </td>
         </tr>
       </table> 
@@ -88,23 +84,13 @@ function attFooter() {
 }
 
 function wipeOut(y) {
-    
-  if (y==x) {
-    document.getElementById(`data${y}`).remove()
-  } else {
-    document.getElementById(`data${y}`).remove()
-    arrValues[y][0] = -1
-    arrValues[y][1] = -1
-  }
-  c = 0
-  t = 0
-  for (i=0;i<arrValues.length;i++) {
-    if (arrValues[i][0]!=-1) {
-      t = i
-      c += 1
-    }
-  }
-  if (c==1) {
-    document.getElementById(`trash${t}`).style.visibility = "hidden";
+  document.getElementById(`data${y}`).remove()
+  arrValues.splice(y, 1)
+  for (u=y+1; u = arrValues.length; u++) {
+    document.getElementById(`data${u}`).id.innerHTML = `data${u-1}`
+    document.getElementById(`quantityN${u}`).id.innerHTML = `quantityN${u-1}`
+    document.getElementById(`priceN${u}`).id.innerHTML = `priceN${u-1}`
+    document.getElementById(`trash${u}`).id.innerHTML = `trash${u-1}`
+    document.getElementById(`wipeOut(${u})`).onclick.innerHTML = `wipeOut(${u-1})`
   }
 }
