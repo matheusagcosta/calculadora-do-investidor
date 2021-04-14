@@ -71,23 +71,25 @@ function calcPrice() {
     `;
     document.getElementById("section").innerHTML += html
 
+    // calculations
+    tot += verifQ
+    products += verifQ*verifP
+    if (arrValues.length == 1) {
+      avgPrice = arrValues[0][1]
+    } else {
+      avgPrice = (products/tot).toFixed(2)
+    }
+  
     // footer
     attFooter()
    
   }
 }
 
+
+
 function attFooter() {
 
-  // calculations
-  tot += verifQ
-  products += verifQ*verifP
-  if (arrValues.length == 1) {
-    avgPrice = arrValues[0][1]
-  } else {
-    avgPrice = (products/tot).toFixed(2)
-  }
-  
   html2 = `
   <label> Quantidade Total: &nbsp;&nbsp; Preço Médio: </label> <br>
   <span class="quantidade">${tot}</span>
@@ -107,9 +109,11 @@ function wipeOut(y) {
     document.getElementById(`trash${u}`).id.innerHTML = `trash${u-1}`
     document.getElementById(`wipeOut(${u})`).onclick.innerHTML = `wipeOut(${u-1})`
   }
-
   
-
+  tot -= arrValues[y][0]
+  products -= arrValues[y][0]*arrValues[y][1]
   arrValues.splice(y, 1)
+
   attFooter()
+  
 }
