@@ -75,7 +75,7 @@ function calcPrice() {
     tot += verifQ
     products += verifQ*verifP
     if (arrValues.length == 1) {
-      avgPrice = arrValues[0][1]
+      avgPrice = arrValues[0][1].toFixed(2)
     } else {
       avgPrice = (products/tot).toFixed(2)
     }
@@ -103,16 +103,17 @@ function wipeOut(y) {
   x --
   document.getElementById(`data${y}`).remove()
   for (u=y+1; u < arrValues.length; u++) {
-    document.getElementById(`data${u}`).id.innerHTML = `data${u-1}`
-    document.getElementById(`quantityN${u}`).id.innerHTML = `quantityN${u-1}`
-    document.getElementById(`priceN${u}`).id.innerHTML = `priceN${u-1}`
-    document.getElementById(`trash${u}`).id.innerHTML = `trash${u-1}`
-    document.getElementById(`wipeOut(${u})`).onclick.innerHTML = `wipeOut(${u-1})`
+    console.log(u)
   }
   
   tot -= arrValues[y][0]
   products -= arrValues[y][0]*arrValues[y][1]
   arrValues.splice(y, 1)
+  if (arrValues.length == 1) {
+    avgPrice = arrValues[0][1].toFixed(2)
+  } else {
+    avgPrice = (products/tot).toFixed(2)
+  }
 
   attFooter()
   
