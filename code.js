@@ -102,10 +102,8 @@ function attFooter() {
 function wipeOut(y) {
   x --
   document.getElementById(`data${y}`).remove()
-  for (u=y+1; u < arrValues.length; u++) {
-    console.log(u)
-  }
   
+  //change footer
   tot -= arrValues[y][0]
   products -= arrValues[y][0]*arrValues[y][1]
   arrValues.splice(y, 1)
@@ -114,7 +112,12 @@ function wipeOut(y) {
   } else {
     avgPrice = (products/tot).toFixed(2)
   }
-
   attFooter()
   
+  //change data id's
+  if (y != arrValues-1) {
+    for (u=y+1; u < arrValues; u++) {
+      
+    }
+  }
 }
