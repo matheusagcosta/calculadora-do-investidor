@@ -90,6 +90,12 @@ function calcPrice() {
 
 function attFooter() {
 
+  if (x>0) {
+    document.getElementById('trash0').style.visibility = "visible"
+  } else {
+    document.getElementById('trash0').style.visibility = "hidden"
+  }
+
   html2 = `
   <label> Quantidade Total: &nbsp;&nbsp; Preço Médio: </label> <br>
   <span class="quantidade">${tot}</span>
@@ -103,10 +109,45 @@ function wipeOut(y) {
   x --
   document.getElementById(`data${y}`).remove()
   
-  //change footer
-  tot -= arrValues[y][0]
-  products -= arrValues[y][0]*arrValues[y][1]
-  arrValues.splice(y, 1)
+  //change data id's
+  if (y != arrValues.length) {
+    for (u=0; u < arrValues; u++) {
+      html3 = `
+        <div class="data" id="data${u}" style="visibility: visible;">
+          <table align="center" > 
+            <tr>
+              <td id="quantidade">Quantidade:</td>
+              <td id="preco">Preço Médio:</td>
+            </tr>
+            <tr>
+              <td>
+                <label><input type="text" id="quantityN${u}" min="0" value="" required>
+                </label>
+              </td>
+              <td>
+                <span>R$</span>
+                <label><input type="text" id="priceN${u}" min="0" value="" required>
+                </label>
+              </td>
+              <td>
+                <button class="trash" id="trash${u}" onclick="wipeOut(${u})" style="visibility: visible;">🔥</button>
+              </td>
+            </tr>
+          </table> 
+        </div>
+      `;
+      change = document.getElementById(`data${u}`)
+      change.innerHTML = html3
+      x = arrValues.length-1
+    }
+  }
+
+  if (arrValues[y]) {
+    tot -= arrValues[y][0]
+    products -= arrValues[y][0]*arrValues[y][1]
+    arrValues.splice(y, 1)
+  }
+  
   if (arrValues.length == 1) {
     avgPrice = arrValues[0][1].toFixed(2)
   } else {
@@ -114,10 +155,5 @@ function wipeOut(y) {
   }
   attFooter()
   
-  //change data id's
-  if (y != arrValues-1) {
-    for (u=y+1; u < arrValues; u++) {
-      
-    }
-  }
+  
 }
