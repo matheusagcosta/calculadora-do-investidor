@@ -9,11 +9,10 @@ body {
   background-color: grey;
 }
 
-button, button:focus {
-  border: 0;
+#add, button:focus {
+  border: 1px solid;
   outline: 0;
   cursor: pointer;
-  transition: 1s ease;
 }
 
 input {

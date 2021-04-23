@@ -55,20 +55,22 @@
     <h1>Calcular Preço Médio</h1>
     </div>
     <div class="section" id="section">
-      <div class="data" id="data0" style="visibility: visible;">
-          <form>
-            <label for="quantityN" id="quantidade">Quantidade: </label>
-            <input type="text" id="quantityN" min="0" value="" required>
-            <label for="priceN" id="preco">Preço:</label>
-            <input type="text" id="priceN" min="0" value="" required>
-          </form>
-      </div>
+      <form>
+
+        <label for="quantityN" id="quantidade">Quantidade:</label>
+        <input type="text" name="quantityN" min="0" value="" required>
+
+        <label for="priceN" id="preco">Preço:</label>
+        <input type="text" name="priceN" min="0" value="" required>
+
+        <button type="submit" id="add" onclick="calcPrice()">+</button>
+
+      </form>
     </div>
-    <button type="submit" id="add" onClick="calcPrice()">+</button>
   </main>
 
   <footer class= "footer" id= "footer">
-    <label> Quantidade Total: &nbsp;&nbsp; Preço Médio: </label> <br>
+    <label> Quantidade Total: &nbsp;&nbsp; Preço Médio:</label> <br>
     <span class="quantidade">0</span>
     <span class="preco">R$</span>
   </footer>
