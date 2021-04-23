@@ -13,8 +13,8 @@ function calcPrice() {
   verifQ = document.getElementById(`quantityN${x-1}`).value 
   verifP = document.getElementById(`priceN${x-1}`).value
 
-  if (verifQ == "" && verifP == "") {
-    console.log("escreve aí poha")
+  if (verifQ == "" || verifP == "") {
+    
     x--
     
   } else {
@@ -27,10 +27,10 @@ function calcPrice() {
       verifP = 0
       verifQ = 0
     }
-    if (verifQ<0) {
+    if (verifQ<=0) {
       verifQ = 0
     }
-    if (verifP<0) {
+    if (verifP<=0) {
       verifP = 0
       verifQ = 0
     }
@@ -91,9 +91,11 @@ function calcPrice() {
 function attFooter() {
 
   if (x>0) {
-    document.getElementById('trash0').style.visibility = "visible"
+    for (z=0; z<arrValues.length; z++) {
+      document.getElementById(`trash${z}`).style.visibility = "visible"
+    }
   } else {
-    document.getElementById('trash0').style.visibility = "hidden"
+    document.getElementById("trash0").style.visibility = "hidden"
   }
 
   html2 = `
@@ -110,10 +112,9 @@ function wipeOut(y) {
   document.getElementById(`data${y}`).remove()
   
   //change data id's
-  if (y != arrValues.length) {
-    for (u=0; u < arrValues; u++) {
+    for (u=y+1; u <= arrValues.length; u++) {
       html3 = `
-        <div class="data" id="data${u}" style="visibility: visible;">
+        <div class="data" id="data${u-1}" style="visibility: visible;">
           <table align="center" > 
             <tr>
               <td id="quantidade">Quantidade:</td>
@@ -121,16 +122,16 @@ function wipeOut(y) {
             </tr>
             <tr>
               <td>
-                <label><input type="text" id="quantityN${u}" min="0" value="" required>
+                <label><input type="text" id="quantityN${u-1}" min="0" value="" required>
                 </label>
               </td>
               <td>
                 <span>R$</span>
-                <label><input type="text" id="priceN${u}" min="0" value="" required>
+                <label><input type="text" id="priceN${u-1}" min="0" value="" required>
                 </label>
               </td>
               <td>
-                <button class="trash" id="trash${u}" onclick="wipeOut(${u})" style="visibility: visible;">🔥</button>
+                <button class="trash" id="trash${u-1}" onclick="wipeOut(${u-1})" style="visibility: visible;">🔥</button>
               </td>
             </tr>
           </table> 
@@ -140,7 +141,6 @@ function wipeOut(y) {
       change.innerHTML = html3
       x = arrValues.length-1
     }
-  }
 
   if (arrValues[y]) {
     tot -= arrValues[y][0]

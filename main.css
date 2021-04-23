@@ -19,7 +19,6 @@ button, button:focus {
 input {
   border: 1px solid;
   outline: 0;
-  
 }
 
 .title {
@@ -81,11 +80,10 @@ input {
   display: block;
   flex-direction: column;
   font-size: 16px;
-  max-width: 500px;
+  max-width: 575px;
   margin-right: auto;
   margin-left: auto;
   position: relative;
-  
 }
 
 #add {
@@ -112,16 +110,11 @@ input {
   border-radius: 50px;
   position: relative;
   left: 7%;
-  
 }
 
 .section input {
   border-radius: 10px;
   font-size: 16px;
-}
-
-.section #preco {
-  padding-left: 6.1%;
 }
 
 .footer {
@@ -137,12 +130,3 @@ input {
   padding-top: 20px;
 }
 
-.quantidade {
-  position: fixed;
-  right: 50%;
-}
-
-.preco {
-  position: fixed;
-  left: 51.6%;
-}
