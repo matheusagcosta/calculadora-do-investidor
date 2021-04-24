@@ -18,58 +18,61 @@ function calcPrice() {
     // input validation system (2)
     verifQ = parseInt(verifQ)
     verifP = parseFloat(verifP)
+    
+    if (verifQ && verifP) {
+    
+      // show trash buttons
+      if (arrValues!=[]) {
+        document.getElementById("trash").style.visibility = "visible"
+      } else {
+        document.getElementById("trash").style.visibility = "hidden"
+      }
 
-    // show trash buttons
-    if (arrValues!=[]) {
-      document.getElementById("trash").style.visibility = "visible"
-    } else {
-      document.getElementById("trash").style.visibility = "hidden"
-    }
+        
+      // array addition
+      verifQ = parseFloat(verifQ)
+      verifP = parseFloat(verifP)
+      arrTemp.push(verifQ)
+      arrTemp.push(verifP)
+      arrValues.push(arrTemp)
+      arrTemp=[]
 
+      var rem = document.getElementById('add')
+      rem.remove()
+
+      // calculations
+      tot += verifQ
+      products += verifQ*verifP
+      if (arrValues.length == 1) {
+        avgPrice = arrValues[0][1].toFixed(2)
+      } else {
+        avgPrice = (products/tot).toFixed(2)
+      }
       
-    // array addition
-    verifQ = parseFloat(verifQ)
-    verifP = parseFloat(verifP)
-    arrTemp.push(verifQ)
-    arrTemp.push(verifP)
-    arrValues.push(arrTemp)
-    arrTemp=[]
 
-    var rem = document.getElementById('add')
-    rem.remove()
+      // form creation
+      
+      var html = `
+      
+        <form>
 
-    // calculations
-    tot += verifQ
-    products += verifQ*verifP
-    if (arrValues.length == 1) {
-      avgPrice = arrValues[0][1].toFixed(2)
-    } else {
-      avgPrice = (products/tot).toFixed(2)
-    }
-    
+          <label for="quantityN" id="quantidade">Quantidade:</label>
+          <input type="number" name="quantityN" min=0 required>
 
-    // form creation
-    
-    var html = `
-    
-      <form>
+          <label for="priceN" id="preco">Preço:</label>
+          <input type="number" name="priceN" min=0 required>
 
-        <label for="quantityN" id="quantidade">Quantidade:</label>
-        <input type="number" name="quantityN" min=0 required>
+          <button type="submit" id="add" onclick="calcPrice()">+</button>
 
-        <label for="priceN" id="preco">Preço:</label>
-        <input type="number" name="priceN" min=0 required>
+        </form>
+        <button class="trash" id="trash" onclick="wipeOut(${x+1})">🔥</button>
+      
+      `;
+      document.getElementById("section").innerHTML += html
 
-        <button type="submit" id="add" onclick="calcPrice()">+</button>
-
-      </form>
-      <button class="trash" id="trash" onclick="wipeOut(${x+1})">🔥</button>
-    
-    `;
-    document.getElementById("section").innerHTML += html
-
-    // footer
-    attFooter()
+      // footer
+      attFooter()
+      }
     }
   }
 
