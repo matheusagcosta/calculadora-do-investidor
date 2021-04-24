@@ -63,9 +63,10 @@
         <label for="priceN" id="preco">Preço:</label>
         <input type="text" name="priceN" min="0" value="" required>
 
-        <button type="submit" id="add" onclick="calcPrice()">+</button>
+        <input type="submit" id="add" value="+" onclick="calcPrice()">
 
       </form>
+      <button class="trash" id="trash" onclick="wipeOut()" style="visibility: hidden;">🔥</button>
     </div>
   </main>
 
