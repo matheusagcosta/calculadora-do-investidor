@@ -9,72 +9,76 @@ var x = arrValues.length
 
 function calcPrice() {
 
-  // input validation system (1)
+  // input validation system (1) -> empty strings
   verifQ = document.getElementsByName("quantityN")[0].value
   verifP = document.getElementsByName("priceN")[0].value
 
   if (verifQ!="" && verifP!="") { 
     
-    // input validation system (2)
+    // input validation system (2) -> characters
     verifQ = parseInt(verifQ)
     verifP = parseFloat(verifP)
     
     if (verifQ && verifP) {
-    
-      // show trash buttons
-      if (arrValues!=[]) {
-        document.getElementById("trash").style.visibility = "visible"
-      } else {
-        document.getElementById("trash").style.visibility = "hidden"
-      }
+      
+      // input validation system (3) -> negative numbers
+      if (verifQ>=0 && verifP>=0) {
+  
+        // array addition
+        verifQ = parseFloat(verifQ)
+        verifP = parseFloat(verifP)
+        arrTemp.push(verifQ)
+        arrTemp.push(verifP)
+        arrValues.push(arrTemp)
+        arrTemp=[]
 
+        // show trash buttons
+        if (arrValues!=[]) {
+          document.getElementById("trash").style.visibility = "visible"
+        } else {
+          document.getElementById("trash").style.visibility = "hidden"
+        }
+
+        // remove add button
+        var rem = document.getElementById('add')
+        rem.remove()
+
+        // calculations
+        tot += verifQ
+        products += verifQ*verifP
+        if (arrValues.length == 1) {
+          avgPrice = arrValues[0][1].toFixed(2)
+        } else {
+          avgPrice = (products/tot).toFixed(2)
+        }
+
+        // footer
+        attFooter()
+
+        // form creation
         
-      // array addition
-      verifQ = parseFloat(verifQ)
-      verifP = parseFloat(verifP)
-      arrTemp.push(verifQ)
-      arrTemp.push(verifP)
-      arrValues.push(arrTemp)
-      arrTemp=[]
+        var html = `
+        
+         <form>
 
-      var rem = document.getElementById('add')
-      rem.remove()
+           <label for="quantityN" id="quantidade">Quantidade:</label>
+           <input type="number" name="quantityN" min=0 required>
 
-      // calculations
-      tot += verifQ
-      products += verifQ*verifP
-      if (arrValues.length == 1) {
-        avgPrice = arrValues[0][1].toFixed(2)
-      } else {
-        avgPrice = (products/tot).toFixed(2)
-      }
-      
+           <label for="priceN" id="preco">Preço:</label>
+           <input type="number" name="priceN" min=0 required>
 
-      // form creation
-      
-      var html = `
-      
-        <form>
+           <button type="submit" id="add" onclick="calcPrice()">+</button>
 
-          <label for="quantityN" id="quantidade">Quantidade:</label>
-          <input type="number" name="quantityN" min=0 required>
+         </form>
+         <button class="trash" id="trash" onclick="wipeOut(${x+1})">🔥</button>
+       
+        `;
+        document.getElementById("section").innerHTML += html
 
-          <label for="priceN" id="preco">Preço:</label>
-          <input type="number" name="priceN" min=0 required>
-
-          <button type="submit" id="add" onclick="calcPrice()">+</button>
-
-        </form>
-        <button class="trash" id="trash" onclick="wipeOut(${x+1})">🔥</button>
-      
-      `;
-      document.getElementById("section").innerHTML += html
-
-      // footer
-      attFooter()
       }
     }
   }
+}
 
 function attFooter() {
 
