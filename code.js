@@ -5,15 +5,14 @@ var arrValues = []
 var arrTemp = []
 var verifQ
 var verifP
-var x = arrValues.length
 
-function calcPrice() {
+function calcPrice(y) {
 
   // input validation system (1) -> empty strings
-  verifQ = document.getElementsByName("quantityN")[0].value
-  verifP = document.getElementsByName("priceN")[0].value
+  verifQ = document.getElementsByName("quantityN")[y].value
+  verifP = document.getElementsByName("priceN")[y].value
 
-  if (verifQ!="" && verifP!="") { 
+  if (verifQ!="" && verifP!="") {
     
     // input validation system (2) -> characters
     verifQ = parseInt(verifQ)
@@ -25,8 +24,6 @@ function calcPrice() {
       if (verifQ>=0 && verifP>=0) {
   
         // array addition
-        verifQ = parseFloat(verifQ)
-        verifP = parseFloat(verifP)
         arrTemp.push(verifQ)
         arrTemp.push(verifP)
         arrValues.push(arrTemp)
@@ -34,9 +31,9 @@ function calcPrice() {
 
         // show trash buttons
         if (arrValues!=[]) {
-          document.getElementById("trash").style.visibility = "visible"
+          document.getElementById(`trash0`).style.visibility = "visible"
         } else {
-          document.getElementById("trash").style.visibility = "hidden"
+          document.getElementById("trash0").style.visibility = "hidden"
         }
 
         // remove add button
@@ -59,22 +56,22 @@ function calcPrice() {
         
         var html = `
         
-         <form>
+        <form>
 
-           <label for="quantityN" id="quantidade">Quantidade:</label>
-           <input type="number" name="quantityN" min=0 required>
+        <label for="quantityN" id="quantidade">Quantidade:</label>
+        <input type="text" name="quantityN" min="0" value="" required>
 
-           <label for="priceN" id="preco">Preço:</label>
-           <input type="number" name="priceN" min=0 required>
+        <label for="priceN" id="preco">Preço:</label>
+        <input type="text" name="priceN" min="0" value="" required>
 
-           <button type="submit" id="add" onclick="calcPrice()">+</button>
+        <input type="submit" id="add" value="+" onclick="calcPrice(${y+1})">
 
-         </form>
-         <button class="trash" id="trash" onclick="wipeOut(${x+1})">🔥</button>
+        </form>
+        <button class="trash" id="trash${y+1}" onclick="wipeOut(${y+1})" style="visibility: visible;">🔥</button>
        
         `;
         document.getElementById("section").innerHTML += html
-
+        
       }
     }
   }
@@ -87,20 +84,19 @@ function attFooter() {
   <span class="quantidade">${tot}</span>
   <span class="preco"> R$ ${avgPrice}</span>
   `;
-  changeFooter = document.getElementById("footer")
-  changeFooter.innerHTML = html2
+  document.getElementById("footer").innerHTML = html2
 }
 
-function wipeOut(y) {
+function wipeOut(z) {
 
   for (u=0; u<arrValues.length; u++) {
     
   }
 
-  if (arrValues[y]) {
-    tot -= arrValues[y][0]
-    products -= arrValues[y][0]*arrValues[y][1]
-    arrValues.splice(y, 1)
+  if (arrValues[z]) {
+    tot -= arrValues[z][0]
+    products -= arrValues[z][0]*arrValues[z][1]
+    arrValues.splice(z, 1)
   }
   
   if (arrValues.length == 1) {
