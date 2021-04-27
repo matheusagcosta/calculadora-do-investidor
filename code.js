@@ -71,7 +71,7 @@ function calcPrice(y) {
        
         `;
         document.getElementById("section").innerHTML += html
-        
+
       }
     }
   }
@@ -89,21 +89,31 @@ function attFooter() {
 
 function wipeOut(z) {
 
-  for (u=0; u<arrValues.length; u++) {
-    
-  }
-
+  // redo calculations and remove itens from the array
   if (arrValues[z]) {
     tot -= arrValues[z][0]
     products -= arrValues[z][0]*arrValues[z][1]
     arrValues.splice(z, 1)
   }
   
+  // att footer
   if (arrValues.length == 1) {
     avgPrice = arrValues[0][1].toFixed(2)
   } else {
     avgPrice = (products/tot).toFixed(2)
   }
+
+  // change next sections' id's
+  for (u=0; u<document.forms.length; u++) {
+    
+  }
+
+  // remove specified section
+
+
+  // hide trash button (single form)
+  
+
   attFooter()
   
 }
