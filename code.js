@@ -3,29 +3,29 @@ var tot = 0
 var products = 0
 var arrValues = []
 var arrTemp = []
-var verifQ
-var verifP
+var valueQ
+var valueP
 // keep values inside the input
 function calcPrice(y) {
 
   // input validation system (1) -> empty strings
-  verifQ = document.getElementsByName("quantityN")[y].value
-  verifP = document.getElementsByName("priceN")[y].value
+  valueQ = document.getElementsByName("quantityN")[y].value
+  valueP = document.getElementsByName("priceN")[y].value
 
-  if (verifQ!="" && verifP!="") {
+  if (valueQ!="" && valueP!="") {
     
     // input validation system (2) -> characters
-    verifQ = parseInt(verifQ)
-    verifP = parseFloat(verifP)
+    valueQ = parseInt(valueQ)
+    valueP = parseFloat(valueP)
     
-    if (verifQ && verifP) {
+    if (valueQ && valueP) {
       
       // input validation system (3) -> negative numbers
-      if (verifQ>=0 && verifP>=0) {
+      if (valueQ>=0 && valueP>=0) {
   
         // array addition
-        arrTemp.push(verifQ)
-        arrTemp.push(verifP)
+        arrTemp.push(valueQ)
+        arrTemp.push(valueP)
         arrValues.push(arrTemp)
         arrTemp=[]
 
@@ -33,8 +33,8 @@ function calcPrice(y) {
         document.getElementById('add').remove()
 
         // calculations
-        tot += verifQ
-        products += verifQ*verifP
+        tot += valueQ
+        products += valueQ*valueP
         if (arrValues.length == 1) {
           avgPrice = arrValues[0][1].toFixed(2)
         } else {
@@ -42,7 +42,6 @@ function calcPrice(y) {
         }
 
         // form creation
-        
         var html = `
         
         <form>
@@ -61,6 +60,12 @@ function calcPrice(y) {
 
         // add trash button to previous form
         document.forms[y].innerHTML += `<button class="trash" id="trash${y}" onclick="wipeOut(${y})">🔥</button>`
+
+        // add values to previous forms
+        for (u=0; u<document.forms.length-1; u++) {
+          document.getElementsByName("quantityN")[u].value = arrValues[u][0]
+          document.getElementsByName("priceN")[u].value = arrValues[u][1]
+        }
 
         // footer
         attFooter()
@@ -82,7 +87,7 @@ function attFooter() {
 
 function wipeOut(z) {
   
-  const count = document.forms.length
+  var count = document.forms.length
   // redo calculations and remove itens from the array
   if (arrValues[z]) {
     tot -= arrValues[z][0]
@@ -104,7 +109,7 @@ function wipeOut(z) {
   // remove specified section
   document.forms[z].remove()
 
-  // hide trash button (single form)
+  // remove trash button (single form)
 
   // att footer
   if (arrValues.lenght == 0) {
