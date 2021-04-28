@@ -5,7 +5,7 @@ var arrValues = []
 var arrTemp = []
 var verifQ
 var verifP
-
+// keep values inside the input
 function calcPrice(y) {
 
   // input validation system (1) -> empty strings
@@ -29,16 +29,8 @@ function calcPrice(y) {
         arrValues.push(arrTemp)
         arrTemp=[]
 
-        // show trash buttons
-        if (arrValues!=[]) {
-          document.getElementById(`trash0`).style.visibility = "visible"
-        } else {
-          document.getElementById("trash0").style.visibility = "hidden"
-        }
-
         // remove add button
-        var rem = document.getElementById('add')
-        rem.remove()
+        document.getElementById('add').remove()
 
         // calculations
         tot += verifQ
@@ -48,9 +40,6 @@ function calcPrice(y) {
         } else {
           avgPrice = (products/tot).toFixed(2)
         }
-
-        // footer
-        attFooter()
 
         // form creation
         
@@ -67,10 +56,14 @@ function calcPrice(y) {
         <input type="submit" id="add" value="+" onclick="calcPrice(${y+1})">
 
         </form>
-        <button class="trash" id="trash${y+1}" onclick="wipeOut(${y+1})" style="visibility: visible;">🔥</button>
-       
         `;
         document.getElementById("section").innerHTML += html
+
+        // add trash button to previous form
+        document.forms[y].innerHTML += `<button class="trash" id="trash${y}" onclick="wipeOut(${y})">🔥</button>`
+
+        // footer
+        attFooter()
 
       }
     }
@@ -88,32 +81,40 @@ function attFooter() {
 }
 
 function wipeOut(z) {
-
+  
+  const count = document.forms.length
   // redo calculations and remove itens from the array
   if (arrValues[z]) {
     tot -= arrValues[z][0]
     products -= arrValues[z][0]*arrValues[z][1]
     arrValues.splice(z, 1)
   }
+
+  // change next sections' id's
+  for (u=z+1; u < count; u++) {
+    if (u == count-1) {
+      document.forms[u].elements[2].innerHTML = `<input type="submit" id="add" value="+" onclick="calcPrice(${document.forms.length-2})">`
+    } else {
+      document.forms[u].elements[2].innerHTML = `<button class="trash" id="trash${u-1}" onclick="wipeOut(${u-1})" style="visibility: visible;">🔥</button>`
+    }
+  }
+  document.getElementById("add").innerHTML = `<input type="submit" id="add" value="+" onclick="calcPrice(${document.forms.length-2})">`
   
+
+  // remove specified section
+  document.forms[z].remove()
+
+  // hide trash button (single form)
+
   // att footer
-  if (arrValues.length == 1) {
+  if (arrValues.lenght == 0) {
+    tot = 0
+    avgPrice = 0.00
+  } else if (arrValues.length == 1) {
     avgPrice = arrValues[0][1].toFixed(2)
   } else {
     avgPrice = (products/tot).toFixed(2)
   }
-
-  // change next sections' id's
-  for (u=0; u<document.forms.length; u++) {
-    
-  }
-
-  // remove specified section
-
-
-  // hide trash button (single form)
-  
-
   attFooter()
   
 }
