@@ -141,8 +141,6 @@ function wipeOut(z) {
   // remove specified section
   document.forms[z].remove()
 
-  // remove trash button (single form)
-
   // att values from forms
   for (u=0; u<document.forms.length-1; u++) {
     document.getElementsByName("quantityN")[u].value = arrValues[u][0]
@@ -150,7 +148,7 @@ function wipeOut(z) {
   }
 
   // att footer
-  if (arrValues.lenght == 0) {
+  if (arrValues.length == 0) {
     tot = 0
     avgPrice = 0.00
   } else if (arrValues.length == 1) {
