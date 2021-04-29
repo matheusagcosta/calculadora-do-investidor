@@ -5,6 +5,18 @@ var arrValues = []
 var arrTemp = []
 var valueQ
 var valueP
+var garb = `
+<form id="garb">
+
+<label for="quantityN" id="quantidade">Quantidade:</label>
+<input type="text" name="quantityN" min="0" value="" required>
+
+<label for="priceN" id="preco">Preço:</label>
+<input type="text" name="priceN" min="0" value="" required>
+
+</form>
+`;
+
 // keep values inside the input
 function calcPrice(y) {
 
@@ -43,7 +55,6 @@ function calcPrice(y) {
 
         // form creation
         var html = `
-        
         <form>
 
         <label for="quantityN" id="quantidade">Quantidade:</label>
@@ -70,7 +81,34 @@ function calcPrice(y) {
         // footer
         attFooter()
 
+      } else {
+        document.getElementById("section").innerHTML += garb
+        document.getElementById("garb").remove()
+
+        // add values to previous forms
+        for (u=0; u<document.forms.length-1; u++) {
+          document.getElementsByName("quantityN")[u].value = arrValues[u][0]
+          document.getElementsByName("priceN")[u].value = arrValues[u][1]
+        }
       }
+    } else {
+      document.getElementById("section").innerHTML += garb
+      document.getElementById("garb").remove()
+
+      // add values to previous forms
+      for (u=0; u<document.forms.length-1; u++) {
+        document.getElementsByName("quantityN")[u].value = arrValues[u][0]
+        document.getElementsByName("priceN")[u].value = arrValues[u][1]
+      }
+    }
+  } else {
+    document.getElementById("section").innerHTML += garb
+    document.getElementById("garb").remove()
+
+    // add values to previous forms
+    for (u=0; u<document.forms.length-1; u++) {
+      document.getElementsByName("quantityN")[u].value = arrValues[u][0]
+      document.getElementsByName("priceN")[u].value = arrValues[u][1]
     }
   }
 }
