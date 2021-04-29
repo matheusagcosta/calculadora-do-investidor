@@ -106,7 +106,7 @@ function wipeOut(z) {
   }
 
   // att values from forms
-  for (u=0; u<getElementsByName("quantityN").length; u++) {
+  for (u=0; u<document.forms.length-2; u++) {
     document.getElementsByName("quantityN")[u].value = arrValues[u][0]
     document.getElementsByName("priceN")[u].value = arrValues[u][1]
   }
