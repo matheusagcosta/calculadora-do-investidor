@@ -100,10 +100,20 @@ function wipeOut(z) {
     if (u == count-1) {
       document.forms[u].elements[2].innerHTML = `<input type="submit" id="add" value="+" onclick="calcPrice(${document.forms.length-2})">`
     } else {
-      document.forms[u].elements[2].innerHTML = `<button class="trash" id="trash${u-1}" onclick="wipeOut(${u-1})" style="visibility: visible;">🔥</button>`
+      document.forms[u].elements[2].remove()
+      document.forms[u].innerHTML += `<button class="trash" id="trash${u-1}" onclick="wipeOut(${u-1})" style="visibility: visible;">🔥</button>`
     }
   }
-  document.getElementById("add").innerHTML = `<input type="submit" id="add" value="+" onclick="calcPrice(${document.forms.length-2})">`
+
+  // att values from forms
+  for (u=0; u<getElementsByName("quantityN").length; u++) {
+    document.getElementsByName("quantityN")[u].value = arrValues[u][0]
+    document.getElementsByName("priceN")[u].value = arrValues[u][1]
+  }
+
+  // change add button's id
+  document.getElementById("add").remove()
+  document.forms[count-1].innerHTML += `<input type="submit" id="add" value="+" onclick="calcPrice(${document.forms.length-2})">`
   
 
   // remove specified section
