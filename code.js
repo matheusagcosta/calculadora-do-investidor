@@ -101,14 +101,8 @@ function wipeOut(z) {
       document.forms[u].elements[2].innerHTML = `<input type="submit" id="add" value="+" onclick="calcPrice(${document.forms.length-2})">`
     } else {
       document.forms[u].elements[2].remove()
-      document.forms[u].innerHTML += `<button class="trash" id="trash${u-1}" onclick="wipeOut(${u-1})" style="visibility: visible;">🔥</button>`
+      document.forms[u].innerHTML += `<button class="trash" id="trash${u-1}" onclick="wipeOut(${u-1})">🔥</button>`
     }
-  }
-
-  // att values from forms
-  for (u=0; u<document.forms.length-2; u++) {
-    document.getElementsByName("quantityN")[u].value = arrValues[u][0]
-    document.getElementsByName("priceN")[u].value = arrValues[u][1]
   }
 
   // change add button's id
@@ -120,6 +114,12 @@ function wipeOut(z) {
   document.forms[z].remove()
 
   // remove trash button (single form)
+
+  // att values from forms
+  for (u=0; u<document.forms.length-1; u++) {
+    document.getElementsByName("quantityN")[u].value = arrValues[u][0]
+    document.getElementsByName("priceN")[u].value = arrValues[u][1]
+  }
 
   // att footer
   if (arrValues.lenght == 0) {
