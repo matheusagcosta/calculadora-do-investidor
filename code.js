@@ -17,7 +17,18 @@ var garb = `
 </form>
 `;
 
-// keep values inside the input
+function addGarb() {
+  // add garb to stop the form from reloading
+  document.getElementById("section").innerHTML += garb
+  document.getElementById("garb").remove()
+
+  // add values to previous forms
+  for (u=0; u<document.forms.length-1; u++) {
+    document.getElementsByName("quantityN")[u].value = arrValues[u][0]
+    document.getElementsByName("priceN")[u].value = arrValues[u][1]
+  }
+}
+
 function calcPrice(y) {
 
   // input validation system (1) -> empty strings
@@ -82,34 +93,13 @@ function calcPrice(y) {
         attFooter()
 
       } else {
-        document.getElementById("section").innerHTML += garb
-        document.getElementById("garb").remove()
-
-        // add values to previous forms
-        for (u=0; u<document.forms.length-1; u++) {
-          document.getElementsByName("quantityN")[u].value = arrValues[u][0]
-          document.getElementsByName("priceN")[u].value = arrValues[u][1]
-        }
+        addGarb()
       }
     } else {
-      document.getElementById("section").innerHTML += garb
-      document.getElementById("garb").remove()
-
-      // add values to previous forms
-      for (u=0; u<document.forms.length-1; u++) {
-        document.getElementsByName("quantityN")[u].value = arrValues[u][0]
-        document.getElementsByName("priceN")[u].value = arrValues[u][1]
-      }
+        addGarb()
     }
   } else {
-    document.getElementById("section").innerHTML += garb
-    document.getElementById("garb").remove()
-
-    // add values to previous forms
-    for (u=0; u<document.forms.length-1; u++) {
-      document.getElementsByName("quantityN")[u].value = arrValues[u][0]
-      document.getElementsByName("priceN")[u].value = arrValues[u][1]
-    }
+    addGarb()
   }
 }
 
