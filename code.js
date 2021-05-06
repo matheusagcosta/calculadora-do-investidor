@@ -111,6 +111,10 @@ function attFooter() {
   <span class="preco"> R$ ${avgPrice}</span>
   `;
   document.getElementById("footer").innerHTML = html2
+
+  if (arrValues.length!=0) {
+    restart = ``
+  }
 }
 
 function wipeOut(z) {
@@ -158,4 +162,10 @@ function wipeOut(z) {
   }
   attFooter()
   
+}
+
+function restart() {
+  for (w=document.forms.length-1; w>0; w--) {
+    wipeOut(w)
+  }
 }
