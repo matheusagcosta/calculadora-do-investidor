@@ -53,7 +53,7 @@ function calcPrice(y) {
         }
         // form creation
         var html = `
-        <form>
+        <form class="form">
         <label for="quantityN" id="quantidade">Quantidade:</label>
         <input type="text" name="quantityN" min="0" value="" required>
         <label for="priceN" id="preco">Preço:</label>
