@@ -170,12 +170,11 @@ input {
 }
 
 #restart {
-  background-color: #FF0000;
+  background-color: white;
   position: relative;
-  left: 15%;
+  left: 10%;
   bottom: 50%;
   border-radius: 50px;
-  font-size: 15px;
   height: 50px;
   width: 50px;
   justify-content: center;
