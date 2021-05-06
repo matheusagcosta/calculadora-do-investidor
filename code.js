@@ -106,9 +106,10 @@ function calcPrice(y) {
 function attFooter() {
 
   html2 = `
-  <label> Quantidade Total: &nbsp;&nbsp; Preço Médio: </label> <br>
+  <label id="qTot"> Quantidade Total:</label>
+  <label id="pMed"> Preço Médio:</label> <br>
   <span class="quantidade">${tot}</span>
-  <span class="preco"> R$ ${avgPrice}</span>
+  <span class="preco">R$ ${avgPrice}</span>
   `;
   document.getElementById("footer").innerHTML = html2
 
