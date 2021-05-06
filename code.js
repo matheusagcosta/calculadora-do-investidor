@@ -113,7 +113,8 @@ function attFooter() {
   document.getElementById("footer").innerHTML = html2
 
   if (arrValues.length!=0) {
-    restart = ``
+    restart = `<button id="restart" onclick="reset()">🔄</button>`
+    document.getElementById("footer").innerHTML += restart
   }
 }
 
@@ -164,8 +165,15 @@ function wipeOut(z) {
   
 }
 
-function restart() {
-  for (w=document.forms.length-1; w>0; w--) {
-    wipeOut(w)
+function reset() {
+  
+  if (document.forms.length>2) {
+    for (w=document.forms.length-2; w>0; w--) {
+      wipeOut(w)
+    }
+    wipeOut(0)
+
+  } else {
+    wipeOut(0)
   }
 }
