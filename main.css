@@ -90,55 +90,81 @@ input {
 }
 
 .section  {
+  display: flex;
   flex-direction: column;
-  
 }
 
 .form {
   background-color: #E2DDF8;
   border: 10px solid #E2DDF8;
-  border-radius: 15px;
-  font-size: 16px;
-  max-width: 575px;
-  max-height: 50px;
-  display: block;
-  margin-right: auto;
-  margin-left: auto;
-  padding-top: 3px;
+  border-radius: 5px;
+  max-width: 400px;
+  max-height: 115px;
+  display: flex;
+  align-self: center;
+  padding: 15px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.section input {
+  border-radius: 5px;
+  width: 162px;
+  height: 41px;
+  display: flex;
+  padding: 10px;
+  font-size: 18px;
+}
+
+#quantidade {
+  position: relative;
+  display: flex;
+  flex-basis: 45%;
+}
+
+#quantityN {
+  display: flex;
+  position: relative;
+}
+
+#preco {
+  position: relative;
+  display: flex;
+  flex-basis: 46.1%;
+}
+
+#priceN {
+  display: flex;
+  position: relative;
 }
 
 #add {
-  border-radius: 50px;
-  width: 30px;
-  height: 30px;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
   font-size: 20px;
-  background-color: lightgreen;
-  border-color: white;
-  color: white;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
   justify-content: center;
+  background-color: lightgreen;
+  color: white;
   position: relative;
-  top: 16px;
+  left: 45%;
+  top: 50px;
+  display: flex;
 }
 
 .trash {
   background-color: #db2828e3;
-  width: 30px;
-  height: 30px;
-  font-size: 15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  border-color: red;
   justify-content: center;
-  border-radius: 50px;
   position: relative;
-  left: 102%;
-  bottom: 25px;
-  
-}
-
-.section input {
-  border-radius: 10px;
-  font-size: 16px;
+  display: flex;
+  padding-top: 8.5px;
+  left: 110%;
+  bottom: 40px;
 }
 
 .footer {
@@ -154,24 +180,24 @@ input {
   padding-top: 20px;
 }
 
-.preco {
-  position: fixed;
-  left: 51.65%;
-}
-
-.quantidade {
-  position: fixed;
-  right: 51.8%;
-}
-
 #qTot {
   position: relative;
   right: 2.5%;
 }
 
+#vTot {
+  position: fixed;
+  right: 51.8%;
+}
+
 #pMed {
   position: relative;
   left: .5%;
+}
+
+#vPM {
+  position: fixed;
+  left: 51.65%;
 }
 
 #reset {
@@ -182,5 +208,4 @@ input {
   border-radius: 50px;
   height: 40px;
   width: 40px;
-  justify-content: center;
 }
