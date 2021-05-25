@@ -43,7 +43,7 @@ input {
 }
 
 .header {
-  background-color: #E2DDF8;
+  background-color: #F8F8FF;
   text-align: center;
   margin: 30px;
   border-radius: 7px;
@@ -95,8 +95,8 @@ input {
 }
 
 .form {
-  background-color: #E2DDF8;
-  border: 10px solid #E2DDF8;
+  background-color: #F8F8FF;
+  border: 10px solid #F8F8FF;
   border-radius: 5px;
   max-width: 400px;
   max-height: 115px;
