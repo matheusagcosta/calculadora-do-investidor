@@ -1,7 +1,3 @@
-@media screen and (max-width:1025px){
-  
-}
-
 :root {
   --colorDarkBlue: #313060;
   --colorWhite: #FFF;
@@ -47,7 +43,6 @@ input {
   margin: 30px;
   border-radius: 7px;
   padding: 25px;
-
 }
 
 .header_navigation {
@@ -194,7 +189,6 @@ input {
 #pMed {
   position: relative;
   left: .5%;
-
 }
 
 #vPM {
@@ -214,4 +208,25 @@ input {
   bottom: 4%;
   left: 60%;
   padding-top: 8px;
+}
+
+@media only screen and (min-width: 768px) {
+  
+  .header__link {
+    font-size: 16px;
+  }
+  
+  #reset {
+    left: 70%;
+    bottom: 3.5%;
+  }
+  
+  #vPM {
+    left: 53%;
+  }
+
+  #vTot {
+    right: 50%;
+  }
+
 }
