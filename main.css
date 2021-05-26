@@ -164,64 +164,63 @@ input {
 .footer {
   background-color: #313060;
   color: white;
-  position: fixed;
+  position: absolute;
   bottom: 0;
-  left: 0;
   width: 100%;
   font-size: 20px;
-  height: 80px;
-  padding-top: 20px;
+  height: 160px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-bottom: 10px;
+  align-items: center;
 }
 
 .foot {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
 }
 
 #q {
   position: relative;
   display: flex;
+  flex-direction: column;
+  
 }
 
 #p {
   position: relative;
   display: flex;
+  flex-direction: column;
+  margin: 0 75px;
+  
 }
 
-#qTot {
-  position: relative;
-}
-
-#vTot {
-  display: flex;
-  align-self: flex-end;
-}
-
-#pMed {
-  position: relative;
-}
-
-#vPM {
+.text {
   position: relative;
   display: flex;
-  align-self: flex-end;
+  justify-content: flex-start;
+  
+}
+
+.values {
+  position: relative;
+  display: flex;
+  align-self: flex-start;
+  justify-self: flex-start;
+  margin-top: 10px;
 }
 
 #reset {
   background-color: white;
   border: none;
-  position: relative;
+  position: absolute;
   display: flex;
   border-radius: 30px;
   width: 35px;
+  left: 60%;
   height: 35px;
-  left: 500px;
-  bottom: 15px;
+  margin: auto;
+  bottom: 40px;
   background-image: url(images/reset.png);
   background-repeat: no-repeat;
   background-position: center;
@@ -236,14 +235,6 @@ input {
   #reset {
     left: 70%;
     bottom: 3.5%;
-  }
-  
-  #vPM {
-    left: 53%;
-  }
-
-  #vTot {
-    right: 50%;
   }
 
 }
