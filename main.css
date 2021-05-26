@@ -172,42 +172,59 @@ input {
   height: 80px;
   padding-top: 20px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.foot {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+#q {
+  position: relative;
+  display: flex;
+}
+
+#p {
+  position: relative;
+  display: flex;
 }
 
 #qTot {
   position: relative;
-  left: 40%;
 }
 
 #vTot {
-  position: fixed;
-  right: 51.75%;
-  bottom: 10px;
+  display: flex;
+  align-self: flex-end;
 }
 
 #pMed {
   position: relative;
-  left: .5%;
 }
 
 #vPM {
-  position: fixed;
-  left: 51.5%;
-  bottom: 10px;
+  position: relative;
+  display: flex;
+  align-self: flex-end;
 }
 
 #reset {
   background-color: white;
-  position: fixed;
-  border-radius: 30px;
-  height: 40px;
-  width: 40px;
+  border: none;
+  position: relative;
   display: flex;
-  justify-content: center;
-  bottom: 3%;
-  left: 60%;
-  padding-top: 8px;
+  border-radius: 30px;
+  width: 35px;
+  height: 35px;
+  left: 500px;
+  bottom: 15px;
+  background-image: url(images/reset.png);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 @media only screen and (max-width: 768px) {
