@@ -39,16 +39,16 @@ input {
   border-radius: 7px;
   padding: 25px;
   font-family: 'Nunito', sans-serif;
-  font-weight: bold;
   font-size: 16px;
+  font-weight: bold;
 }
 
 .title {
   color: var(--colorDarkBlue);
   text-align: center;
   font-family: 'Nunito Sans', sans-serif;
-  font-weight: bold;
   font-size: 30px;
+  font-weight: bold;
 }
 
 .header_navigation {
@@ -102,6 +102,7 @@ input {
   height: 104px;
   display: flex;
   align-self: center;
+  margin-top: 20px;
   padding: 15px;
   flex-direction: row;
   flex-wrap: wrap;
@@ -109,21 +110,24 @@ input {
 }
 
 .section input {
-  border-radius: 5px;
+  border-radius: 4px;
+  border-color: lightgray;
   width: 162px;
   height: 41px;
   display: flex;
   padding: 10px;
   font-size: 16px;
-  font-family: 'Red Hat Text', sans-serif
+  font-family: 'Red Hat Text', sans-serif;
+  color: #313060;
 }
 
 #quantidade {
   position: relative;
   display: flex;
-  flex-basis: 40%;
+  flex-basis: 50%;
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
+  color: #313060;
 }
 
 #quantityN {
@@ -134,14 +138,16 @@ input {
 #preco {
   position: relative;
   display: flex;
-  flex-basis: 55%;
+  flex-basis: 50%;
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
+  color: #313060;
 }
 
 #priceN {
   display: flex;
   position: relative;
+  margin-left: 10px;
 }
 
 #add {
@@ -220,6 +226,7 @@ input {
   justify-self: flex-start;
   margin-top: 10px;
   font-size: 24px;
+  font-weight: bold;
 }
 
 #reset {
@@ -234,7 +241,6 @@ input {
   background-repeat: no-repeat;
   background-position: center;
   margin-left: 40px;
-  left: 500px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -249,12 +255,3 @@ input {
   }
 
 }
-
-@media only screen and (max-width: 1024px) {
-  #reset {
-    left: 65%;
-    bottom: 4.5%;
-  }
-}
-
-

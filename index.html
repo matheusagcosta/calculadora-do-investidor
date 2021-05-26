@@ -58,10 +58,14 @@
     </div>
     <div class="section" id="section">
       <form class="form">
-        <label for="quantityN" id="quantidade">Quantidade:</label>
-        <label for="priceN" id="preco">Preço:</label> 
-        <input type="text" name="quantityN" id="quantityN" min="0" value="" required>
-        <input type="text" name="priceN" id="priceN" min="0" value="" required>
+        <div>
+          <label for="quantityN" id="quantidade">Quantidade:</label>
+          <input type="text" name="quantityN" id="quantityN" min="0" value="" required>
+        </div>
+        <div>
+          <label for="priceN" id="preco">Preço:</label>
+          <input type="text" name="priceN" id="priceN" min="0" value="" required> 
+        </div>
         <input type="submit" id="add" value="" onclick="calcPrice(0)">
       </form>
     </div>
