@@ -164,7 +164,7 @@ input {
 .footer {
   background-color: #313060;
   color: white;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   font-size: 20px;
@@ -178,20 +178,21 @@ input {
 .foot {
   display: flex;
   flex-direction: row;
+  position: absolute;
+  justify-content: flex-end;
 }
 
 #q {
   position: relative;
   display: flex;
   flex-direction: column;
-  
+  margin-right: 75px;
 }
 
 #p {
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 0 75px;
   
 }
 
@@ -213,17 +214,15 @@ input {
 #reset {
   background-color: white;
   border: none;
-  position: absolute;
+  position: relative;
   display: flex;
-  border-radius: 30px;
-  width: 35px;
-  left: 60%;
-  height: 35px;
-  margin: auto;
-  bottom: 40px;
+  border-radius: 35px;
+  width: 56px;
+  height: 56px;
   background-image: url(images/reset.png);
   background-repeat: no-repeat;
   background-position: center;
+  margin-left: 40px;
 }
 
 @media only screen and (max-width: 768px) {
