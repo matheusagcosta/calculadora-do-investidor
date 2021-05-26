@@ -9,7 +9,6 @@
 }
 
 body {
-  font-family: Arial;
   background-color: white;
   margin: 0px;
   padding: 0px;
@@ -24,17 +23,13 @@ body {
 button {
   border: 1px solid;
   cursor: pointer;
-  border-color: white;
+  border: none;
 }
 
 input {
   border: 1px solid;
   outline: 0;
-}
-
-.title {
-  color: var(--colorDarkBlue);
-  text-align: center;
+  font-family: 'Red Hat Text', sans-serif;
 }
 
 .header {
@@ -43,6 +38,17 @@ input {
   margin: 30px;
   border-radius: 7px;
   padding: 25px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.title {
+  color: var(--colorDarkBlue);
+  text-align: center;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: bold;
+  font-size: 30px;
 }
 
 .header_navigation {
@@ -50,12 +56,11 @@ input {
 }
 
 .header__link {
-  font-family: Arial;
-  font-size: 20px;
   position: relative;
   border-radius: 10px;
   padding: 10px;
   text-decoration: none;
+  
 }
 
 .header__link:not(:first-of-type) {
@@ -93,8 +98,8 @@ input {
   background-color: #F8F8FF;
   border: 10px solid #F8F8FF;
   border-radius: 5px;
-  max-width: 400px;
-  max-height: 115px;
+  width: 423px;
+  height: 104px;
   display: flex;
   align-self: center;
   padding: 15px;
@@ -109,13 +114,16 @@ input {
   height: 41px;
   display: flex;
   padding: 10px;
-  font-size: 18px;
+  font-size: 16px;
+  font-family: 'Red Hat Text', sans-serif
 }
 
 #quantidade {
   position: relative;
   display: flex;
-  flex-basis: 45%;
+  flex-basis: 40%;
+  font-family: 'Red Hat Text', sans-serif;
+  font-size: 16px;
 }
 
 #quantityN {
@@ -126,7 +134,9 @@ input {
 #preco {
   position: relative;
   display: flex;
-  flex-basis: 46.1%;
+  flex-basis: 55%;
+  font-family: 'Red Hat Text', sans-serif;
+  font-size: 16px;
 }
 
 #priceN {
@@ -150,16 +160,14 @@ input {
 
 .trash {
   background-color: #db2828e3;
-  width: 40px;
-  height: 40px;
+  width: 39px;
+  height: 39px;
   border-radius: 20px;
-  border-color: red;
   justify-content: center;
   position: relative;
   display: flex;
-  padding-top: 8.5px;
-  left: 110%;
-  bottom: 40px;
+  padding-top: 10px;
+  left: 10px;
 }
 
 .footer {
@@ -174,6 +182,7 @@ input {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-family: 'Red Hat Text', sans-serif;
 }
 
 .foot {
@@ -201,6 +210,7 @@ input {
   position: relative;
   display: flex;
   justify-content: flex-start;
+  font-size: 16px;
 }
 
 .values {
@@ -209,6 +219,7 @@ input {
   align-self: flex-start;
   justify-self: flex-start;
   margin-top: 10px;
+  font-size: 24px;
 }
 
 #reset {
@@ -217,8 +228,8 @@ input {
   position: relative;
   display: flex;
   border-radius: 35px;
-  width: 56px;
-  height: 56px;
+  width: 39px;
+  height: 39px;
   background-image: url(images/reset.png);
   background-repeat: no-repeat;
   background-position: center;
