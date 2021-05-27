@@ -87,31 +87,53 @@ input {
 }
 
 .container {
-  padding-bottom: 200px;
+  padding-bottom: 350px;
 }
 
 .section  {
   display: flex;
   flex-direction: column;
-  padding-bottom: 200px;
 }
 
 .form {
   background-color: #F8F8FF;
-  border: 10px solid #F8F8FF;
   border-radius: 5px;
   width: 423px;
   height: 104px;
   display: flex;
-  align-self: center;
+  flex-direction: row;
+  margin: auto;
   margin-top: 25px;
   padding: 15px;
-  flex-direction: row;
-  flex-wrap: wrap;
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
   color: #313060;
   line-height: 21px;
+}
+
+#qForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+#pForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px ;
+}
+
+.textForm {
+  position: relative;
+  display: flex;
+  
+}
+
+.valuesForm {
+  display: flex;
+  position: relative;
+  margin-top: 12px;
 }
 
 .section input {
@@ -126,29 +148,19 @@ input {
   color: #313060;
 }
 
-.textForm {
-  position: relative;
-  display: flex;
-  flex-basis: 50%;
-}
-
-.valuesForm {
-  display: flex;
-  position: relative;
-}
-
 #add {
   border-radius: 20px;
-  width: 40px;
-  height: 40px;
-  background-color: lightgreen;
-  position: relative;
-  margin: auto;
-  margin-top: 30px;
-  display: flex;
+  width: 39px;
+  height: 39px;
   background-image: url(images/add.png);
   background-repeat: no-repeat;
   background-position: center;
+  background-color: lightgreen;
+  position: absolute;
+  display: flex;
+  align-self: center;
+  margin-left: 177px;
+  margin-top: 193px;
 }
 
 .trash {
@@ -160,6 +172,9 @@ input {
   position: relative;
   display: flex;
   padding-top: 10px;
+  align-self: center;
+  margin-left: 15px;
+  margin-top: 32px;
 }
 
 .footer {
@@ -195,7 +210,6 @@ input {
   position: relative;
   display: flex;
   flex-direction: column;
-  
 }
 
 .textFoot {

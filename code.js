@@ -127,6 +127,7 @@ function wipeOut(z) {
   if (arrValues.length == 0) {
     tot = 0
     avgPrice = 0.00
+    avgPrice = avgPrice.toFixed(2)
   } else if (arrValues.length == 1) {
     avgPrice = arrValues[0][1].toFixed(2)
   } else {
