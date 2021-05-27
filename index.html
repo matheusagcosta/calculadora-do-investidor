@@ -66,7 +66,7 @@
           <label for="priceN" class="textForm" id="preco">Preço:</label>
           <input type="text" class="valuesForm" name="priceN" id="priceN" min="0" value="" required> 
         </div>
-        <input type="button" id="add" value="" onclick="calcPrice(0)">
+        <button id="add" value="" onclick="calcPrice(0)"></button>
       </form>
     </div>
   </main>
@@ -80,7 +80,7 @@
         <label class="textFoot" id="pMed">Preço Médio:</label>
         <span class="valuesFoot" id="vPM">R$ 0.00</span>
       </div>
-      <button id="reset" onclick="reset()"></button>
+      <input type="button" id="reset" onclick="reset()" style="visibility: visible;">
     </div>
     
   </footer>

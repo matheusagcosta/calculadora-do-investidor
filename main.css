@@ -99,6 +99,7 @@ input {
   border-radius: 5px;
   background-color: #F8F8FF;
   color: #313060;
+  width: 423px;
   display: flex;
   flex-direction: row;
   margin: auto;
@@ -107,7 +108,12 @@ input {
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
   line-height: 21px;
-  transition: 1s;
+  transition: .5s ease;
+}
+
+.form:only-child{
+  width: 369px;
+
 }
 
 #qForm {
@@ -158,8 +164,12 @@ input {
   position: absolute;
   display: flex;
   align-self: center;
-  margin-left: 150px;
+  margin-left: 300px;
   margin-top: 193px;
+}
+
+#add:first-of-type {
+  margin-left: 150px;
 }
 
 .trash {
@@ -175,6 +185,7 @@ input {
   align-self: center;
   margin-left: 15px;
   margin-top: 32px;
+
 }
 
 .footer {
@@ -193,10 +204,11 @@ input {
 }
 
 .foot {
+  width: 423px;
   display: flex;
   flex-direction: row;
   position: absolute;
-  justify-content: flex-end;
+  
 }
 
 #qFoot {
@@ -232,22 +244,23 @@ input {
 #reset {
   background-color: white;
   border: none;
-  position: relative;
+  position: absolute;
   display: flex;
   border-radius: 35px;
   width: 39px;
   height: 39px;
-  margin-left: 40px;
+  margin-left: 383px;
   background-image: url(svg/reset.svg);
   background-repeat: no-repeat;
   background-position: center;
-  transition: transform .5s ease;
+  transition: transform .75s ease;
   transform: rotate(0);
   transform-origin: center;
 }
 
 #reset:hover {
-  transform:rotate(180deg);
+  transform:rotate(360deg);
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {
