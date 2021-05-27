@@ -54,17 +54,17 @@
   </header>
   <main class="container">
     <div class= "title">
-    <h1>Calcular Preço Médio</h1>
+      <h1>Calcular Preço Médio</h1>
     </div>
     <div class="section" id="section">
       <form class="form">
-        <div>
-          <label for="quantityN" id="quantidade">Quantidade:</label>
-          <input type="text" name="quantityN" id="quantityN" min="0" value="" required>
+        <div id="qForm">
+          <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
+          <input type="text" class="valuesForm" name="quantityN" id="quantityN" min="0" value="" required>
         </div>
-        <div>
-          <label for="priceN" id="preco">Preço:</label>
-          <input type="text" name="priceN" id="priceN" min="0" value="" required> 
+        <div id="pForm">
+          <label for="priceN" class="textForm" id="preco">Preço:</label>
+          <input type="text" class="valuesForm" name="priceN" id="priceN" min="0" value="" required> 
         </div>
         <input type="submit" id="add" value="" onclick="calcPrice(0)">
       </form>
@@ -72,13 +72,13 @@
   </main>
   <footer class= "footer" id= "footer">
     <div class="foot">
-      <div id="q">
-        <label class="text" id="qTot">Quantidade Total:</label>
-        <span class="values" id="vTot">0</span>
+      <div id="qFoot">
+        <label class="textFoot" id="qTot">Quantidade Total:</label>
+        <span class="valuesFoot" id="vTot">0</span>
       </div>
-      <div id="p">
-        <label class="text" id="pMed">Preço Médio:</label>
-        <span class="values" id="vPM">R$ 0</span>
+      <div id="pFoot">
+        <label class="textFoot" id="pMed">Preço Médio:</label>
+        <span class="valuesFoot" id="vPM">R$ 0</span>
       </div>
       <button id="reset" onclick="reset()"></button>
     </div>

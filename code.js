@@ -59,13 +59,13 @@ function calcPrice(y) {
         // form creation
         var html = `
         <form class="form">
-          <div>
-            <label for="quantityN" id="quantidade">Quantidade:</label>
-            <input type="text" name="quantityN" id="quantityN" min="0" value="" required>
+          <div id="qForm">
+            <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
+            <input type="text" class="valuesForm" name="quantityN" id="quantityN" min="0" value="" required>
           </div>
-          <div>
-            <label for="priceN" id="preco">Preço:</label>
-            <input type="text" name="priceN" id="priceN" min="0" value="" required> 
+          <div id="pForm">
+            <label for="priceN" class="textForm" id="preco">Preço:</label>
+            <input type="text" class="valuesForm" name="priceN" id="priceN" min="0" value="" required> 
           </div>
           <input type="submit" id="add" value="" onclick="calcPrice(${y+1})">
         </form>
@@ -92,8 +92,8 @@ function calcPrice(y) {
 }
 
 function attFooter() {
-  document.getElementById("vTot").innerHTML = `<span class="quantidade" id="vTot">${tot}</span>`
-  document.getElementById("vPM").innerHTML = `<span class="preco" id="vPM">R$ ${avgPrice}</span>`
+  document.getElementById("vTot").innerHTML = `<span class="valuesFoot" id="vTot">${tot}</span>`
+  document.getElementById("vPM").innerHTML = `<span class="valuesFoot" id="vPM">R$ ${avgPrice}</span>`
 }
 
 function wipeOut(z) {

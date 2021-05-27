@@ -41,6 +41,7 @@ input {
   font-family: 'Nunito', sans-serif;
   font-size: 16px;
   font-weight: bold;
+  line-height: 22px;
 }
 
 .title {
@@ -49,6 +50,7 @@ input {
   font-family: 'Nunito Sans', sans-serif;
   font-size: 30px;
   font-weight: bold;
+  line-height: 41px;
 }
 
 .header_navigation {
@@ -102,11 +104,14 @@ input {
   height: 104px;
   display: flex;
   align-self: center;
-  margin-top: 20px;
+  margin-top: 25px;
   padding: 15px;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  font-family: 'Red Hat Text', sans-serif;
+  font-size: 16px;
+  color: #313060;
+  line-height: 21px;
 }
 
 .section input {
@@ -121,33 +126,15 @@ input {
   color: #313060;
 }
 
-#quantidade {
+.textForm {
   position: relative;
   display: flex;
   flex-basis: 50%;
-  font-family: 'Red Hat Text', sans-serif;
-  font-size: 16px;
-  color: #313060;
 }
 
-#quantityN {
+.valuesForm {
   display: flex;
   position: relative;
-}
-
-#preco {
-  position: relative;
-  display: flex;
-  flex-basis: 50%;
-  font-family: 'Red Hat Text', sans-serif;
-  font-size: 16px;
-  color: #313060;
-}
-
-#priceN {
-  display: flex;
-  position: relative;
-  margin-left: 10px;
 }
 
 #add {
@@ -156,8 +143,8 @@ input {
   height: 40px;
   background-color: lightgreen;
   position: relative;
-  left: 45%;
-  top: 50px;
+  margin: auto;
+  margin-top: 30px;
   display: flex;
   background-image: url(images/add.png);
   background-repeat: no-repeat;
@@ -173,7 +160,6 @@ input {
   position: relative;
   display: flex;
   padding-top: 10px;
-  left: 10px;
 }
 
 .footer {
@@ -198,28 +184,28 @@ input {
   justify-content: flex-end;
 }
 
-#q {
+#qFoot {
   position: relative;
   display: flex;
   flex-direction: column;
   margin-right: 75px;
 }
 
-#p {
+#pFoot {
   position: relative;
   display: flex;
   flex-direction: column;
   
 }
 
-.text {
+.textFoot {
   position: relative;
   display: flex;
   justify-content: flex-start;
   font-size: 16px;
 }
 
-.values {
+.valuesFoot {
   position: relative;
   display: flex;
   align-self: flex-start;
