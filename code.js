@@ -62,7 +62,7 @@ function calcPrice(y) {
             <label for="priceN" class="textForm" id="preco">Preço:</label>
             <input type="text" class="valuesForm" name="priceN" id="priceN" min="0" value="" required> 
           </div>
-          <input type="submit" id="add" value="" onclick="calcPrice(${y+1})">
+          <input type="button" id="add" value="" onclick="calcPrice(${y+1})">
         </form>
         `;
         document.getElementById("section").innerHTML += html
@@ -102,7 +102,7 @@ function wipeOut(z) {
   // change next sections' id's
   for (u=z+1; u < count; u++) {
     if (u == count-1) {
-      document.forms[u].elements[2].innerHTML = `<input type="submit" id="add" value="" onclick="calcPrice(${document.forms.length-2})">`
+      document.forms[u].elements[2].innerHTML = `<input type="button" id="add" value="" onclick="calcPrice(${document.forms.length-2})">`
     } else {
       document.forms[u].elements[2].remove()
       document.forms[u].innerHTML += `<button class="trash" id="trash${u-1}" onclick="wipeOut(${u-1})"></button>`
@@ -110,7 +110,7 @@ function wipeOut(z) {
   }
   // change add button's id
   document.getElementById("add").remove()
-  document.forms[count-1].innerHTML += `<input type="submit" id="add" value="" onclick="calcPrice(${document.forms.length-2})">`
+  document.forms[count-1].innerHTML += `<input type="button" id="add" value="" onclick="calcPrice(${document.forms.length-2})">`
   // remove specified section
   document.forms[z].remove()
   // att values from forms

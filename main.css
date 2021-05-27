@@ -96,10 +96,9 @@ input {
 }
 
 .form {
-  background-color: #F8F8FF;
   border-radius: 5px;
-  width: 423px;
-  height: 104px;
+  background-color: #F8F8FF;
+  color: #313060;
   display: flex;
   flex-direction: row;
   margin: auto;
@@ -107,8 +106,8 @@ input {
   padding: 15px;
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
-  color: #313060;
   line-height: 21px;
+  transition: 1s;
 }
 
 #qForm {
@@ -159,7 +158,7 @@ input {
   position: absolute;
   display: flex;
   align-self: center;
-  margin-left: 177px;
+  margin-left: 150px;
   margin-top: 193px;
 }
 
@@ -242,6 +241,11 @@ input {
   background-image: url(svg/reset.svg);
   background-repeat: no-repeat;
   background-position: center;
+  transition: .5s;
+}
+
+#reset:hover {
+  transform:rotate(180deg);
 }
 
 @media only screen and (max-width: 768px) {
