@@ -75,6 +75,7 @@ function calcPrice(y) {
         }
         // footer
         attFooter()
+        document.getElementById("resetB").innerHTML = '<input type="button" id="reset" onclick="reset()" style="visibility: visible;">'
       } else {
         addGarb()
       }
@@ -123,6 +124,7 @@ function wipeOut(z) {
     tot = 0
     avgPrice = 0.00
     avgPrice = avgPrice.toFixed(2)
+    document.getElementById("resetB").innerHTML = '<input type="button" id="reset" onclick="reset()" style="visibility: hidden;">'
   } else if (arrValues.length == 1) {
     avgPrice = arrValues[0][1].toFixed(2)
   } else {
@@ -132,6 +134,7 @@ function wipeOut(z) {
 }
 
 function reset() {
+  document.getElementById("resetB").innerHTML = '<input type="button" id="reset" onclick="reset()" style="visibility: hidden;">'
   if (document.forms.length>1) {
     if (document.forms.length>2) {
       for (w=document.forms.length-2; w>0; w--) {

@@ -99,7 +99,7 @@ input {
   border-radius: 10px;
   background-color: #F8F8FF;
   color: #313060;
-  width: 423px;
+  width: 369px;
   display: flex;
   flex-direction: row;
   margin: auto;
@@ -108,11 +108,12 @@ input {
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
   line-height: 21px;
-  transition: 2s ease;
+  transition: width 2s ease;
 }
 
-.form:only-child{
-  width: 369px;
+.form:not(:only-child){
+  width: 423px;
+  transition: width 2s ease;
 }
 
 #qForm {
@@ -203,18 +204,17 @@ input {
 }
 
 .foot {
-  width: 423px;
+  width: 369px;
   display: flex;
   flex-direction: row;
-  position: absolute;
-  
+  position: relative;
+  justify-content: space-between;
 }
 
 #qFoot {
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-right: 75px;
 }
 
 #pFoot {
