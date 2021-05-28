@@ -1,3 +1,33 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes widthInc {
+  from {
+    width: 369px;
+  }
+
+  to {
+    width: 423px;
+  }
+}
+
 :root {
   --colorDarkBlue: #313060;
   --colorWhite: #FFF;
@@ -99,8 +129,8 @@ input {
   border-radius: 10px;
   background-color: #F8F8FF;
   color: #313060;
-  width: 369px;
   display: flex;
+  width: 423px;
   flex-direction: row;
   margin: auto;
   margin-top: 25px;
@@ -108,13 +138,9 @@ input {
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
   line-height: 21px;
-  transition: width 2s ease;
 }
 
-.form:not(:only-child){
-  width: 423px;
-  transition: width 2s ease;
-}
+
 
 #qForm {
   position: relative;
@@ -164,12 +190,8 @@ input {
   position: absolute;
   display: flex;
   align-self: center;
-  margin-left: 300px;
-  margin-top: 193px;
-}
-
-#add:only-of-type {
   margin-left: 150px;
+  margin-top: 193px;
 }
 
 .trash {
@@ -185,7 +207,7 @@ input {
   align-self: center;
   margin-left: 15px;
   margin-top: 32px;
-
+  animation: fadeIn 2s;
 }
 
 .footer {
@@ -204,11 +226,11 @@ input {
 }
 
 .foot {
-  width: 369px;
   display: flex;
   flex-direction: row;
   position: relative;
   justify-content: space-between;
+  width: 369px;
 }
 
 #qFoot {
@@ -248,13 +270,13 @@ input {
   border-radius: 35px;
   width: 39px;
   height: 39px;
-  margin-left: 383px;
   background-image: url(svg/reset.svg);
   background-repeat: no-repeat;
   background-position: center;
   transition: transform .75s ease;
   transform: rotate(0);
   transform-origin: center;
+  animation: fadeIn 1s;
 }
 
 #reset:hover {
