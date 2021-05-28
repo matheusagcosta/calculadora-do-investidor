@@ -96,7 +96,7 @@ input {
 }
 
 .form {
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #F8F8FF;
   color: #313060;
   width: 423px;
@@ -108,12 +108,11 @@ input {
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
   line-height: 21px;
-  transition: .5s ease;
+  transition: 2s ease;
 }
 
 .form:only-child{
   width: 369px;
-
 }
 
 #qForm {
@@ -168,7 +167,7 @@ input {
   margin-top: 193px;
 }
 
-#add:first-of-type {
+#add:only-of-type {
   margin-left: 150px;
 }
 
