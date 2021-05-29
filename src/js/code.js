@@ -1,11 +1,11 @@
-var avgPrice = 0
-var tot = 0
-var products = 0
-var arrValues = []
-var arrTemp = []
-var valueQ
-var valueP
-var garb = `
+const avgPrice = 0;
+const tot = 0;
+const products = 0;
+const arrValues = [];
+const arrTemp = [];
+const valueQ = "";
+const valueP = "";
+const garb = `
 <form id="garb">
 <label for="quantityN" id="quantidade">Quantidade:</label>
 <label for="priceN" id="preco">Preço:</label>
@@ -13,6 +13,7 @@ var garb = `
 <input type="text" name="priceN" id="priceN" min="0" value="" required>
 </form>
 `;
+const y = 0
 
 export function addGarb() {
   // add garb to stop the form from reloading
@@ -25,7 +26,7 @@ export function addGarb() {
   }
 }
 
-export function calcPrice(y) {
+export const calcPrice = (y) => {
   // input validation system (1) -> empty strings
   valueQ = document.getElementsByName("quantityN")[y].value
   valueP = document.getElementsByName("priceN")[y].value

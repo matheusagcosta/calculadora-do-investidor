@@ -124,18 +124,22 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.addGarb = addGarb;
-exports.calcPrice = calcPrice;
 exports.attFooter = attFooter;
 exports.wipeOut = wipeOut;
 exports.reset = reset;
+exports.calcPrice = void 0;
+
+function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
+
 var avgPrice = 0;
 var tot = 0;
 var products = 0;
 var arrValues = [];
 var arrTemp = [];
-var valueQ;
-var valueP;
+var valueQ = "";
+var valueP = "";
 var garb = "\n<form id=\"garb\">\n<label for=\"quantityN\" id=\"quantidade\">Quantidade:</label>\n<label for=\"priceN\" id=\"preco\">Pre\xE7o:</label>\n<input type=\"text\" name=\"quantityN\" id=\"quantityN\" min=\"0\" value=\"\" required>\n<input type=\"text\" name=\"priceN\" id=\"priceN\" min=\"0\" value=\"\" required>\n</form>\n";
+var y = 0;
 
 function addGarb() {
   // add garb to stop the form from reloading
@@ -148,15 +152,15 @@ function addGarb() {
   }
 }
 
-function calcPrice(y) {
+var calcPrice = function calcPrice(y) {
   // input validation system (1) -> empty strings
-  valueQ = document.getElementsByName("quantityN")[y].value;
-  valueP = document.getElementsByName("priceN")[y].value;
+  document.getElementsByName("quantityN")[y].value, _readOnlyError("valueQ");
+  document.getElementsByName("priceN")[y].value, _readOnlyError("valueP");
 
   if (valueQ != "" && valueP != "") {
     // input validation system (2) -> characters
-    valueQ = parseInt(valueQ);
-    valueP = parseFloat(valueP);
+    parseInt(valueQ), _readOnlyError("valueQ");
+    parseFloat(valueP), _readOnlyError("valueP");
 
     if (valueQ && valueP) {
       // input validation system (3) -> negative numbers
@@ -165,17 +169,17 @@ function calcPrice(y) {
         arrTemp.push(valueQ);
         arrTemp.push(valueP);
         arrValues.push(arrTemp);
-        arrTemp = []; // remove add button
+        [], _readOnlyError("arrTemp"); // remove add button
 
         document.getElementById('add').remove(); // calculations
 
-        tot += valueQ;
-        products += valueQ * valueP;
+        tot + valueQ, _readOnlyError("tot");
+        products + valueQ * valueP, _readOnlyError("products");
 
         if (arrValues.length == 1) {
-          avgPrice = arrValues[0][1].toFixed(2);
+          arrValues[0][1].toFixed(2), _readOnlyError("avgPrice");
         } else {
-          avgPrice = (products / tot).toFixed(2);
+          (products / tot).toFixed(2), _readOnlyError("avgPrice");
         } // form creation
 
 
@@ -201,7 +205,9 @@ function calcPrice(y) {
   } else {
     addGarb();
   }
-}
+};
+
+exports.calcPrice = calcPrice;
 
 function attFooter() {
   document.getElementById("vTot").innerHTML = "<span class=\"valuesFoot\" id=\"vTot\">".concat(tot, "</span>");
@@ -212,8 +218,8 @@ function wipeOut(z) {
   var count = document.forms.length; // redo calculations and remove itens from the array
 
   if (arrValues[z]) {
-    tot -= arrValues[z][0];
-    products -= arrValues[z][0] * arrValues[z][1];
+    tot - arrValues[z][0], _readOnlyError("tot");
+    products - arrValues[z][0] * arrValues[z][1], _readOnlyError("products");
     arrValues.splice(z, 1);
   } // change next sections' id's
 
@@ -240,14 +246,14 @@ function wipeOut(z) {
 
 
   if (arrValues.length == 0) {
-    tot = 0;
-    avgPrice = 0.00;
-    avgPrice = avgPrice.toFixed(2);
+    0, _readOnlyError("tot");
+    0.00, _readOnlyError("avgPrice");
+    avgPrice.toFixed(2), _readOnlyError("avgPrice");
     document.getElementById("resetB").innerHTML = '<button id="reset" onclick="reset()" style="visibility: hidden;"></button>';
   } else if (arrValues.length == 1) {
-    avgPrice = arrValues[0][1].toFixed(2);
+    arrValues[0][1].toFixed(2), _readOnlyError("avgPrice");
   } else {
-    avgPrice = (products / tot).toFixed(2);
+    (products / tot).toFixed(2), _readOnlyError("avgPrice");
   }
 
   attFooter();
@@ -273,7 +279,7 @@ function reset() {
 
 var _code = require("./js/code");
 
-document.querySelector('#addButton').addEventListener('click', (0, _code.calcPrice)(0));
+document.querySelector('#addButton').addEventListener('click', (0, _code.calcPrice)());
 document.querySelector('#reset').addEventListener('click', (0, _code.reset)());
 },{"./js/code":"js/code.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -303,7 +309,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59970" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50257" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
