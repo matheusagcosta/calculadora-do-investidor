@@ -1,0 +1,15 @@
+{
+  "name": "calculadora-do-investidor",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "git@github.com:matheusagcosta/calculadora-do-investidor.git",
+  "author": "Guilherme <gui.coxta55@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel src/index.html --out-dir docs",
+    "build": "rm -rf docs && parcel build src/*.html --out-dir docs --public-url ./"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}

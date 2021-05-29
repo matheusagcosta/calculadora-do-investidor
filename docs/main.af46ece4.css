@@ -1,0 +1,301 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes widthInc {
+  from {
+    width: 369px;
+  }
+
+  to {
+    width: 423px;
+  }
+}
+
+:root {
+  --colorDarkBlue: #313060;
+  --colorWhite: #FFF;
+  --colorRed: #FF0000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: white;
+  margin: 0px;
+  padding: 0px;
+}
+
+#add, button:focus {
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+button {
+  border: 1px solid;
+  cursor: pointer;
+  border: none;
+}
+
+input {
+  border: 1px solid;
+  outline: 0;
+  font-family: 'Red Hat Text', sans-serif;
+}
+
+.header {
+  background-color: #F8F8FF;
+  text-align: center;
+  margin: 30px;
+  border-radius: 7px;
+  padding: 25px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 22px;
+}
+
+.title {
+  color: var(--colorDarkBlue);
+  text-align: center;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 41px;
+}
+
+.header_navigation {
+  display: flex;
+}
+
+.header__link {
+  position: relative;
+  border-radius: 10px;
+  padding: 10px;
+  text-decoration: none;
+  
+}
+
+.header__link:not(:first-of-type) {
+  margin-left: 10px;
+}
+
+.header__link:not(.is-active) {
+  color: var(--colorDarkBlue);
+}
+
+.header__link.is-active {
+  background-color: var(--colorDarkBlue);
+  color: var(--colorWhite);
+}
+
+.header__icon {
+  fill: var(--colorDarkBlue);
+}
+
+.header__link.is-active .header__icon {
+  fill: var(--colorWhite);
+}
+
+.container {
+  padding-bottom: 350px;
+}
+
+.section  {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  border-radius: 10px;
+  background-color: #F8F8FF;
+  color: #313060;
+  display: flex;
+  width: 423px;
+  flex-direction: row;
+  margin: auto;
+  margin-top: 25px;
+  padding: 15px;
+  font-family: 'Red Hat Text', sans-serif;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+
+
+#qForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+#pForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px ;
+}
+
+.textForm {
+  position: relative;
+  display: flex;
+  
+}
+
+.valuesForm {
+  display: flex;
+  position: relative;
+  margin-top: 12px;
+}
+
+.section input {
+  border-radius: 4px;
+  border-color: lightgray;
+  width: 162px;
+  height: 41px;
+  display: flex;
+  padding: 10px;
+  font-size: 16px;
+  font-family: 'Red Hat Text', sans-serif;
+  color: #313060;
+}
+
+#addButton {
+  border-radius: 20px;
+  width: 39px;
+  height: 39px;
+  background-image: url(/add.d3e3ad13.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: lightgreen;
+  position: absolute;
+  display: flex;
+  align-self: center;
+  margin-left: 150px;
+  margin-top: 193px;
+}
+
+.trash {
+  background-color: #db2828e3;
+  width: 39px;
+  height: 39px;
+  border-radius: 20px;
+  background-image: url(/trash.0ef05b20.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-self: center;
+  margin-left: 15px;
+  margin-top: 32px;
+  animation: fadeIn 2s;
+}
+
+.footer {
+  background-color: #313060;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 20px;
+  height: 160px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Red Hat Text', sans-serif;
+}
+
+.foot {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: space-between;
+  width: 369px;
+}
+
+#qFoot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+#pFoot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.textFoot {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 16px;
+}
+
+.valuesFoot {
+  position: relative;
+  display: flex;
+  align-self: flex-start;
+  justify-self: flex-start;
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#reset {
+  background-color: white;
+  border: none;
+  position: absolute;
+  display: flex;
+  border-radius: 35px;
+  width: 39px;
+  height: 39px;
+  background-image: url(/reset.6c29aed7.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform .75s ease;
+  transform: rotate(0);
+  transform-origin: center;
+  animation: fadeIn 1s;
+}
+
+#reset:hover {
+  transform:rotate(360deg);
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  
+  .header__link {
+    font-size: 16px;
+  }
+  
+  #reset {
+    left: 70%;
+    bottom: 3.5%;
+  }
+
+}
+
+
+/*# sourceMappingURL=/main.af46ece4.css.map */
