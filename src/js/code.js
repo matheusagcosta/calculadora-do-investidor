@@ -1,11 +1,11 @@
-const avgPrice = 0;
-const tot = 0;
-const products = 0;
-const arrValues = [];
-const arrTemp = [];
-const valueQ = "";
-const valueP = "";
-const garb = `
+let avgPrice = 0;
+let tot = 0;
+let products = 0;
+let arrValues = [];
+let arrTemp = [];
+let valueQ = "";
+let valueP = "";
+let garb = `
 <form id="garb">
 <label for="quantityN" id="quantidade">Quantidade:</label>
 <label for="priceN" id="preco">Preço:</label>
@@ -13,7 +13,7 @@ const garb = `
 <input type="text" name="priceN" id="priceN" min="0" value="" required>
 </form>
 `;
-const y = 0
+let y = 0
 
 export function addGarb() {
   // add garb to stop the form from reloading
@@ -53,7 +53,7 @@ export const calcPrice = (y) => {
           avgPrice = (products/tot).toFixed(2)
         }
         // form creation
-        var html = `
+        const html = `
         <form class="form" id="form">
           <div id="qForm">
             <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
@@ -94,7 +94,7 @@ export function attFooter() {
 }
 
 export function wipeOut(z) {
-  var count = document.forms.length
+  const count = document.forms.length
   // redo calculations and remove itens from the array
   if (arrValues[z]) {
     tot -= arrValues[z][0]
