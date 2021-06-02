@@ -1,10 +1,10 @@
-var avgPrice = 0
-var tot = 0
-var products = 0
-var arrValues = []
-var arrTemp = []
-var valueQ
-var valueP
+var avgPrice = 0;
+var tot = 0;
+var products = 0;
+var arrValues = [];
+var arrTemp = [];
+var valueQ;
+var valueP;
 var garb = `
 <form id="garb">
 <label for="quantityN" id="quantidade">Quantidade:</label>
@@ -75,21 +75,47 @@ function calcPrice(y) {
         }
         // footer
         attFooter()
-        document.getElementById("resetB").innerHTML = '<button id="reset" onclick="reset()" style="visibility: visible;"></button>'
       } else {
-        addGarb()
+          addGarb()
       }
     } else {
         addGarb()
     }
   } else {
-    addGarb()
+      addGarb()
   }
 }
 
 function attFooter() {
-  document.getElementById("vTot").innerHTML = `<span class="valuesFoot" id="vTot">${tot}</span>`
-  document.getElementById("vPM").innerHTML = `<span class="valuesFoot" id="vPM">R$ ${avgPrice}</span>`
+  if (tot == 0 && avgPrice == 0) {
+    document.getElementById("footer").innerHTML = `
+    <div class="foot" id="0">
+      <div id="qFoot">
+        <label class="textFoot" id="qTot">Quantidade Total:</label>
+        <span class="valuesFoot" id="vTot">0</span>
+      </div>
+      <div id="pFoot">
+        <label class="textFoot" id="pMed">Preço Médio:</label>
+        <span class="valuesFoot" id="vPM">R$ 0.00</span>
+      </div>
+      <button id="reset" onclick="reset()" style="visibility: hidden;"></button>
+    </div>
+    `
+  } else {
+      document.getElementById("footer").innerHTML = `
+      <div class="foot" id="1">
+        <div id="qFoot">
+          <label class="textFoot" id="qTot">Quantidade Total:</label>
+          <span class="valuesFoot" id="vTot">${tot}</span>
+        </div>
+        <div id="pFoot">
+          <label class="textFoot" id="pMed">Preço Médio:</label>
+          <span class="valuesFoot" id="vPM">R$ ${avgPrice}</span>
+        </div>
+        <button id="reset" onclick="reset()" style="visibility: visible;"></button>
+      </div>
+      `
+  }
 }
 
 function wipeOut(z) {
@@ -124,7 +150,6 @@ function wipeOut(z) {
     tot = 0
     avgPrice = 0.00
     avgPrice = avgPrice.toFixed(2)
-    document.getElementById("resetB").innerHTML = '<button id="reset" onclick="reset()" style="visibility: hidden;"></button>'
   } else if (arrValues.length == 1) {
     avgPrice = arrValues[0][1].toFixed(2)
   } else {
@@ -134,7 +159,7 @@ function wipeOut(z) {
 }
 
 function reset() {
-  document.getElementById("resetB").innerHTML = '<button id="reset" onclick="reset()" style="visibility: hidden;"></button>'
+  document.getElementById("reset").style = "visibility: hidden;"
   if (document.forms.length>1) {
     if (document.forms.length>2) {
       for (w=document.forms.length-2; w>0; w--) {
