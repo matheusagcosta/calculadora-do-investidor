@@ -28,6 +28,16 @@
   }
 }
 
+@keyframes widthDec {
+  from {
+    width: 423px;
+  }
+
+  to {
+    width: 369px;
+  }
+}
+
 :root {
   --colorDarkBlue: #313060;
   --colorWhite: #FFF;
@@ -140,7 +150,18 @@ input {
   line-height: 21px;
 }
 
+.form:nth-last-child(2){
+  animation: widthInc .5s linear;
+}
 
+.form:only-child {
+  width: 369px;
+  animation: widthDec .5s linear;
+}
+
+.form:last-child{
+  animation: widthInc .5s linear;
+}
 
 #qForm {
   position: relative;
@@ -179,7 +200,7 @@ input {
   color: #313060;
 }
 
-#addButton {
+#add {
   border-radius: 20px;
   width: 39px;
   height: 39px;
@@ -192,6 +213,10 @@ input {
   align-self: center;
   margin-left: 150px;
   margin-top: 193px;
+}
+
+#add:not([onclick="calcPrice(0)"]) {
+  margin-left: 180px;
 }
 
 .trash {
@@ -233,6 +258,11 @@ input {
   width: 369px;
 }
 
+.foot[id="1"]{
+  animation: widthInc .5s linear, fadeIn 1s ;
+  width: 423px;
+}
+
 #qFoot {
   position: relative;
   display: flex;
@@ -264,8 +294,7 @@ input {
 
 #reset {
   background-color: white;
-  border: none;
-  position: absolute;
+  position: relative;
   display: flex;
   border-radius: 35px;
   width: 39px;
@@ -276,7 +305,11 @@ input {
   transition: transform .75s ease;
   transform: rotate(0);
   transform-origin: center;
-  animation: fadeIn 1s;
+  animation: fadeIn .5s;
+}
+
+#reset[style="visibility: hidden;"]{
+  position: absolute;
 }
 
 #reset:hover {

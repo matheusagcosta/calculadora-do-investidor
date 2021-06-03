@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&family=Nunito:wght@200&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&family=Nunito:wght@200&family=Red+Hat+Text&display=swap" rel="stylesheet">
-  <title>Calculadora do Inverstidor</title>
+  <title>Calculadora do Investidor</title>
 </head>
 <body>
   <header class= "header">
@@ -57,7 +57,7 @@
     </div>
     <div class="section" id="section">
       <form class="form" id="form">
-        <button id="addButton" value=""></button>
+        <button id="add" value=""></button>
         <div id="qForm">
           <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
           <input type="text" class="valuesForm" name="quantityN" id="quantityN" min="0" value="" required>
@@ -70,7 +70,7 @@
     </div>
   </main>
   <footer class= "footer" id= "footer">
-    <div class="foot">
+    <div class="foot" id="0">
       <div id="qFoot">
         <label class="textFoot" id="qTot">Quantidade Total:</label>
         <span class="valuesFoot" id="vTot">0</span>
@@ -79,8 +79,8 @@
         <label class="textFoot" id="pMed">Preço Médio:</label>
         <span class="valuesFoot" id="vPM">R$ 0.00</span>
       </div>
+      <button id="reset" style="visibility: hidden;"></button>
     </div>
-    <div id="resetB"></div>
   </footer>
   <script src="./index.js" defer></script>
 </body>

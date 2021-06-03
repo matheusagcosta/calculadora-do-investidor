@@ -1,6 +1,5 @@
 import { addGarb, calcPrice, attFooter, wipeOut, reset } from "./js/code";
 
-//document.querySelector('#addButton').addEventListener('click', calcPrice);
+//document.querySelector('#add').addEventListener('click', calcPrice);
+//document.querySelector('#trash0').addEventListener('click', wipeOut);
 //document.querySelector('#reset').addEventListener('click', reset);
-
-
