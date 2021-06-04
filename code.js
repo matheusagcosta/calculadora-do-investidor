@@ -67,7 +67,7 @@ function calcPrice(y) {
         `;
         document.getElementById("section").innerHTML += html
         // add trash button to previous form
-        document.forms[y].innerHTML += `<button class="trash" id="trash${y}" onclick="wipeOut(${y})"></button>`
+        document.forms[y].innerHTML += `<button class="trash" id="trash${y}" onclick="wipeOut(${y})" style="visibility: visible;"></button>`
         // add values to previous forms
         for (u=0; u<document.forms.length-1; u++) {
           document.getElementsByName("quantityN")[u].value = arrValues[u][0]

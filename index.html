@@ -58,7 +58,6 @@
     </div>
     <div class="section" id="section">
       <form class="form" id="form">
-        <button id="add" value="" onclick="calcPrice(0)"></button>
         <div id="qForm">
           <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
           <input type="text" class="valuesForm" name="quantityN" id="quantityN" min="0" value="" required>
@@ -67,6 +66,8 @@
           <label for="priceN" class="textForm" id="preco">Preço:</label>
           <input type="text" class="valuesForm" name="priceN" id="priceN" min="0" value="" required> 
         </div>
+        <button class="trash" id="trash" onclick="wipeOut(0)" style="visibility: hidden;"></button>
+        <button id="add" value="" onclick="calcPrice(0)"></button>
       </form>
     </div>
   </main>

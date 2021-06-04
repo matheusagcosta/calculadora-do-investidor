@@ -1,43 +1,3 @@
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes widthInc {
-  from {
-    width: 369px;
-  }
-
-  to {
-    width: 423px;
-  }
-}
-
-@keyframes widthDec {
-  from {
-    width: 423px;
-  }
-
-  to {
-    width: 369px;
-  }
-}
-
 :root {
   --colorDarkBlue: #313060;
   --colorWhite: #FFF;
@@ -140,7 +100,6 @@ input {
   background-color: #F8F8FF;
   color: #313060;
   display: flex;
-  width: 423px;
   flex-direction: row;
   margin: auto;
   margin-top: 25px;
@@ -148,19 +107,12 @@ input {
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
   line-height: 21px;
-}
-
-.form:nth-last-child(2){
-  animation: widthInc .5s linear;
-}
-
-.form:only-child {
+  transition: width .3s linear;
   width: 369px;
-  animation: widthDec .5s linear;
 }
 
-.form:last-child{
-  animation: widthInc .5s linear;
+.form:not(:only-of-type) {
+  width: 423px;
 }
 
 #qForm {
@@ -179,16 +131,12 @@ input {
 .textForm {
   position: relative;
   display: flex;
-  
 }
 
 .valuesForm {
   display: flex;
   position: relative;
   margin-top: 12px;
-}
-
-.section input {
   border-radius: 4px;
   border-color: lightgray;
   width: 162px;
@@ -211,12 +159,9 @@ input {
   position: absolute;
   display: flex;
   align-self: center;
-  margin-left: 150px;
-  margin-top: 193px;
-}
-
-#add:not([onclick="calcPrice(0)"]) {
-  margin-left: 180px;
+  margin: 193px auto 0;
+  left: 0;
+  right: 0;
 }
 
 .trash {
@@ -232,7 +177,6 @@ input {
   align-self: center;
   margin-left: 15px;
   margin-top: 32px;
-  animation: fadeIn 2s;
 }
 
 .footer {
@@ -256,23 +200,12 @@ input {
   position: relative;
   justify-content: space-between;
   width: 369px;
+  background-color: red;
+  transition: width 2s linear;
 }
 
-.foot[id="1"]{
-  animation: widthInc .5s linear, fadeIn 1s ;
+.foot[id="1"] {
   width: 423px;
-}
-
-#qFoot {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-#pFoot {
-  position: relative;
-  display: flex;
-  flex-direction: column;
 }
 
 .textFoot {
@@ -305,7 +238,6 @@ input {
   transition: transform .75s ease;
   transform: rotate(0);
   transform-origin: center;
-  animation: fadeIn .5s;
 }
 
 #reset[style="visibility: hidden;"]{
@@ -313,7 +245,7 @@ input {
 }
 
 #reset:hover {
-  transform:rotate(360deg);
+  transform:rotate(180deg);
   cursor: pointer;
 }
 
