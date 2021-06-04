@@ -111,10 +111,6 @@ input {
   width: 369px;
 }
 
-.form:not(:only-of-type) {
-  width: 423px;
-}
-
 #qForm {
   position: relative;
   display: flex;
@@ -204,11 +200,10 @@ input {
   position: relative;
   justify-content: space-between;
   width: 369px;
-  background-color: red;
   transition: width 2s linear;
 }
 
-.foot[id="1"] {
+.is-bigger {
   width: 423px;
 }
 

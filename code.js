@@ -51,9 +51,13 @@ function calcPrice(y) {
         } else {
           avgPrice = (products/tot).toFixed(2)
         }
+        //
+        if (document.forms.length == 1) {
+          document.getElementById("firstForm").className = "form is-bigger"
+        }
         // form creation
         var html = `
-        <form class="form" id="form">
+        <form class="form is-bigger">
           <div id="qForm">
             <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
             <input type="text" class="valuesForm" name="quantityN" id="quantityN" min="0" value="" required>
@@ -67,6 +71,7 @@ function calcPrice(y) {
         `;
         document.getElementById("section").innerHTML += html
         // add trash button to previous form
+        if (document.getElementById("trash")) { document.getElementById("trash").remove() }
         document.forms[y].innerHTML += `<button class="trash" id="trash${y}" onclick="wipeOut(${y})" style="visibility: visible;"></button>`
         // add values to previous forms
         for (u=0; u<document.forms.length-1; u++) {
@@ -89,7 +94,7 @@ function calcPrice(y) {
 function attFooter() {
   if (tot == 0 && avgPrice == 0) {
     document.getElementById("footer").innerHTML = `
-    <div class="foot" id="0">
+    <div class="foot">
       <div id="qFoot">
         <label class="textFoot" id="qTot">Quantidade Total:</label>
         <span class="valuesFoot" id="vTot">0</span>
@@ -103,7 +108,7 @@ function attFooter() {
     `
   } else {
       document.getElementById("footer").innerHTML = `
-      <div class="foot" id="1">
+      <div class="foot is-bigger">
         <div id="qFoot">
           <label class="textFoot" id="qTot">Quantidade Total:</label>
           <span class="valuesFoot" id="vTot">${tot}</span>
@@ -156,6 +161,24 @@ function wipeOut(z) {
     avgPrice = (products/tot).toFixed(2)
   }
   attFooter()
+  //change class back to form
+  if (document.forms.length == 1) {
+    document.getElementById("section").removeChild(document.forms[0])
+    document.getElementById("section").innerHTML = `
+    <form class="form" id="firstForm">
+      <div id="qForm">
+        <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
+        <input type="text" class="valuesForm" name="quantityN" id="quantityN" min="0" value="" required>
+      </div>
+      <div id="pForm">
+        <label for="priceN" class="textForm" id="preco">Preço:</label>
+        <input type="text" class="valuesForm" name="priceN" id="priceN" min="0" value="" required> 
+      </div>
+      <button id="add" value="" onclick="calcPrice(0)"></button>
+      <button class="trash" id="trash" onclick="wipeOut(0)" style="visibility: hidden;"></button>
+    </form>
+    `
+  }
 }
 
 function reset() {
