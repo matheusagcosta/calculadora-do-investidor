@@ -179,6 +179,10 @@ input {
   margin-top: 32px;
 }
 
+.trash[style="visibility: hidden;"] {
+  position: absolute;
+}
+
 .footer {
   background-color: #313060;
   color: white;
