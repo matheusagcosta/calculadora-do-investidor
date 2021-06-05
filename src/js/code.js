@@ -13,7 +13,7 @@ export const addGarb = () => {
     <input type="text" name="quantityN" id="quantityN" min="0" value="" required>
     <input type="text" name="priceN" id="priceN" min="0" value="" required>
     </form>
-  `;  
+  `;
   // add garb to stop the form from reloading
   document.getElementById("section").innerHTML += garb
   document.getElementById("garb").remove()
@@ -44,7 +44,7 @@ export const calcPrice = (y) => {
         arrValues.push(arrTemp)
         arrTemp=[]
         // remove add button
-        document.getElementById("add").remove()
+        document.getElementById('add').remove()
         // calculations
         tot += valueQ
         products += valueQ*valueP
@@ -53,10 +53,13 @@ export const calcPrice = (y) => {
         } else {
           avgPrice = (products/tot).toFixed(2)
         }
-        // form creation || <button id="addButton" value="" onclick="calcPrice(${y+1})"></button>
+        //
+        if (document.forms.length == 1) {
+          document.getElementById("firstForm").className = "form is-bigger"
+        }
+        // form creation
         const html = `
-        <form class="form" id="form">
-          <button id="add" value=""></button>
+        <form class="form is-bigger">
           <div id="qForm">
             <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
             <input type="text" class="valuesForm" name="quantityN" id="quantityN" min="0" value="" required>
@@ -65,11 +68,13 @@ export const calcPrice = (y) => {
             <label for="priceN" class="textForm" id="preco">Preço:</label>
             <input type="text" class="valuesForm" name="priceN" id="priceN" min="0" value="" required> 
           </div>
+          <button id="add" value="" onclick="calcPrice(${y+1})"></button>
         </form>
         `;
         document.getElementById("section").innerHTML += html
-        // add trash button to previous form || <button class="trash" id="trash${y}" onclick="wipeOut(${y})"></button>
-        document.forms[y].innerHTML += `<button class="trash" id="trash${y}"></button>`
+        // add trash button to previous form
+        if (document.getElementById("trash")) { document.getElementById("trash").remove() }
+        document.forms[y].innerHTML += `<button class="trash" id="trash${y}" onclick="wipeOut(${y})" style="visibility: visible;"></button>`
         // add values to previous forms
         for (u=0; u<document.forms.length-1; u++) {
           document.getElementsByName("quantityN")[u].value = arrValues[u][0]
@@ -89,10 +94,9 @@ export const calcPrice = (y) => {
 }
 
 export const attFooter = () => {
-  // <button id="reset" onclick="reset()" style="visibility: hidden;"></button>  
   if (tot == 0 && avgPrice == 0) {
     document.getElementById("footer").innerHTML = `
-    <div class="foot" id="0">
+    <div class="foot">
       <div id="qFoot">
         <label class="textFoot" id="qTot">Quantidade Total:</label>
         <span class="valuesFoot" id="vTot">0</span>
@@ -101,12 +105,12 @@ export const attFooter = () => {
         <label class="textFoot" id="pMed">Preço Médio:</label>
         <span class="valuesFoot" id="vPM">R$ 0.00</span>
       </div>
-      <button id="reset" onclick="reset()" style="visibility: hidden;"></button>
+      <button id="reset" style="visibility: hidden;"></button>
     </div>
     `
   } else {
       document.getElementById("footer").innerHTML = `
-      <div class="foot" id="1">
+      <div class="foot is-bigger">
         <div id="qFoot">
           <label class="textFoot" id="qTot">Quantidade Total:</label>
           <span class="valuesFoot" id="vTot">${tot}</span>
@@ -115,7 +119,7 @@ export const attFooter = () => {
           <label class="textFoot" id="pMed">Preço Médio:</label>
           <span class="valuesFoot" id="vPM">R$ ${avgPrice}</span>
         </div>
-        <button id="reset" onclick="reset()" style="visibility: visible;"></button>
+        <button id="reset" style="visibility: visible;"></button>
       </div>
       `
   }
@@ -159,9 +163,28 @@ export const wipeOut = (z) => {
     avgPrice = (products/tot).toFixed(2)
   }
   attFooter()
+  //change class back to form
+  if (count == 1) {
+    document.getElementById("section").removeChild(document.forms[0])
+    document.getElementById("section").innerHTML = `
+    <form class="form" id="firstForm">
+      <div id="qForm">
+        <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
+        <input type="text" class="valuesForm" name="quantityN" id="quantityN" min="0" value="" required>
+      </div>
+      <div id="pForm">
+        <label for="priceN" class="textForm" id="preco">Preço:</label>
+        <input type="text" class="valuesForm" name="priceN" id="priceN" min="0" value="" required> 
+      </div>
+      <button id="add" value=""></button>
+      <button class="trash" id="trash" style="visibility: hidden;"></button>
+    </form>
+    `
+  }
 }
 
 export const reset = () => {
+  document.getElementById("reset").style = "visibility: hidden;"
   if (document.forms.length>1) {
     if (document.forms.length>2) {
       for (w=document.forms.length-2; w>0; w--) {
@@ -169,7 +192,7 @@ export const reset = () => {
       }
       wipeOut(0)
     } else {
-      wipeOut(0)
+        wipeOut(0)
     }
   }   
 }
