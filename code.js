@@ -51,13 +51,13 @@ const calcPrice = (y) => {
         } else {
           avgPrice = (products/tot).toFixed(2)
         }
-        //
+        // increase form size
         if (document.forms.length == 1) {
-          document.getElementById("firstForm").className = "form is-bigger"
+          document.getElementsByClassName("form")[y].setAttribute("class", "form is-bigger")
         }
         // form creation
         const html = `
-        <form class="form is-bigger">
+        <form class="form">
           <div id="qForm">
             <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
             <input type="text" class="valuesForm" name="quantityN" id="quantityN" min="0" value="" required>
@@ -66,13 +66,16 @@ const calcPrice = (y) => {
             <label for="priceN" class="textForm" id="preco">Preço:</label>
             <input type="text" class="valuesForm" name="priceN" id="priceN" min="0" value="" required> 
           </div>
-          <button id="add" value="" onclick="calcPrice(${y+1})"></button>
+          <button id="add" value=""></button>
+          <button class="trash" id="trash${y+1}"></button>
         </form>
-        `;
+        `; 
         document.getElementById("section").innerHTML += html
-        // add trash button to previous form
-        if (document.getElementById("trash")) { document.getElementById("trash").remove() }
-        document.forms[y].innerHTML += `<button class="trash is-shown" id="trash${y}" onclick="wipeOut(${y})"></button>`
+        document.getElementById("add").setAttribute("onclick", `calcPrice(${y+1})`)
+        document.getElementsByClassName("form")[y+1].setAttribute("class", "form is-bigger")
+        // update trash button of previous form
+        document.getElementById(`trash${y}`).className = "trash is-shown";
+        document.getElementById(`trash${y}`).setAttribute("onclick", `wipeOut(${y})`)
         // add values to previous forms
         for (u=0; u<document.forms.length-1; u++) {
           document.getElementsByName("quantityN")[u].value = arrValues[u][0]
@@ -113,15 +116,13 @@ const wipeOut = (z) => {
   // change next sections' id's
   for (u=z+1; u < document.forms.length; u++) {
     if (u == document.forms.length-1) {
-      document.forms[u].elements[2].innerHTML = `<button id="add" value="" onclick="calcPrice(${document.forms.length-2})"></button>`
+      document.getElementById("add").setAttribute("onclick", `calcPrice(${document.forms.length-2})`)
+      document.getElementById(`trash${u}`).id = `trash${u-1}`;
     } else {
-      document.forms[u].elements[2].remove()
-      document.forms[u].innerHTML += `<button class="trash is-shown" id="trash${u-1}" onclick="wipeOut(${u-1})"></button>`
+      document.getElementById(`trash${u}`).setAttribute("onclick", `wipeOut(${u-1})`)
+      document.getElementById(`trash${u}`).id = `trash${u-1}`;
     }
   }
-  // change add button's id
-  document.getElementById("add").remove()
-  document.forms[document.forms.length-1].innerHTML += `<button id="add" value="" onclick="calcPrice(${document.forms.length-2})"></button>`
   // remove specified section
   document.forms[z].remove()
   // att values from forms
@@ -140,23 +141,9 @@ const wipeOut = (z) => {
     avgPrice = (products/tot).toFixed(2)
   }
   attFooter()
-  //change class back to form
-  if (document.forms.length == 1) {
-    document.getElementById("section").removeChild(document.forms[0])
-    document.getElementById("section").innerHTML = `
-    <form class="form" id="firstForm">
-      <div id="qForm">
-        <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
-        <input type="text" class="valuesForm" name="quantityN" id="quantityN" min="0" value="" required>
-      </div>
-      <div id="pForm">
-        <label for="priceN" class="textForm" id="preco">Preço:</label>
-        <input type="text" class="valuesForm" name="priceN" id="priceN" min="0" value="" required> 
-      </div>
-      <button id="add" value="" onclick="calcPrice(0)"></button>
-      <button class="trash" id="trash" onclick="wipeOut(0)"></button>
-    </form>
-    `
+  // change unique form size
+  if (document.forms.length==1) {
+    document.getElementsByClassName("form")[0].setAttribute("class", "form")
   }
 }
 
