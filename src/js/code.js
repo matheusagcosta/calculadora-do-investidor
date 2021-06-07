@@ -74,7 +74,7 @@ export const calcPrice = (y) => {
         document.getElementById("section").innerHTML += html
         // add trash button to previous form
         if (document.getElementById("trash")) { document.getElementById("trash").remove() }
-        document.forms[y].innerHTML += `<button class="trash" id="trash${y}" onclick="wipeOut(${y})" style="visibility: visible;"></button>`
+        document.forms[y].innerHTML += `<button class="trash is-shown" id="trash${y}" onclick="wipeOut(${y})"></button>`
         // add values to previous forms
         for (u=0; u<document.forms.length-1; u++) {
           document.getElementsByName("quantityN")[u].value = arrValues[u][0]
@@ -105,7 +105,7 @@ export const attFooter = () => {
         <label class="textFoot" id="pMed">Preço Médio:</label>
         <span class="valuesFoot" id="vPM">R$ 0.00</span>
       </div>
-      <button id="reset" style="visibility: hidden;"></button>
+      <button class="reset" id="reset"></button>
     </div>
     `
   } else {
@@ -119,14 +119,13 @@ export const attFooter = () => {
           <label class="textFoot" id="pMed">Preço Médio:</label>
           <span class="valuesFoot" id="vPM">R$ ${avgPrice}</span>
         </div>
-        <button id="reset" style="visibility: visible;"></button>
+        <button class="reset is-shown" id="reset"></button>
       </div>
       `
   }
 }
 
 export const wipeOut = (z) => {
-  const count = document.forms.length;
   // redo calculations and remove itens from the array
   if (arrValues[z]) {
     tot -= arrValues[z][0]
@@ -134,21 +133,21 @@ export const wipeOut = (z) => {
     arrValues.splice(z, 1)
   }
   // change next sections' id's
-  for (u=z+1; u < count; u++) {
-    if (u == count-1) {
-      document.forms[u].elements[2].innerHTML = `<button id="add" value="" onclick="calcPrice(${count-2})"></button>`
+  for (u=z+1; u < document.forms.length; u++) {
+    if (u == document.forms.length-1) {
+      document.forms[u].elements[2].innerHTML = `<button id="add" value="" onclick="calcPrice(${document.forms.length-2})"></button>`
     } else {
       document.forms[u].elements[2].remove()
-      document.forms[u].innerHTML += `<button class="trash" id="trash${u-1}" onclick="wipeOut(${u-1})"></button>`
+      document.forms[u].innerHTML += `<button class="trash is-shown" id="trash${u-1}" onclick="wipeOut(${u-1})"></button>`
     }
   }
   // change add button's id
   document.getElementById("add").remove()
-  document.forms[count-1].innerHTML += `<button id="add" value="" onclick="calcPrice(${count-2})"></button>`
+  document.forms[document.forms.length-1].innerHTML += `<button id="add" value="" onclick="calcPrice(${document.forms.length-2})"></button>`
   // remove specified section
   document.forms[z].remove()
   // att values from forms
-  for (u=0; u<count-1; u++) {
+  for (u=0; u<document.forms.length-1; u++) {
     document.getElementsByName("quantityN")[u].value = arrValues[u][0]
     document.getElementsByName("priceN")[u].value = arrValues[u][1]
   }
@@ -164,7 +163,7 @@ export const wipeOut = (z) => {
   }
   attFooter()
   //change class back to form
-  if (count == 1) {
+  if (document.forms.length == 1) {
     document.getElementById("section").removeChild(document.forms[0])
     document.getElementById("section").innerHTML = `
     <form class="form" id="firstForm">
@@ -177,14 +176,13 @@ export const wipeOut = (z) => {
         <input type="text" class="valuesForm" name="priceN" id="priceN" min="0" value="" required> 
       </div>
       <button id="add" value=""></button>
-      <button class="trash" id="trash" style="visibility: hidden;"></button>
+      <button class="trash" id="trash"></button>
     </form>
     `
   }
 }
 
 export const reset = () => {
-  document.getElementById("reset").style = "visibility: hidden;"
   if (document.forms.length>1) {
     if (document.forms.length>2) {
       for (w=document.forms.length-2; w>0; w--) {

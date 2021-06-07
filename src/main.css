@@ -62,7 +62,6 @@ input {
   border-radius: 10px;
   padding: 10px;
   text-decoration: none;
-  
 }
 
 .header__link:not(:first-of-type) {
@@ -107,8 +106,12 @@ input {
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
   line-height: 21px;
-  transition: width .3s linear;
   width: 369px;
+  transition: width .3s linear;
+}
+
+.form.is-bigger {
+  width: 423px;
 }
 
 #qForm {
@@ -168,15 +171,17 @@ input {
   background-image: url(svg/trash.svg);
   background-repeat: no-repeat;
   background-position: center;
-  position: relative;
+  position: absolute;
   display: flex;
   align-self: center;
   margin-left: 15px;
   margin-top: 32px;
+  visibility: hidden;
 }
 
-.trash[style="visibility: hidden;"] {
-  position: absolute;
+.trash.is-shown {
+  position: relative;
+  visibility: visible;
 }
 
 .footer {
@@ -200,10 +205,10 @@ input {
   position: relative;
   justify-content: space-between;
   width: 369px;
-  transition: width 2s linear;
+  transition: width .3s linear;
 }
 
-.is-bigger {
+.foot.is-bigger {
   width: 423px;
 }
 
@@ -224,7 +229,7 @@ input {
   font-weight: bold;
 }
 
-#reset {
+.reset {
   background-color: white;
   position: relative;
   display: flex;
@@ -237,13 +242,16 @@ input {
   transition: transform .75s ease;
   transform: rotate(0);
   transform-origin: center;
-}
-
-#reset[style="visibility: hidden;"]{
   position: absolute;
+  visibility: hidden;
 }
 
-#reset:hover {
+.reset.is-shown {
+  position: relative;
+  visibility: visible;
+}
+
+.reset:hover {
   transform:rotate(180deg);
   cursor: pointer;
 }
