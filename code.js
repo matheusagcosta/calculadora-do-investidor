@@ -92,34 +92,14 @@ const calcPrice = (y) => {
 }
 
 const attFooter = () => {
+  document.getElementById("vTot").innerHTML = `${tot}`
+  document.getElementById("vPM").innerHTML = `R$ ${avgPrice}`
   if (tot == 0 && avgPrice == 0) {
-    document.getElementById("footer").innerHTML = `
-    <div class="foot">
-      <div id="qFoot">
-        <label class="textFoot" id="qTot">Quantidade Total:</label>
-        <span class="valuesFoot" id="vTot">0</span>
-      </div>
-      <div id="pFoot">
-        <label class="textFoot" id="pMed">Preço Médio:</label>
-        <span class="valuesFoot" id="vPM">R$ 0.00</span>
-      </div>
-      <button class="reset" onclick="reset()"></button>
-    </div>
-    `
+    document.getElementById("foot").className = "foot"
+    document.getElementById("reset").className = "reset"
   } else {
-      document.getElementById("footer").innerHTML = `
-      <div class="foot is-bigger">
-        <div id="qFoot">
-          <label class="textFoot" id="qTot">Quantidade Total:</label>
-          <span class="valuesFoot" id="vTot">${tot}</span>
-        </div>
-        <div id="pFoot">
-          <label class="textFoot" id="pMed">Preço Médio:</label>
-          <span class="valuesFoot" id="vPM">R$ ${avgPrice}</span>
-        </div>
-        <button class="reset is-shown" onclick="reset()"></button>
-      </div>
-      `
+    document.getElementById("foot").className = "foot is-bigger"
+    document.getElementById("reset").className = "reset is-shown"
   }
 }
 
