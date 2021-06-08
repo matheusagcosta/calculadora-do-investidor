@@ -41,8 +41,6 @@ const calcPrice = (y) => {
         arrTemp.push(valueP)
         arrValues.push(arrTemp)
         arrTemp=[]
-        // remove add button
-        document.getElementById('add').remove()
         // calculations
         tot += valueQ
         products += valueQ*valueP
@@ -69,7 +67,6 @@ const calcPrice = (y) => {
             <label for="priceN" class="textForm" id="preco">Preço:</label>
             <input type="text" class="valuesForm" name="priceN" id="priceN" min="0" value="" required> 
           </div>
-          <button id="add" value=""></button>
           <button class="trash" id="trash${y+1}"></button>
         </form>
         `; 

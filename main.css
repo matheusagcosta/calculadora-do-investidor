@@ -93,12 +93,10 @@ input {
   display: flex;
   flex-direction: column;
   width: 369px;
-  height: 104px;
   margin: auto;
   background-color: #F8F8FF;
   border-radius: 10px;
   transition: width .35s linear;
-  margin-bottom: 25px;
 }
 
 .section.is-bigger {
@@ -116,7 +114,6 @@ input {
   display: flex;
   flex-direction: row;
   margin: auto;
-  margin-bottom: 25px;
   padding: 15px;
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
@@ -174,10 +171,10 @@ input {
   background-repeat: no-repeat;
   background-position: center;
   background-color: lightgreen;
-  position: absolute;
+  position: relative;
   display: flex;
   align-self: center;
-  margin: 193px auto 0;
+  margin: 25px auto 0;
   left: 0;
   right: 0;
 }
