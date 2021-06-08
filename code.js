@@ -53,8 +53,6 @@ const calcPrice = (y) => {
         if (document.forms.length == 1) {
           document.getElementsByClassName("form")[y].setAttribute("class", "form is-bigger")
           document.getElementById("section").setAttribute("class", "section is-bigger")
-          document.getElementById("section-bellow").setAttribute("class", "section is-bigger")
-          document.getElementById("section-bellow").style = "visibility: visible;"
         }
         // form creation
         const html = `
@@ -145,8 +143,6 @@ const wipeOut = (z) => {
   if (document.forms.length==1) {
     document.getElementsByClassName("form")[0].setAttribute("class", "form")
     document.getElementById("section").setAttribute("class", "section")
-    document.getElementById("section-bellow").setAttribute("class", "section")
-    document.getElementById("section-bellow").style = "visibility: hidden;"
   }
 }
 
