@@ -92,22 +92,41 @@ input {
 .section  {
   display: flex;
   flex-direction: column;
+  width: 369px;
+  height: 104px;
+  margin: auto;
+  background-color: #F8F8FF;
+  border-radius: 10px;
+  transition: width .35s linear;
+  margin-bottom: 25px;
+}
+
+.section.is-bigger {
+  width: 423px;
+}
+
+#section-bellow {
+  background-color: #F8F8FF;
 }
 
 .form {
-  border-radius: 10px;
   background-color: #F8F8FF;
+  border-radius: 10px;
   color: #313060;
   display: flex;
   flex-direction: row;
   margin: auto;
-  margin-top: 25px;
+  margin-bottom: 25px;
   padding: 15px;
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
   line-height: 21px;
   width: 369px;
-  transition: width .3s linear;
+  transition: width .35s linear;
+}
+
+.form:first-child, .form:nth-of-type(2) {
+  background-color: transparent;
 }
 
 .form.is-bigger {
@@ -242,7 +261,7 @@ input {
   background-image: url(svg/reset.svg);
   background-repeat: no-repeat;
   background-position: center;
-  transition: transform .75s linear .35s, opacity .5s linear;
+  transition: transform .6s linear .15s, opacity .5s linear;
   transform: rotate(0);
   transform-origin: center;
   position: absolute;
@@ -257,7 +276,7 @@ input {
 }
 
 .reset:hover {
-  transform:rotate(180deg);
+  transform:rotate(360deg);
   cursor: pointer;
 }
 
