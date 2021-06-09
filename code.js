@@ -3,6 +3,12 @@ let tot = 0;
 let products = 0;
 let arrValues = [];
 
+const money = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+  minimumFractionDigits: 2
+})
+
 const addGarb = () => {
   const garb = `
     <form id="garb">
@@ -75,7 +81,7 @@ const calcPrice = (y) => {
         // add values to previous forms
         for (u=0; u<document.forms.length-2; u++) {
           document.getElementsByName("quantityN")[u].value = arrValues[u][0]
-          document.getElementsByName("priceN")[u].value = `R$ ${arrValues[u][1].toFixed(2)}`
+          document.getElementsByName("priceN")[u].value = money.format(arrValues[u][1])
         }
         // increase form size
         if (document.forms.length == 3) {
@@ -131,7 +137,7 @@ const wipeOut = (z) => {
   // att values from forms
   for (u=0; u<document.forms.length-2; u++) {
     document.getElementsByName("quantityN")[u].value = arrValues[u][0]
-    document.getElementsByName("priceN")[u].value = `R$ ${arrValues[u][1].toFixed(2)}`
+    document.getElementsByName("priceN")[u].value = money.format(arrValues[u][1])
   }
   // att footer
   if (arrValues.length == 0) {
