@@ -3,7 +3,6 @@ let tot = 0;
 let products = 0;
 let arrValues = [];
 
-
 window.addEventListener('keydown',function(e){if(e.keyIdentifier=='U+000A'||e.keyIdentifier=='Enter'||e.keyCode==13){if(e.target.nodeName=='INPUT'&&e.target.type=='text'){e.preventDefault();return false;}}},true);
 
 const money = new Intl.NumberFormat('pt-BR', {
@@ -63,32 +62,32 @@ const calcPrice = (y) => {
         }
         // form creation
         const html = `
+        <form class="form">
           <div id="qForm">
             <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
-            <input type="text" class="valuesForm" name="quantityN" id="quantityN" min="0" value="" required>
+            <input type="text" class="valuesForm" name="quantityN" id="quantityN" placeholder="0" min="0" value="" required>
           </div>
           <div id="pForm">
             <label for="priceN" class="textForm" id="preco">Preço:</label>
-            <input type="text" class="valuesForm" name="priceN" id="priceN" min="0" value="" required> 
+            <input type="text" class="valuesForm" name="priceN" id="priceN" placeholder="R$ 0,00" min="0" value="" required> 
           </div>
           <div class="trash_button" id="trash_button">
             <button class="trash" id="trash${y+1}"></button>
           </div>
+        </form>
         `;
-        document.getElementsByClassName("form")[y+1].innerHTML += html
-        document.getElementById("section").innerHTML += '<form class="form"></form>'
+        document.getElementById("section").innerHTML += html
         document.getElementById("add").setAttribute("onclick", `calcPrice(${y+1})`)
         // update trash button of previous form
-        document.getElementById(`trash${y}`).className = "trash is-shown";
         document.getElementById(`trash${y}`).setAttribute("onclick", `wipeOut(${y})`)
         // add values to previous forms
-        for (u=0; u<document.forms.length-2; u++) {
+        for (u=0; u<document.forms.length-1; u++) {
           document.getElementsByName("quantityN")[u].value = arrValues[u][0]
           document.getElementsByName("priceN")[u].value = money.format(arrValues[u][1])
         }
         // increase form size
-        if (document.forms.length == 3) {
-          document.getElementsByClassName("form")[y].setAttribute("class", "form is-bigger")
+        if (document.forms.length == 2) {
+          document.getElementsByClassName("form")[0].setAttribute("class", "form is-bigger")
         }
         document.getElementsByClassName("form")[y+1].setAttribute("class", "form is-bigger")
         // change trash button opacity
@@ -126,9 +125,9 @@ const wipeOut = (z) => {
     arrValues.splice(z, 1)
   }
   // change next sections' id's
-  for (u=z+1; u < document.forms.length-1; u++) {
-    if (u == document.forms.length-2) {
-      document.getElementById("add").setAttribute("onclick", `calcPrice(${document.forms.length-3})`)
+  for (u=z+1; u < document.forms.length; u++) {
+    if (u == document.forms.length-1) {
+      document.getElementById("add").setAttribute("onclick", `calcPrice(${document.forms.length-2})`)
       document.getElementById(`trash${u}`).id = `trash${u-1}`;
     } else {
       document.getElementById(`trash${u}`).setAttribute("onclick", `wipeOut(${u-1})`)
@@ -138,7 +137,7 @@ const wipeOut = (z) => {
   // remove specified section
   document.forms[z].remove()
   // att values from forms
-  for (u=0; u<document.forms.length-2; u++) {
+  for (u=0; u<document.forms.length-1; u++) {
     document.getElementsByName("quantityN")[u].value = arrValues[u][0]
     document.getElementsByName("priceN")[u].value = money.format(arrValues[u][1])
   }
@@ -154,7 +153,7 @@ const wipeOut = (z) => {
   }
   attFooter()
   // change unique form size
-  if (document.forms.length==2) {
+  if (document.forms.length==1) {
     document.getElementsByClassName("form")[0].setAttribute("class", "form")
   }
 }
