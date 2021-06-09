@@ -82,8 +82,8 @@ const calcPrice = (y) => {
         document.getElementById(`trash${y}`).setAttribute("onclick", `wipeOut(${y})`)
         // add values to previous forms
         for (u=0; u<document.forms.length-1; u++) {
-          document.getElementsByName("quantityN")[u].value = arrValues[u][0]
-          document.getElementsByName("priceN")[u].value = money.format(arrValues[u][1])
+          document.getElementsByName("quantityN")[u].setAttribute("value", `${arrValues[u][0]}`) 
+          document.getElementsByName("priceN")[u].setAttribute("value", `${arrValues[u][1].toFixed(2)}`)
         }
         // increase form size
         if (document.forms.length == 2) {
@@ -138,8 +138,8 @@ const wipeOut = (z) => {
   document.forms[z].remove()
   // att values from forms
   for (u=0; u<document.forms.length-1; u++) {
-    document.getElementsByName("quantityN")[u].value = arrValues[u][0]
-    document.getElementsByName("priceN")[u].value = money.format(arrValues[u][1])
+    document.getElementsByName("quantityN")[u].setAttribute("value", `${arrValues[u][0]}`) 
+    document.getElementsByName("priceN")[u].setAttribute("value", `${arrValues[u][1].toFixed(2)}`)
   }
   // att footer
   if (arrValues.length == 0) {

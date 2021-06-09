@@ -14,22 +14,28 @@ body {
   padding: 0px;
 }
 
-#add, button:focus {
-  border: 0;
-  outline: 0;
-  cursor: pointer;
-}
-
 button {
   border: 1px solid;
   cursor: pointer;
   border: none;
 }
 
+button:focus {
+  border: 2px solid;
+  border-color: var(--colorDarkBlue);
+  outline: 0;
+  cursor: pointer;
+}
+
 input {
   border: 1px solid;
   outline: 0;
   font-family: 'Red Hat Text', sans-serif;
+}
+
+input:focus {
+  border: 2px solid;
+  border-color: var(--colorDarkBlue);
 }
 
 .header {
