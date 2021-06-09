@@ -31,6 +31,9 @@ const calcPrice = (y) => {
   valueP = document.getElementsByName("priceN")[y].value
   if (valueQ!="" && valueP!="") {
     // input validation system (2) -> characters
+    if (valueP.replace(/,/g, '.')) {
+      valueP = valueP.replace(/,/g, '.')
+    }
     valueQ = parseInt(valueQ)
     valueP = parseFloat(valueP)
     if (valueQ && valueP) {
@@ -49,14 +52,8 @@ const calcPrice = (y) => {
         } else {
           avgPrice = (products/tot).toFixed(2)
         }
-        // increase form and section size
-        if (document.forms.length == 1) {
-          document.getElementsByClassName("form")[y].setAttribute("class", "form is-bigger")
-          document.getElementById("section").setAttribute("class", "section is-bigger")
-        }
         // form creation
         const html = `
-        <form class="form">
           <div id="qForm">
             <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
             <input type="text" class="valuesForm" name="quantityN" id="quantityN" min="0" value="" required>
@@ -65,20 +62,28 @@ const calcPrice = (y) => {
             <label for="priceN" class="textForm" id="preco">Preço:</label>
             <input type="text" class="valuesForm" name="priceN" id="priceN" min="0" value="" required> 
           </div>
-          <button class="trash" id="trash${y+1}"></button>
-        </form>
-        `; 
-        document.getElementById("section").innerHTML += html
+          <div class="trash_button" id="trash_button">
+            <button class="trash" id="trash${y+1}"></button>
+          </div>
+        `;
+        document.getElementsByClassName("form")[y+1].innerHTML += html
+        document.getElementById("section").innerHTML += '<form class="form"></form>'
         document.getElementById("add").setAttribute("onclick", `calcPrice(${y+1})`)
-        document.getElementsByClassName("form")[y+1].setAttribute("class", "form is-bigger")
         // update trash button of previous form
         document.getElementById(`trash${y}`).className = "trash is-shown";
         document.getElementById(`trash${y}`).setAttribute("onclick", `wipeOut(${y})`)
         // add values to previous forms
-        for (u=0; u<document.forms.length-1; u++) {
+        for (u=0; u<document.forms.length-2; u++) {
           document.getElementsByName("quantityN")[u].value = arrValues[u][0]
-          document.getElementsByName("priceN")[u].value = arrValues[u][1]
+          document.getElementsByName("priceN")[u].value = `R$ ${arrValues[u][1].toFixed(2)}`
         }
+        // increase form size
+        if (document.forms.length == 3) {
+          document.getElementsByClassName("form")[y].setAttribute("class", "form is-bigger")
+        }
+        document.getElementsByClassName("form")[y+1].setAttribute("class", "form is-bigger")
+        // change trash button opacity
+        document.getElementsByClassName("trash_button")[y].className = "trash_button is-shown"
         // footer
         attFooter()
       } else {
@@ -112,9 +117,9 @@ const wipeOut = (z) => {
     arrValues.splice(z, 1)
   }
   // change next sections' id's
-  for (u=z+1; u < document.forms.length; u++) {
-    if (u == document.forms.length-1) {
-      document.getElementById("add").setAttribute("onclick", `calcPrice(${document.forms.length-2})`)
+  for (u=z+1; u < document.forms.length-1; u++) {
+    if (u == document.forms.length-2) {
+      document.getElementById("add").setAttribute("onclick", `calcPrice(${document.forms.length-3})`)
       document.getElementById(`trash${u}`).id = `trash${u-1}`;
     } else {
       document.getElementById(`trash${u}`).setAttribute("onclick", `wipeOut(${u-1})`)
@@ -124,9 +129,9 @@ const wipeOut = (z) => {
   // remove specified section
   document.forms[z].remove()
   // att values from forms
-  for (u=0; u<document.forms.length-1; u++) {
+  for (u=0; u<document.forms.length-2; u++) {
     document.getElementsByName("quantityN")[u].value = arrValues[u][0]
-    document.getElementsByName("priceN")[u].value = arrValues[u][1]
+    document.getElementsByName("priceN")[u].value = `R$ ${arrValues[u][1].toFixed(2)}`
   }
   // att footer
   if (arrValues.length == 0) {
@@ -140,9 +145,8 @@ const wipeOut = (z) => {
   }
   attFooter()
   // change unique form size
-  if (document.forms.length==1) {
+  if (document.forms.length==2) {
     document.getElementsByClassName("form")[0].setAttribute("class", "form")
-    document.getElementById("section").setAttribute("class", "section")
   }
 }
 

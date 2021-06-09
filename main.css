@@ -92,19 +92,7 @@ input {
 .section  {
   display: flex;
   flex-direction: column;
-  width: 369px;
   margin: auto;
-  background-color: #F8F8FF;
-  border-radius: 10px;
-  transition: width .35s linear;
-}
-
-.section.is-bigger {
-  width: 423px;
-}
-
-#section-bellow {
-  background-color: #F8F8FF;
 }
 
 .form {
@@ -119,15 +107,21 @@ input {
   font-size: 16px;
   line-height: 21px;
   width: 369px;
+  visibility: hidden;
   transition: width .35s linear;
 }
 
-.form:first-child, .form:nth-of-type(2) {
-  background-color: transparent;
+.form:first-child {
+  visibility: visible;
 }
 
 .form.is-bigger {
   width: 423px;
+  visibility: visible;
+}
+
+.form.is-bigger:not(:first-child) {
+  margin-top: 25px;
 }
 
 #qForm {
@@ -171,10 +165,8 @@ input {
   background-repeat: no-repeat;
   background-position: center;
   background-color: lightgreen;
-  position: relative;
   display: flex;
-  align-self: center;
-  margin: 25px auto 0;
+  margin: 0 auto 0;
   left: 0;
   right: 0;
 }
@@ -193,13 +185,19 @@ input {
   margin-left: 15px;
   margin-top: 32px;
   visibility: hidden;
-  opacity: 0;
-  transition: opacity 2s linear;
 }
 
 .trash.is-shown {
   position: relative;
   visibility: visible;
+}
+
+.trash_button {
+  opacity: 0;
+  transition: opacity .5s linear;
+}
+
+.trash_button.is-shown {
   opacity: 1;
 }
 
