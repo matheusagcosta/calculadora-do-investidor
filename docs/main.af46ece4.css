@@ -1,43 +1,3 @@
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes widthInc {
-  from {
-    width: 369px;
-  }
-
-  to {
-    width: 423px;
-  }
-}
-
-@keyframes widthDec {
-  from {
-    width: 423px;
-  }
-
-  to {
-    width: 369px;
-  }
-}
-
 :root {
   --colorDarkBlue: #313060;
   --colorWhite: #FFF;
@@ -54,22 +14,28 @@ body {
   padding: 0px;
 }
 
-#add, button:focus {
-  border: 0;
-  outline: 0;
-  cursor: pointer;
-}
-
 button {
   border: 1px solid;
   cursor: pointer;
   border: none;
 }
 
+button:focus {
+  border: 2px solid;
+  border-color: var(--colorDarkBlue);
+  outline: 0;
+  cursor: pointer;
+}
+
 input {
   border: 1px solid;
   outline: 0;
   font-family: 'Red Hat Text', sans-serif;
+}
+
+input:focus {
+  border: 2px solid;
+  border-color: var(--colorDarkBlue);
 }
 
 .header {
@@ -102,7 +68,6 @@ input {
   border-radius: 10px;
   padding: 10px;
   text-decoration: none;
-  
 }
 
 .header__link:not(:first-of-type) {
@@ -133,34 +98,34 @@ input {
 .section  {
   display: flex;
   flex-direction: column;
+  margin: auto;
 }
 
 .form {
-  border-radius: 10px;
   background-color: #F8F8FF;
+  border-radius: 10px;
   color: #313060;
   display: flex;
-  width: 423px;
   flex-direction: row;
-  margin: auto;
   margin-top: 25px;
+  margin: auto;
   padding: 15px;
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
   line-height: 21px;
+  transition: width .35s linear;
 }
 
-.form:nth-last-child(2){
-  animation: widthInc .5s linear;
+.form:first-child {
+  visibility: visible;
 }
 
-.form:only-child {
-  width: 369px;
-  animation: widthDec .5s linear;
+.form.is-bigger {
+  width: 423px;
 }
 
-.form:last-child{
-  animation: widthInc .5s linear;
+.form.is-bigger:not(:first-child) {
+  margin-top: 25px;
 }
 
 #qForm {
@@ -179,16 +144,12 @@ input {
 .textForm {
   position: relative;
   display: flex;
-  
 }
 
 .valuesForm {
   display: flex;
   position: relative;
   margin-top: 12px;
-}
-
-.section input {
   border-radius: 4px;
   border-color: lightgray;
   width: 162px;
@@ -208,15 +169,10 @@ input {
   background-repeat: no-repeat;
   background-position: center;
   background-color: lightgreen;
-  position: absolute;
   display: flex;
-  align-self: center;
-  margin-left: 150px;
-  margin-top: 193px;
-}
-
-#add:not([onclick="calcPrice(0)"]) {
-  margin-left: 180px;
+  margin: 25px auto 0;
+  left: 0;
+  right: 0;
 }
 
 .trash {
@@ -227,12 +183,23 @@ input {
   background-image: url(/trash.0ef05b20.svg);
   background-repeat: no-repeat;
   background-position: center;
-  position: relative;
   display: flex;
-  align-self: center;
   margin-left: 15px;
   margin-top: 32px;
-  animation: fadeIn 2s;
+}
+
+.trash_button {
+  opacity: 0;
+  transition: all .5s linear;
+  width: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.trash_button.is-shown {
+  opacity: 1;
+  width: 60px;
+  visibility: visible;
 }
 
 .footer {
@@ -256,23 +223,11 @@ input {
   position: relative;
   justify-content: space-between;
   width: 369px;
+  transition: width .35s linear;
 }
 
-.foot[id="1"]{
-  animation: widthInc .5s linear, fadeIn 1s ;
+.foot.is-bigger {
   width: 423px;
-}
-
-#qFoot {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-#pFoot {
-  position: relative;
-  display: flex;
-  flex-direction: column;
 }
 
 .textFoot {
@@ -292,7 +247,7 @@ input {
   font-weight: bold;
 }
 
-#reset {
+.reset {
   background-color: white;
   position: relative;
   display: flex;
@@ -302,17 +257,21 @@ input {
   background-image: url(/reset.6c29aed7.svg);
   background-repeat: no-repeat;
   background-position: center;
-  transition: transform .75s ease;
+  transition: transform .6s linear .15s, opacity .5s linear;
   transform: rotate(0);
   transform-origin: center;
-  animation: fadeIn .5s;
-}
-
-#reset[style="visibility: hidden;"]{
   position: absolute;
+  visibility: hidden;
+  opacity: 0;
 }
 
-#reset:hover {
+.reset.is-shown {
+  position: relative;
+  visibility: visible;
+  opacity: 1;
+}
+
+.reset:hover {
   transform:rotate(360deg);
   cursor: pointer;
 }
