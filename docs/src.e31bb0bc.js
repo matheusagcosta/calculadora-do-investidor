@@ -147,23 +147,8 @@ var money = new Intl.NumberFormat("pt-BR", {
 });
 
 var onAddClick = function onAddClick() {
-  var arrTemp = [];
-  valueQ = validateInputs(activedForm)[0];
-  valueP = validateInputs(activedForm)[1];
-  arrTemp.push(valueQ);
-  arrTemp.push(valueP);
-  arrValues.push(arrTemp);
-  arrTemp = [];
-  tot += valueQ;
-  products += valueQ * valueP;
-
-  if (arrValues.length == 1) {
-    avgPrice = arrValues[0][1].toFixed(2);
-  } else {
-    avgPrice = (products / tot).toFixed(2);
-  }
-
-  ;
+  validateInputs(activedForm);
+  calcNewValues(valueQ, valueP);
   generateNewForm(activedForm);
 
   for (var _u = 0; _u < document.forms.length - 1; _u++) {
@@ -274,7 +259,24 @@ var validateInputs = function validateInputs(activedForm) {
   ;
   valueQ = parseInt(valueQ);
   valueP = parseFloat(valueP);
-  return [valueQ, valueP];
+};
+
+var calcNewValues = function calcNewValues(valueQ, valueP) {
+  var arrTemp = [];
+  arrTemp.push(valueQ);
+  arrTemp.push(valueP);
+  arrValues.push(arrTemp);
+  arrTemp = [];
+  tot += valueQ;
+  products += valueQ * valueP;
+
+  if (arrValues.length == 1) {
+    avgPrice = arrValues[0][1].toFixed(2);
+  } else {
+    avgPrice = (products / tot).toFixed(2);
+  }
+
+  ;
 };
 
 var setBiggerForm = function setBiggerForm(activedForm) {
@@ -329,7 +331,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56514" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56509" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

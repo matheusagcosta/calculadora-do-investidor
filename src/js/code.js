@@ -31,24 +31,9 @@ const money = new Intl.NumberFormat("pt-BR", {
 });
 
 export const onAddClick = () => {
-  let arrTemp = [];
 
-  valueQ = validateInputs(activedForm)[0];
-  valueP = validateInputs(activedForm)[1];
-
-  arrTemp.push(valueQ);
-  arrTemp.push(valueP);
-  arrValues.push(arrTemp);
-  arrTemp = [];
-
-  tot += valueQ;
-  products += valueQ * valueP;
-  if (arrValues.length == 1) {
-    avgPrice = arrValues[0][1].toFixed(2);
-  } else {
-    avgPrice = (products / tot).toFixed(2);
-  };
-
+  validateInputs(activedForm);
+  calcNewValues(valueQ, valueP);
   generateNewForm(activedForm);
 
   for (let u = 0; u < document.forms.length - 1; u++) {
@@ -159,9 +144,24 @@ const validateInputs = (activedForm) => {
   valueQ = parseInt(valueQ);
   valueP = parseFloat(valueP);
 
-  return [valueQ, valueP];
-
 }
+
+const calcNewValues = (valueQ, valueP) => {
+  let arrTemp = [];
+
+  arrTemp.push(valueQ);
+  arrTemp.push(valueP);
+  arrValues.push(arrTemp);
+  arrTemp = [];
+
+  tot += valueQ;
+  products += valueQ * valueP;
+  if (arrValues.length == 1) {
+    avgPrice = arrValues[0][1].toFixed(2);
+  } else {
+    avgPrice = (products / tot).toFixed(2);
+  };
+};
 
 const setBiggerForm = (activedForm) => {
   if (document.forms.length == 2) {
