@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <title>Calculadora do Inverstidor</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&family=Nunito:wght@200&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&family=Nunito:wght@200&family=Red+Hat+Text&display=swap" rel="stylesheet">
-  <script src="code.js"></script>
+  <title>Calculadora do Investidor</title>
 </head>
 <body>
   <header class= "header">
@@ -67,9 +66,9 @@
         </div>
       </form>
     </div>
-    <button id="add" value="" onclick="calcPrice(0)"></button>
+    <button id="add" value=""></button>
   </main>
-  <footer class= "footer" id= "footer">
+  <footer class="footer" id="footer">
     <div class="foot" id="foot">
       <div id="qFoot">
         <label class="textFoot" id="qTot">Quantidade Total:</label>
@@ -79,8 +78,9 @@
         <label class="textFoot" id="pMed">Preço Médio:</label>
         <span class="valuesFoot" id="vPM">R$ 0.00</span>
       </div>
-      <button class="reset" id="reset" onclick="reset()"></button>
+      <button class="reset" id="reset"></button>
     </div>
   </footer>
+  <script src="./index.js" defer></script>
 </body>
 </html>
