@@ -2,10 +2,10 @@ let avgPrice = 0;
 let tot = 0;
 let products = 0;
 let arrValues = [];
-let z = 0;
 let activedForm = 0;
 let valueQ = "";
 let valueP = "";
+let z = 0;
 
 window.addEventListener(
   "keydown",
@@ -35,18 +35,9 @@ export const onAddClick = () => {
   validateInputs(activedForm);
   calcNewValues(valueQ, valueP);
   generateNewForm(activedForm);
-
-  for (let u = 0; u < document.forms.length - 1; u++) {
-    document
-      .getElementsByName("quantityN")
-      [u].setAttribute("value", `${arrValues[u][0]}`);
-    document
-      .getElementsByName("priceN")
-      [u].setAttribute("value", `${arrValues[u][1].toFixed(2)}`);
-  };
-
   setBiggerForm(activedForm);
   showTrashButton();
+  keepValuesOnDisplay(arrValues);
   attFooter();
 
   activedForm += 1;
@@ -144,7 +135,7 @@ const validateInputs = (activedForm) => {
   valueQ = parseInt(valueQ);
   valueP = parseFloat(valueP);
 
-}
+};
 
 const calcNewValues = (valueQ, valueP) => {
   let arrTemp = [];
@@ -160,6 +151,17 @@ const calcNewValues = (valueQ, valueP) => {
     avgPrice = arrValues[0][1].toFixed(2);
   } else {
     avgPrice = (products / tot).toFixed(2);
+  };
+};
+
+const keepValuesOnDisplay = (arrValues) => {
+  for (let u = 0; u < document.forms.length - 1; u++) {
+    document
+      .getElementsByName("quantityN")
+      [u].setAttribute("value", `${arrValues[u][0]}`);
+    document
+      .getElementsByName("priceN")
+      [u].setAttribute("value", `${arrValues[u][1].toFixed(2)}`);
   };
 };
 

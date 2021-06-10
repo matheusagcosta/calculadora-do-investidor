@@ -128,10 +128,10 @@ var avgPrice = 0;
 var tot = 0;
 var products = 0;
 var arrValues = [];
-var z = 0;
 var activedForm = 0;
 var valueQ = "";
 var valueP = "";
+var z = 0;
 window.addEventListener("keydown", function (e) {
   if (e.keyIdentifier == "U+000A" || e.keyIdentifier == "Enter" || e.keyCode == 13) {
     if (e.target.nodeName == "INPUT" && e.target.type == "text") {
@@ -150,16 +150,9 @@ var onAddClick = function onAddClick() {
   validateInputs(activedForm);
   calcNewValues(valueQ, valueP);
   generateNewForm(activedForm);
-
-  for (var _u = 0; _u < document.forms.length - 1; _u++) {
-    document.getElementsByName("quantityN")[_u].setAttribute("value", "".concat(arrValues[_u][0]));
-
-    document.getElementsByName("priceN")[_u].setAttribute("value", "".concat(arrValues[_u][1].toFixed(2)));
-  }
-
-  ;
   setBiggerForm(activedForm);
   showTrashButton();
+  keepValuesOnDisplay(arrValues);
   attFooter();
   activedForm += 1;
 };
@@ -279,6 +272,16 @@ var calcNewValues = function calcNewValues(valueQ, valueP) {
   ;
 };
 
+var keepValuesOnDisplay = function keepValuesOnDisplay(arrValues) {
+  for (var _u = 0; _u < document.forms.length - 1; _u++) {
+    document.getElementsByName("quantityN")[_u].setAttribute("value", "".concat(arrValues[_u][0]));
+
+    document.getElementsByName("priceN")[_u].setAttribute("value", "".concat(arrValues[_u][1].toFixed(2)));
+  }
+
+  ;
+};
+
 var setBiggerForm = function setBiggerForm(activedForm) {
   if (document.forms.length == 2) {
     document.getElementsByClassName("form")[0].setAttribute("class", "form is-bigger");
@@ -331,7 +334,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56509" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60958" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
