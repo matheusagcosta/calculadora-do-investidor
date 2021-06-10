@@ -7,7 +7,10 @@
 .cache/
 dist/
 node_modules/
+<<<<<<< HEAD
 node_modules
+=======
+>>>>>>> master
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
