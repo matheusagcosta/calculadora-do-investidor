@@ -14,22 +14,28 @@ body {
   padding: 0px;
 }
 
-#add, button:focus {
-  border: 0;
-  outline: 0;
-  cursor: pointer;
-}
-
 button {
   border: 1px solid;
   cursor: pointer;
   border: none;
 }
 
+button:focus {
+  border: 2px solid;
+  border-color: var(--colorDarkBlue);
+  outline: 0;
+  cursor: pointer;
+}
+
 input {
   border: 1px solid;
   outline: 0;
   font-family: 'Red Hat Text', sans-serif;
+}
+
+input:focus {
+  border: 2px solid;
+  border-color: var(--colorDarkBlue);
 }
 
 .header {
@@ -92,19 +98,7 @@ input {
 .section  {
   display: flex;
   flex-direction: column;
-  width: 369px;
   margin: auto;
-  background-color: #F8F8FF;
-  border-radius: 10px;
-  transition: width .35s linear;
-}
-
-.section.is-bigger {
-  width: 423px;
-}
-
-#section-bellow {
-  background-color: #F8F8FF;
 }
 
 .form {
@@ -113,21 +107,25 @@ input {
   color: #313060;
   display: flex;
   flex-direction: row;
+  margin-top: 25px;
   margin: auto;
   padding: 15px;
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
   line-height: 21px;
-  width: 369px;
   transition: width .35s linear;
 }
 
-.form:first-child, .form:nth-of-type(2) {
-  background-color: transparent;
+.form:first-child {
+  visibility: visible;
 }
 
 .form.is-bigger {
   width: 423px;
+}
+
+.form.is-bigger:not(:first-child) {
+  margin-top: 25px;
 }
 
 #qForm {
@@ -171,9 +169,7 @@ input {
   background-repeat: no-repeat;
   background-position: center;
   background-color: lightgreen;
-  position: relative;
   display: flex;
-  align-self: center;
   margin: 25px auto 0;
   left: 0;
   right: 0;
@@ -187,20 +183,23 @@ input {
   background-image: url(svg/trash.svg);
   background-repeat: no-repeat;
   background-position: center;
-  position: absolute;
   display: flex;
-  align-self: center;
   margin-left: 15px;
   margin-top: 32px;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 2s linear;
 }
 
-.trash.is-shown {
-  position: relative;
-  visibility: visible;
+.trash_button {
+  opacity: 0;
+  transition: all .5s linear;
+  width: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.trash_button.is-shown {
   opacity: 1;
+  width: 60px;
+  visibility: visible;
 }
 
 .footer {
