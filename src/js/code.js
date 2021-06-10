@@ -28,7 +28,7 @@ const money = new Intl.NumberFormat("pt-BR", {
   minimumFractionDigits: 2,
 });
 
-export const calcPrice = () => {
+export const onAddClick = () => {
   let arrTemp = [];
   let valueQ = "";
   let valueP = "";
@@ -62,25 +62,7 @@ export const calcPrice = () => {
     avgPrice = (products / tot).toFixed(2);
   }
 
-  const html = `
-    <form class="form">
-      <div id="qForm">
-        <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
-        <input type="text" class="valuesForm" name="quantityN" id="quantityN" placeholder="0" autocomplete="off" min="0" value="" required>
-      </div>
-      <div id="pForm">
-        <label for="priceN" class="textForm" id="preco">Preço:</label>
-        <input type="text" class="valuesForm" name="priceN" id="priceN" placeholder="R$ 0,00" autocomplete="off" min="0" value="" required> 
-      </div>
-      <div class="trash_button" id="trash_button">
-        <button class="trash" id="trash${activedForm + 1}"></button>
-      </div>
-    </form>
-  `;
-  document.getElementById("section").innerHTML += html;
-  document
-    .getElementById(`trash${activedForm}`)
-    .setAttribute("onclick", `wipeOut(${activedForm})`);
+  generateNewForm(activedForm);
 
   for (let u = 0; u < document.forms.length - 1; u++) {
     document
@@ -91,18 +73,8 @@ export const calcPrice = () => {
       [u].setAttribute("value", `${arrValues[u][1].toFixed(2)}`);
   }
 
-  if (document.forms.length == 2) {
-    document
-      .getElementsByClassName("form")[0]
-      .setAttribute("class", "form is-bigger");
-  }
-
-  document
-    .getElementsByClassName("form")
-    [activedForm + 1].setAttribute("class", "form is-bigger");
-  document.getElementsByClassName("trash_button")[activedForm].className =
-    "trash_button is-shown";
-
+  setBiggerForm(activedForm);
+  showTrashButton();
   attFooter();
 
   activedForm += 1;
@@ -180,4 +152,42 @@ export const reset = () => {
       wipeOut(0);
     }
   }
+};
+
+const setBiggerForm = (activedForm) => {
+  if (document.forms.length == 2) {
+    document
+      .getElementsByClassName("form")[0]
+      .setAttribute("class", "form is-bigger");
+  }
+  document
+    .getElementsByClassName("form")
+    [activedForm + 1].setAttribute("class", "form is-bigger");
+};
+
+const showTrashButton = () => {
+  document.getElementsByClassName("trash_button")[activedForm].className =
+    "trash_button is-shown";
+};
+
+const generateNewForm = (activedForm) => {
+  const html = `
+    <form class="form">
+      <div id="qForm">
+        <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
+        <input type="text" class="valuesForm" name="quantityN" id="quantityN" placeholder="0" autocomplete="off" min="0" value="" required>
+      </div>
+      <div id="pForm">
+        <label for="priceN" class="textForm" id="preco">Preço:</label>
+        <input type="text" class="valuesForm" name="priceN" id="priceN" placeholder="R$ 0,00" autocomplete="off" min="0" value="" required> 
+      </div>
+      <div class="trash_button" id="trash_button">
+        <button class="trash" id="trash${activedForm + 1}"></button>
+      </div>
+    </form>
+  `;
+  document.getElementById("section").innerHTML += html;
+  document
+    .getElementById(`trash${activedForm}`)
+    .setAttribute("onclick", `wipeOut(${activedForm})`);
 };
