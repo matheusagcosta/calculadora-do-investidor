@@ -4,6 +4,8 @@ let products = 0;
 let arrValues = [];
 let z = 0;
 let activedForm = 0;
+let valueQ = "";
+let valueP = "";
 
 window.addEventListener(
   "keydown",
@@ -30,24 +32,9 @@ const money = new Intl.NumberFormat("pt-BR", {
 
 export const onAddClick = () => {
   let arrTemp = [];
-  let valueQ = "";
-  let valueP = "";
 
-  const re_1 = new RegExp("[0-9]+");
-  const re_2 = new RegExp("[0-9]+(,|.)?[0-9]*");
-
-  valueQ = document.getElementsByName("quantityN")[activedForm].value;
-  valueP = document.getElementsByName("priceN")[activedForm].value;
-
-  valueQ = re_1.exec(valueQ)[0];
-  valueP = re_2.exec(valueP)[0];
-
-  if (valueP.replace(/,/g, ".")) {
-    valueP = valueP.replace(/,/g, ".");
-  }
-
-  valueQ = parseInt(valueQ);
-  valueP = parseFloat(valueP);
+  valueQ = validateInputs(activedForm)[0];
+  valueP = validateInputs(activedForm)[1];
 
   arrTemp.push(valueQ);
   arrTemp.push(valueP);
@@ -60,7 +47,7 @@ export const onAddClick = () => {
     avgPrice = arrValues[0][1].toFixed(2);
   } else {
     avgPrice = (products / tot).toFixed(2);
-  }
+  };
 
   generateNewForm(activedForm);
 
@@ -71,7 +58,7 @@ export const onAddClick = () => {
     document
       .getElementsByName("priceN")
       [u].setAttribute("value", `${arrValues[u][1].toFixed(2)}`);
-  }
+  };
 
   setBiggerForm(activedForm);
   showTrashButton();
@@ -153,6 +140,28 @@ export const reset = () => {
     }
   }
 };
+
+const validateInputs = (activedForm) => {
+
+  const validateQuantity = new RegExp("[0-9]+");
+  const validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
+
+  valueQ = document.getElementsByName("quantityN")[activedForm].value;
+  valueP = document.getElementsByName("priceN")[activedForm].value;
+
+  valueQ = validateQuantity.exec(valueQ)[0];
+  valueP = validatePrice.exec(valueP)[0];
+
+  if (valueP.replace(/,/g, ".")) {
+    valueP = valueP.replace(/,/g, ".");
+  };
+
+  valueQ = parseInt(valueQ);
+  valueP = parseFloat(valueP);
+
+  return [valueQ, valueP];
+
+}
 
 const setBiggerForm = (activedForm) => {
   if (document.forms.length == 2) {
