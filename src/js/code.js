@@ -5,7 +5,6 @@ let arrValues = [];
 let activedForm = 0;
 let valueQ = "";
 let valueP = "";
-let z = 0;
 
 window.addEventListener(
   "keydown",
@@ -43,27 +42,18 @@ export const onAddClick = () => {
   activedForm += 1;
 };
 
-export const attFooter = () => {
-  document.getElementById("vTot").innerHTML = `${tot}`;
-  document.getElementById("vPM").innerHTML = `R$ ${avgPrice}`;
-  if (tot == 0 && avgPrice == 0) {
-    document.getElementById("foot").className = "foot";
-    document.getElementById("reset").className = "reset";
-  } else {
-    document.getElementById("foot").className = "foot is-bigger";
-    document.getElementById("reset").className = "reset is-shown";
-  }
-};
+export const removeForm = () => {
+  
+  //recalcValues(arrValues)
 
-export const wipeOut = (z) => {
-  // redo calculations and remove itens from the array
   if (arrValues[z]) {
     tot -= arrValues[z][0];
     products -= arrValues[z][0] * arrValues[z][1];
     arrValues.splice(z, 1);
-  }
+  };
+  
   // change next sections' id's
-  for (u = z + 1; u < document.forms.length; u++) {
+  for (let u = z + 1; u < document.forms.length; u++) {
     if (u == document.forms.length - 1) {
       document
         .getElementById("add")
@@ -104,15 +94,27 @@ export const wipeOut = (z) => {
   }
 };
 
+export const attFooter = () => {
+  document.getElementById("vTot").innerHTML = `${tot}`;
+  document.getElementById("vPM").innerHTML = `R$ ${avgPrice}`;
+  if (tot == 0 && avgPrice == 0) {
+    document.getElementById("foot").className = "foot";
+    document.getElementById("reset").className = "reset";
+  } else {
+    document.getElementById("foot").className = "foot is-bigger";
+    document.getElementById("reset").className = "reset is-shown";
+  }
+};
+
 export const reset = () => {
   if (document.forms.length > 1) {
     if (document.forms.length > 2) {
       for (w = document.forms.length - 2; w > 0; w--) {
-        wipeOut(w);
+        removeForm(w);
       }
-      wipeOut(0);
+      removeForm(0);
     } else {
-      wipeOut(0);
+      removeForm(0);
     }
   }
 };
@@ -198,7 +200,4 @@ const generateNewForm = (activedForm) => {
     </form>
   `;
   document.getElementById("section").innerHTML += html;
-  document
-    .getElementById(`trash${activedForm}`)
-    .setAttribute("onclick", `wipeOut(${activedForm})`);
 };
