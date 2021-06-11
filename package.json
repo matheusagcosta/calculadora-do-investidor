@@ -11,5 +11,8 @@
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5"
+  },
+  "dependencies": {
+    "code": "^5.2.4"
   }
 }
