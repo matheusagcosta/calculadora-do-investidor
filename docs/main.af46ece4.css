@@ -8,10 +8,17 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: white;
   margin: 0px;
   padding: 0px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 button {
@@ -48,6 +55,15 @@ input:focus {
   font-size: 16px;
   font-weight: bold;
   line-height: 22px;
+  display: flex;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
 }
 
 .title {
@@ -92,13 +108,12 @@ input:focus {
 }
 
 .container {
-  padding-bottom: 350px;
+  padding-bottom: 50px;
 }
 
 .section  {
   display: flex;
   flex-direction: column;
-  margin: auto;
 }
 
 .form {
@@ -168,7 +183,7 @@ input:focus {
   background-image: url(/add.d3e3ad13.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-color: lightgreen;
+  background-color: #05B595;
   display: flex;
   margin: 25px auto 0;
   left: 0;
@@ -176,7 +191,7 @@ input:focus {
 }
 
 .trash {
-  background-color: #db2828e3;
+  background-color: #B03500;
   width: 39px;
   height: 39px;
   border-radius: 20px;
@@ -205,16 +220,16 @@ input:focus {
 .footer {
   background-color: #313060;
   color: white;
-  position: fixed;
   bottom: 0;
   width: 100%;
   font-size: 20px;
   height: 160px;
   display: flex;
+  flex: 0 0 auto;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-family: 'Red Hat Text', sans-serif;
+  font-family: 'Red Hat Text', sans-serif;  
 }
 
 .foot {

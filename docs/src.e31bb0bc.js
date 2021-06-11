@@ -118,49 +118,53 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"js/code.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.reset = exports.wipeOut = exports.attFooter = exports.onAddClick = void 0;
 var avgPrice = 0;
 var tot = 0;
 var products = 0;
 var arrValues = [];
-var y = 0;
 var z = 0;
-window.addEventListener('keydown', function (e) {
-  if (e.keyIdentifier == 'U+000A' || e.keyIdentifier == 'Enter' || e.keyCode == 13) {
-    if (e.target.nodeName == 'INPUT' && e.target.type == 'text') {
+var activedForm = 0;
+window.addEventListener("keydown", function (e) {
+  if (e.keyIdentifier == "U+000A" || e.keyIdentifier == "Enter" || e.keyCode == 13) {
+    if (e.target.nodeName == "INPUT" && e.target.type == "text") {
       e.preventDefault();
       return false;
     }
   }
 }, true);
-var money = new Intl.NumberFormat('pt-BR', {
-  style: 'currency',
-  currency: 'BRL',
+var money = new Intl.NumberFormat("pt-BR", {
+  style: "currency",
+  currency: "BRL",
   minimumFractionDigits: 2
 });
 
-var calcPrice = function calcPrice(y) {
+var onAddClick = function onAddClick() {
   var arrTemp = [];
   var valueQ = "";
   var valueP = "";
   var re_1 = new RegExp("[0-9]+");
   var re_2 = new RegExp("[0-9]+(,|.)?[0-9]*");
-  valueQ = document.getElementsByName("quantityN")[y].value;
-  valueP = document.getElementsByName("priceN")[y].value;
+  valueQ = document.getElementsByName("quantityN")[activedForm].value;
+  valueP = document.getElementsByName("priceN")[activedForm].value;
   valueQ = re_1.exec(valueQ)[0];
   valueP = re_2.exec(valueP)[0];
 
-  if (valueP.replace(/,/g, '.')) {
-    valueP = valueP.replace(/,/g, '.');
+  if (valueP.replace(/,/g, ".")) {
+    valueP = valueP.replace(/,/g, ".");
   }
 
   valueQ = parseInt(valueQ);
-  valueP = parseFloat(valueP); // array addition
-
+  valueP = parseFloat(valueP);
   arrTemp.push(valueQ);
   arrTemp.push(valueP);
   arrValues.push(arrTemp);
-  arrTemp = []; // calculations
-
+  arrTemp = [];
   tot += valueQ;
   products += valueQ * valueP;
 
@@ -168,31 +172,23 @@ var calcPrice = function calcPrice(y) {
     avgPrice = arrValues[0][1].toFixed(2);
   } else {
     avgPrice = (products / tot).toFixed(2);
-  } // form creation
-
-
-  var html = "\n  <form class=\"form\">\n    <div id=\"qForm\">\n      <label for=\"quantityN\"  class=\"textForm\" id=\"quantidade\">Quantidade:</label>\n      <input type=\"text\" class=\"valuesForm\" name=\"quantityN\" id=\"quantityN\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\" required>\n    </div>\n    <div id=\"pForm\">\n      <label for=\"priceN\" class=\"textForm\" id=\"preco\">Pre\xE7o:</label>\n      <input type=\"text\" class=\"valuesForm\" name=\"priceN\" id=\"priceN\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\" required> \n    </div>\n    <div class=\"trash_button\" id=\"trash_button\">\n      <button class=\"trash\" id=\"trash".concat(y + 1, "\"></button>\n    </div>\n  </form>\n  ");
-  document.getElementById("section").innerHTML += html;
-  document.getElementById("add").setAttribute("onclick", "calcPrice(".concat(y + 1, ")")); // update trash button of previous form
-
-  document.getElementById("trash".concat(y)).setAttribute("onclick", "wipeOut(".concat(y, ")")); // add values to previous forms
-
-  for (u = 0; u < document.forms.length - 1; u++) {
-    document.getElementsByName("quantityN")[u].setAttribute("value", "".concat(arrValues[u][0]));
-    document.getElementsByName("priceN")[u].setAttribute("value", "".concat(arrValues[u][1].toFixed(2)));
-  } // increase form size
-
-
-  if (document.forms.length == 2) {
-    document.getElementsByClassName("form")[0].setAttribute("class", "form is-bigger");
   }
 
-  document.getElementsByClassName("form")[y + 1].setAttribute("class", "form is-bigger"); // change trash button opacity
+  generateNewForm(activedForm);
 
-  document.getElementsByClassName("trash_button")[y].className = "trash_button is-shown"; // footer
+  for (var _u = 0; _u < document.forms.length - 1; _u++) {
+    document.getElementsByName("quantityN")[_u].setAttribute("value", "".concat(arrValues[_u][0]));
 
+    document.getElementsByName("priceN")[_u].setAttribute("value", "".concat(arrValues[_u][1].toFixed(2)));
+  }
+
+  setBiggerForm(activedForm);
+  showTrashButton();
   attFooter();
+  activedForm += 1;
 };
+
+exports.onAddClick = onAddClick;
 
 var attFooter = function attFooter() {
   document.getElementById("vTot").innerHTML = "".concat(tot);
@@ -206,6 +202,8 @@ var attFooter = function attFooter() {
     document.getElementById("reset").className = "reset is-shown";
   }
 };
+
+exports.attFooter = attFooter;
 
 var wipeOut = function wipeOut(z) {
   // redo calculations and remove itens from the array
@@ -237,7 +235,7 @@ var wipeOut = function wipeOut(z) {
 
   if (arrValues.length == 0) {
     tot = 0;
-    avgPrice = 0.00;
+    avgPrice = 0.0;
     avgPrice = avgPrice.toFixed(2);
   } else if (arrValues.length == 1) {
     avgPrice = arrValues[0][1].toFixed(2);
@@ -252,6 +250,8 @@ var wipeOut = function wipeOut(z) {
   }
 };
 
+exports.wipeOut = wipeOut;
+
 var reset = function reset() {
   if (document.forms.length > 1) {
     if (document.forms.length > 2) {
@@ -265,11 +265,34 @@ var reset = function reset() {
     }
   }
 };
+
+exports.reset = reset;
+
+var setBiggerForm = function setBiggerForm(activedForm) {
+  if (document.forms.length == 2) {
+    document.getElementsByClassName("form")[0].setAttribute("class", "form is-bigger");
+  }
+
+  document.getElementsByClassName("form")[activedForm + 1].setAttribute("class", "form is-bigger");
+};
+
+var showTrashButton = function showTrashButton() {
+  document.getElementsByClassName("trash_button")[activedForm].className = "trash_button is-shown";
+};
+
+var generateNewForm = function generateNewForm(activedForm) {
+  var html = "\n    <form class=\"form\">\n      <div id=\"qForm\">\n        <label for=\"quantityN\"  class=\"textForm\" id=\"quantidade\">Quantidade:</label>\n        <input type=\"text\" class=\"valuesForm\" name=\"quantityN\" id=\"quantityN\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\" required>\n      </div>\n      <div id=\"pForm\">\n        <label for=\"priceN\" class=\"textForm\" id=\"preco\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"valuesForm\" name=\"priceN\" id=\"priceN\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\" required> \n      </div>\n      <div class=\"trash_button\" id=\"trash_button\">\n        <button class=\"trash\" id=\"trash".concat(activedForm + 1, "\"></button>\n      </div>\n    </form>\n  ");
+  document.getElementById("section").innerHTML += html;
+  document.getElementById("trash".concat(activedForm)).setAttribute("onclick", "wipeOut(".concat(activedForm, ")"));
+};
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _code = require("./js/code");
-},{"./js/code":"js/code.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+document.querySelector("#add").addEventListener("click", _code.onAddClick); //document.querySelector('#trash0').addEventListener('click', wipeOut);
+//document.querySelector('#reset').addEventListener('click', reset);
+},{"./js/code":"js/code.js"}],"../../../../AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -297,7 +320,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62367" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49155" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -473,5 +496,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["../../../../AppData/Local/Yarn/Data/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/src.e31bb0bc.js.map
