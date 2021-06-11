@@ -158,32 +158,28 @@ var onAddClick = function onAddClick() {
 
 exports.onAddClick = onAddClick;
 
-var removeForm = function removeForm() {
-  //recalcValues(arrValues)
-  if (arrValues[z]) {
-    tot -= arrValues[z][0];
-    products -= arrValues[z][0] * arrValues[z][1];
-    arrValues.splice(z, 1);
+var removeForm = function removeForm(trashID) {
+  console.log("entrei na fun\xE7\xE3o com id ".concat(trashID)); //recalcValues(arrValues)
+
+  if (arrValues[trashID]) {
+    tot -= arrValues[trashID][0];
+    products -= arrValues[trashID][0] * arrValues[trashID][1];
+    arrValues.splice(trashID, 1);
   }
 
   ; // change next sections' id's
 
-  for (var _u = z + 1; _u < document.forms.length; _u++) {
-    if (_u == document.forms.length - 1) {
-      document.getElementById("add").setAttribute("onclick", "calcPrice(".concat(document.forms.length - 2, ")"));
-      document.getElementById("trash".concat(_u)).id = "trash".concat(_u - 1);
-    } else {
-      document.getElementById("trash".concat(_u)).setAttribute("onclick", "wipeOut(".concat(_u - 1, ")"));
-      document.getElementById("trash".concat(_u)).id = "trash".concat(_u - 1);
-    }
+  for (var u = trashID + 1; u < document.forms.length; u++) {
+    document.getElementById("trash".concat(u)).id = "trash".concat(u - 1);
   } // remove specified section
 
 
-  document.forms[z].remove(); // att values from forms
+  document.forms[trashID].remove(); // att values from forms
 
-  for (u = 0; u < document.forms.length - 1; u++) {
-    document.getElementsByName("quantityN")[u].setAttribute("value", "".concat(arrValues[u][0]));
-    document.getElementsByName("priceN")[u].setAttribute("value", "".concat(arrValues[u][1].toFixed(2)));
+  for (var _u = 0; _u < document.forms.length - 1; _u++) {
+    document.getElementsByName("quantityN")[_u].setAttribute("value", "".concat(arrValues[_u][0]));
+
+    document.getElementsByName("priceN")[_u].setAttribute("value", "".concat(arrValues[_u][1].toFixed(2)));
   } // att footer
 
 
@@ -224,7 +220,7 @@ exports.attFooter = attFooter;
 var reset = function reset() {
   if (document.forms.length > 1) {
     if (document.forms.length > 2) {
-      for (w = document.forms.length - 2; w > 0; w--) {
+      for (var w = document.forms.length - 2; w > 0; w--) {
         removeForm(w);
       }
 
@@ -273,10 +269,9 @@ var calcNewValues = function calcNewValues(valueQ, valueP) {
 };
 
 var keepValuesOnDisplay = function keepValuesOnDisplay(arrValues) {
-  for (var _u2 = 0; _u2 < document.forms.length - 1; _u2++) {
-    document.getElementsByName("quantityN")[_u2].setAttribute("value", "".concat(arrValues[_u2][0]));
-
-    document.getElementsByName("priceN")[_u2].setAttribute("value", "".concat(arrValues[_u2][1].toFixed(2)));
+  for (var u = 0; u < document.forms.length - 1; u++) {
+    document.getElementsByName("quantityN")[u].setAttribute("value", "".concat(arrValues[u][0]));
+    document.getElementsByName("priceN")[u].setAttribute("value", "".concat(arrValues[u][1].toFixed(2)));
   }
 
   ;
@@ -303,11 +298,27 @@ var generateNewForm = function generateNewForm(activedForm) {
 
 var _code = require("./code");
 
-document.querySelector("#add").addEventListener("click", _code.onAddClick); //document.querySelector('#trash0').addEventListener('click', removeForm);
+document.querySelector("#add").addEventListener("click", function () {
+  (0, _code.onAddClick)();
+  getTrashID();
+}); //document.querySelector('#trash0').addEventListener('click', removeForm);
+//document.querySelector('#reset').addEventListener('click', reset);
 
-for (var c = 0; c < document.forms.length; c++) {
-  document.querySelector("#trash".concat(c)).addEventListener("click", _code.removeForm);
-} //document.querySelector('#reset').addEventListener('click', reset);
+var getTrashID = function getTrashID() {
+  var _loop = function _loop(trashID) {
+    console.log('entrei o loop');
+    document.getElementById("trash".concat(trashID)).addEventListener("click", function () {
+      (0, _code.removeForm)(trashID);
+    });
+    console.log('terminei o loop');
+  };
+
+  for (var trashID = 0; trashID < document.forms.length - 1; trashID++) {
+    _loop(trashID);
+  }
+
+  ;
+};
 },{"./code":"js/code.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -336,7 +347,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65055" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57742" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

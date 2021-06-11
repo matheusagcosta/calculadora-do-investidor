@@ -42,34 +42,25 @@ export const onAddClick = () => {
   activedForm += 1;
 };
 
-export const removeForm = () => {
+export const removeForm = (trashID) => {
   
+  console.log(`entrei na função com id ${trashID}`)
   //recalcValues(arrValues)
 
-  if (arrValues[z]) {
-    tot -= arrValues[z][0];
-    products -= arrValues[z][0] * arrValues[z][1];
-    arrValues.splice(z, 1);
+  if (arrValues[trashID]) {
+    tot -= arrValues[trashID][0];
+    products -= arrValues[trashID][0] * arrValues[trashID][1];
+    arrValues.splice(trashID, 1);
   };
   
   // change next sections' id's
-  for (let u = z + 1; u < document.forms.length; u++) {
-    if (u == document.forms.length - 1) {
-      document
-        .getElementById("add")
-        .setAttribute("onclick", `calcPrice(${document.forms.length - 2})`);
-      document.getElementById(`trash${u}`).id = `trash${u - 1}`;
-    } else {
-      document
-        .getElementById(`trash${u}`)
-        .setAttribute("onclick", `wipeOut(${u - 1})`);
-      document.getElementById(`trash${u}`).id = `trash${u - 1}`;
-    }
+  for (let u = trashID + 1; u < document.forms.length; u++) {
+    document.getElementById(`trash${u}`).id = `trash${u - 1}`;
   }
   // remove specified section
-  document.forms[z].remove();
+  document.forms[trashID].remove();
   // att values from forms
-  for (u = 0; u < document.forms.length - 1; u++) {
+  for (let u = 0; u < document.forms.length - 1; u++) {
     document
       .getElementsByName("quantityN")
       [u].setAttribute("value", `${arrValues[u][0]}`);
@@ -109,7 +100,7 @@ export const attFooter = () => {
 export const reset = () => {
   if (document.forms.length > 1) {
     if (document.forms.length > 2) {
-      for (w = document.forms.length - 2; w > 0; w--) {
+      for (let w = document.forms.length - 2; w > 0; w--) {
         removeForm(w);
       }
       removeForm(0);
