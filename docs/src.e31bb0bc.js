@@ -132,6 +132,7 @@ var activedForm = 0;
 var valueQ = "";
 var valueP = "";
 var z = 0;
+
 window.addEventListener("keydown", function (e) {
   if (e.keyIdentifier == "U+000A" || e.keyIdentifier == "Enter" || e.keyCode == 13) {
     if (e.target.nodeName == "INPUT" && e.target.type == "text") {
@@ -334,6 +335,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "60958" + '/');
 
   ws.onmessage = function (event) {
