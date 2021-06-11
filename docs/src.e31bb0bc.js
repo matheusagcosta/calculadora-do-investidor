@@ -128,8 +128,11 @@ var avgPrice = 0;
 var tot = 0;
 var products = 0;
 var arrValues = [];
-var z = 0;
 var activedForm = 0;
+var valueQ = "";
+var valueP = "";
+var z = 0;
+
 window.addEventListener("keydown", function (e) {
   if (e.keyIdentifier == "U+000A" || e.keyIdentifier == "Enter" || e.keyCode == 13) {
     if (e.target.nodeName == "INPUT" && e.target.type == "text") {
@@ -145,45 +148,12 @@ var money = new Intl.NumberFormat("pt-BR", {
 });
 
 var onAddClick = function onAddClick() {
-  var arrTemp = [];
-  var valueQ = "";
-  var valueP = "";
-  var re_1 = new RegExp("[0-9]+");
-  var re_2 = new RegExp("[0-9]+(,|.)?[0-9]*");
-  valueQ = document.getElementsByName("quantityN")[activedForm].value;
-  valueP = document.getElementsByName("priceN")[activedForm].value;
-  valueQ = re_1.exec(valueQ)[0];
-  valueP = re_2.exec(valueP)[0];
-
-  if (valueP.replace(/,/g, ".")) {
-    valueP = valueP.replace(/,/g, ".");
-  }
-
-  valueQ = parseInt(valueQ);
-  valueP = parseFloat(valueP);
-  arrTemp.push(valueQ);
-  arrTemp.push(valueP);
-  arrValues.push(arrTemp);
-  arrTemp = [];
-  tot += valueQ;
-  products += valueQ * valueP;
-
-  if (arrValues.length == 1) {
-    avgPrice = arrValues[0][1].toFixed(2);
-  } else {
-    avgPrice = (products / tot).toFixed(2);
-  }
-
+  validateInputs(activedForm);
+  calcNewValues(valueQ, valueP);
   generateNewForm(activedForm);
-
-  for (var _u = 0; _u < document.forms.length - 1; _u++) {
-    document.getElementsByName("quantityN")[_u].setAttribute("value", "".concat(arrValues[_u][0]));
-
-    document.getElementsByName("priceN")[_u].setAttribute("value", "".concat(arrValues[_u][1].toFixed(2)));
-  }
-
   setBiggerForm(activedForm);
   showTrashButton();
+  keepValuesOnDisplay(arrValues);
   attFooter();
   activedForm += 1;
 };
@@ -268,6 +238,51 @@ var reset = function reset() {
 
 exports.reset = reset;
 
+var validateInputs = function validateInputs(activedForm) {
+  var validateQuantity = new RegExp("[0-9]+");
+  var validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
+  valueQ = document.getElementsByName("quantityN")[activedForm].value;
+  valueP = document.getElementsByName("priceN")[activedForm].value;
+  valueQ = validateQuantity.exec(valueQ)[0];
+  valueP = validatePrice.exec(valueP)[0];
+
+  if (valueP.replace(/,/g, ".")) {
+    valueP = valueP.replace(/,/g, ".");
+  }
+
+  ;
+  valueQ = parseInt(valueQ);
+  valueP = parseFloat(valueP);
+};
+
+var calcNewValues = function calcNewValues(valueQ, valueP) {
+  var arrTemp = [];
+  arrTemp.push(valueQ);
+  arrTemp.push(valueP);
+  arrValues.push(arrTemp);
+  arrTemp = [];
+  tot += valueQ;
+  products += valueQ * valueP;
+
+  if (arrValues.length == 1) {
+    avgPrice = arrValues[0][1].toFixed(2);
+  } else {
+    avgPrice = (products / tot).toFixed(2);
+  }
+
+  ;
+};
+
+var keepValuesOnDisplay = function keepValuesOnDisplay(arrValues) {
+  for (var _u = 0; _u < document.forms.length - 1; _u++) {
+    document.getElementsByName("quantityN")[_u].setAttribute("value", "".concat(arrValues[_u][0]));
+
+    document.getElementsByName("priceN")[_u].setAttribute("value", "".concat(arrValues[_u][1].toFixed(2)));
+  }
+
+  ;
+};
+
 var setBiggerForm = function setBiggerForm(activedForm) {
   if (document.forms.length == 2) {
     document.getElementsByClassName("form")[0].setAttribute("class", "form is-bigger");
@@ -320,7 +335,8 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49155" + '/');
+
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60958" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

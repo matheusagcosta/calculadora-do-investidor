@@ -2,8 +2,10 @@ let avgPrice = 0;
 let tot = 0;
 let products = 0;
 let arrValues = [];
-let z = 0;
 let activedForm = 0;
+let valueQ = "";
+let valueP = "";
+let z = 0;
 
 window.addEventListener(
   "keydown",
@@ -29,52 +31,13 @@ const money = new Intl.NumberFormat("pt-BR", {
 });
 
 export const onAddClick = () => {
-  let arrTemp = [];
-  let valueQ = "";
-  let valueP = "";
 
-  const re_1 = new RegExp("[0-9]+");
-  const re_2 = new RegExp("[0-9]+(,|.)?[0-9]*");
-
-  valueQ = document.getElementsByName("quantityN")[activedForm].value;
-  valueP = document.getElementsByName("priceN")[activedForm].value;
-
-  valueQ = re_1.exec(valueQ)[0];
-  valueP = re_2.exec(valueP)[0];
-
-  if (valueP.replace(/,/g, ".")) {
-    valueP = valueP.replace(/,/g, ".");
-  }
-
-  valueQ = parseInt(valueQ);
-  valueP = parseFloat(valueP);
-
-  arrTemp.push(valueQ);
-  arrTemp.push(valueP);
-  arrValues.push(arrTemp);
-  arrTemp = [];
-
-  tot += valueQ;
-  products += valueQ * valueP;
-  if (arrValues.length == 1) {
-    avgPrice = arrValues[0][1].toFixed(2);
-  } else {
-    avgPrice = (products / tot).toFixed(2);
-  }
-
+  validateInputs(activedForm);
+  calcNewValues(valueQ, valueP);
   generateNewForm(activedForm);
-
-  for (let u = 0; u < document.forms.length - 1; u++) {
-    document
-      .getElementsByName("quantityN")
-      [u].setAttribute("value", `${arrValues[u][0]}`);
-    document
-      .getElementsByName("priceN")
-      [u].setAttribute("value", `${arrValues[u][1].toFixed(2)}`);
-  }
-
   setBiggerForm(activedForm);
   showTrashButton();
+  keepValuesOnDisplay(arrValues);
   attFooter();
 
   activedForm += 1;
@@ -152,6 +115,54 @@ export const reset = () => {
       wipeOut(0);
     }
   }
+};
+
+const validateInputs = (activedForm) => {
+
+  const validateQuantity = new RegExp("[0-9]+");
+  const validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
+
+  valueQ = document.getElementsByName("quantityN")[activedForm].value;
+  valueP = document.getElementsByName("priceN")[activedForm].value;
+
+  valueQ = validateQuantity.exec(valueQ)[0];
+  valueP = validatePrice.exec(valueP)[0];
+
+  if (valueP.replace(/,/g, ".")) {
+    valueP = valueP.replace(/,/g, ".");
+  };
+
+  valueQ = parseInt(valueQ);
+  valueP = parseFloat(valueP);
+
+};
+
+const calcNewValues = (valueQ, valueP) => {
+  let arrTemp = [];
+
+  arrTemp.push(valueQ);
+  arrTemp.push(valueP);
+  arrValues.push(arrTemp);
+  arrTemp = [];
+
+  tot += valueQ;
+  products += valueQ * valueP;
+  if (arrValues.length == 1) {
+    avgPrice = arrValues[0][1].toFixed(2);
+  } else {
+    avgPrice = (products / tot).toFixed(2);
+  };
+};
+
+const keepValuesOnDisplay = (arrValues) => {
+  for (let u = 0; u < document.forms.length - 1; u++) {
+    document
+      .getElementsByName("quantityN")
+      [u].setAttribute("value", `${arrValues[u][0]}`);
+    document
+      .getElementsByName("priceN")
+      [u].setAttribute("value", `${arrValues[u][1].toFixed(2)}`);
+  };
 };
 
 const setBiggerForm = (activedForm) => {
