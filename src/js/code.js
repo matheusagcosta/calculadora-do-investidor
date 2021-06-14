@@ -44,21 +44,10 @@ export const onAddClick = () => {
 
 export const removeForm = (trashID) => {
   
-  console.log(`entrei na função com id ${trashID}`)
-  //recalcValues(arrValues)
-
-  if (arrValues[trashID]) {
-    tot -= arrValues[trashID][0];
-    products -= arrValues[trashID][0] * arrValues[trashID][1];
-    arrValues.splice(trashID, 1);
-  };
-  
-  // change next sections' id's
-  for (let u = trashID + 1; u < document.forms.length; u++) {
-    document.getElementById(`trash${u}`).id = `trash${u - 1}`;
-  }
-  // remove specified section
+  recalcValues(arrValues, trashID)
+  fixID(trashID)
   document.forms[trashID].remove();
+  
   // att values from forms
   for (let u = 0; u < document.forms.length - 1; u++) {
     document
@@ -191,4 +180,18 @@ const generateNewForm = (activedForm) => {
     </form>
   `;
   document.getElementById("section").innerHTML += html;
+};
+
+const recalcValues = (arrValues, trashID) => {
+  if (arrValues[trashID]) {
+    tot -= arrValues[trashID][0];
+    products -= arrValues[trashID][0] * arrValues[trashID][1];
+    arrValues.splice(trashID, 1);
+  };
+};
+
+const fixID = (trashID) => {
+  for (let u = trashID + 1; u < document.forms.length; u++) {
+    document.getElementById(`trash${u}`).id = `trash${u - 1}`;
+  };
 };

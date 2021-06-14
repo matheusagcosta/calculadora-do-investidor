@@ -159,27 +159,13 @@ var onAddClick = function onAddClick() {
 exports.onAddClick = onAddClick;
 
 var removeForm = function removeForm(trashID) {
-  console.log("entrei na fun\xE7\xE3o com id ".concat(trashID)); //recalcValues(arrValues)
-
-  if (arrValues[trashID]) {
-    tot -= arrValues[trashID][0];
-    products -= arrValues[trashID][0] * arrValues[trashID][1];
-    arrValues.splice(trashID, 1);
-  }
-
-  ; // change next sections' id's
-
-  for (var u = trashID + 1; u < document.forms.length; u++) {
-    document.getElementById("trash".concat(u)).id = "trash".concat(u - 1);
-  } // remove specified section
-
-
+  recalcValues(arrValues, trashID);
+  fixID(trashID);
   document.forms[trashID].remove(); // att values from forms
 
-  for (var _u = 0; _u < document.forms.length - 1; _u++) {
-    document.getElementsByName("quantityN")[_u].setAttribute("value", "".concat(arrValues[_u][0]));
-
-    document.getElementsByName("priceN")[_u].setAttribute("value", "".concat(arrValues[_u][1].toFixed(2)));
+  for (var u = 0; u < document.forms.length - 1; u++) {
+    document.getElementsByName("quantityN")[u].setAttribute("value", "".concat(arrValues[u][0]));
+    document.getElementsByName("priceN")[u].setAttribute("value", "".concat(arrValues[u][1].toFixed(2)));
   } // att footer
 
 
@@ -293,6 +279,24 @@ var generateNewForm = function generateNewForm(activedForm) {
   var html = "\n    <form class=\"form\">\n      <div id=\"qForm\">\n        <label for=\"quantityN\"  class=\"textForm\" id=\"quantidade\">Quantidade:</label>\n        <input type=\"text\" class=\"valuesForm\" name=\"quantityN\" id=\"quantityN\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\" required>\n      </div>\n      <div id=\"pForm\">\n        <label for=\"priceN\" class=\"textForm\" id=\"preco\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"valuesForm\" name=\"priceN\" id=\"priceN\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\" required> \n      </div>\n      <div class=\"trash_button\" id=\"trash_button\">\n        <button class=\"trash\" id=\"trash".concat(activedForm + 1, "\"></button>\n      </div>\n    </form>\n  ");
   document.getElementById("section").innerHTML += html;
 };
+
+var recalcValues = function recalcValues(arrValues, trashID) {
+  if (arrValues[trashID]) {
+    tot -= arrValues[trashID][0];
+    products -= arrValues[trashID][0] * arrValues[trashID][1];
+    arrValues.splice(trashID, 1);
+  }
+
+  ;
+};
+
+var fixID = function fixID(trashID) {
+  for (var u = trashID + 1; u < document.forms.length; u++) {
+    document.getElementById("trash".concat(u)).id = "trash".concat(u - 1);
+  }
+
+  ;
+};
 },{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -306,11 +310,9 @@ document.querySelector("#add").addEventListener("click", function () {
 
 var getTrashID = function getTrashID() {
   var _loop = function _loop(trashID) {
-    console.log('entrei o loop');
     document.getElementById("trash".concat(trashID)).addEventListener("click", function () {
       (0, _code.removeForm)(trashID);
     });
-    console.log('terminei o loop');
   };
 
   for (var trashID = 0; trashID < document.forms.length - 1; trashID++) {
@@ -347,7 +349,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57742" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51476" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
