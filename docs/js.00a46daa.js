@@ -150,7 +150,7 @@ var onAddClick = function onAddClick() {
   calcNewValues(valueQ, valueP);
   generateNewForm(activedForm);
   setBiggerForm(activedForm);
-  showTrashButton();
+  showTrashButton(activedForm);
   keepValuesOnDisplay(arrValues);
   attFooter();
   activedForm += 1;
@@ -161,29 +161,18 @@ exports.onAddClick = onAddClick;
 var removeForm = function removeForm(trashID) {
   recalcValues(arrValues, trashID);
   fixID(trashID);
-  document.forms[trashID].remove(); // att values from forms
-
-  for (var u = 0; u < document.forms.length - 1; u++) {
-    document.getElementsByName("quantityN")[u].setAttribute("value", "".concat(arrValues[u][0]));
-    document.getElementsByName("priceN")[u].setAttribute("value", "".concat(arrValues[u][1].toFixed(2)));
-  } // att footer
-
-
-  if (arrValues.length == 0) {
-    tot = 0;
-    avgPrice = 0.0;
-    avgPrice = avgPrice.toFixed(2);
-  } else if (arrValues.length == 1) {
-    avgPrice = arrValues[0][1].toFixed(2);
-  } else {
-    avgPrice = (products / tot).toFixed(2);
-  }
-
-  attFooter(); // change unique form size
+  document.forms[trashID].remove();
+  keepValuesOnDisplay(arrValues);
+  handleValues(arrValues);
+  attFooter();
+  activedForm -= 1;
+  console.log(activedForm);
 
   if (document.forms.length == 1) {
-    document.getElementsByClassName("form")[0].setAttribute("class", "form");
+    uniqueForm();
   }
+
+  ;
 };
 
 exports.removeForm = removeForm;
@@ -271,7 +260,7 @@ var setBiggerForm = function setBiggerForm(activedForm) {
   document.getElementsByClassName("form")[activedForm + 1].setAttribute("class", "form is-bigger");
 };
 
-var showTrashButton = function showTrashButton() {
+var showTrashButton = function showTrashButton(activedForm) {
   document.getElementsByClassName("trash_button")[activedForm].className = "trash_button is-shown";
 };
 
@@ -293,6 +282,24 @@ var recalcValues = function recalcValues(arrValues, trashID) {
 var fixID = function fixID(trashID) {
   for (var u = trashID + 1; u < document.forms.length; u++) {
     document.getElementById("trash".concat(u)).id = "trash".concat(u - 1);
+  }
+
+  ;
+};
+
+var uniqueForm = function uniqueForm() {
+  document.getElementsByClassName("form")[0].setAttribute("class", "form");
+};
+
+var handleValues = function handleValues(arrValues) {
+  if (arrValues.length == 0) {
+    tot = 0;
+    avgPrice = 0.0;
+    avgPrice = avgPrice.toFixed(2);
+  } else if (arrValues.length == 1) {
+    avgPrice = arrValues[0][1].toFixed(2);
+  } else {
+    avgPrice = (products / tot).toFixed(2);
   }
 
   ;
@@ -349,7 +356,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51476" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62762" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -35,7 +35,7 @@ export const onAddClick = () => {
   calcNewValues(valueQ, valueP);
   generateNewForm(activedForm);
   setBiggerForm(activedForm);
-  showTrashButton();
+  showTrashButton(activedForm);
   keepValuesOnDisplay(arrValues);
   attFooter();
 
@@ -44,34 +44,17 @@ export const onAddClick = () => {
 
 export const removeForm = (trashID) => {
   
-  recalcValues(arrValues, trashID)
-  fixID(trashID)
+  recalcValues(arrValues, trashID);
+  fixID(trashID);
   document.forms[trashID].remove();
-  
-  // att values from forms
-  for (let u = 0; u < document.forms.length - 1; u++) {
-    document
-      .getElementsByName("quantityN")
-      [u].setAttribute("value", `${arrValues[u][0]}`);
-    document
-      .getElementsByName("priceN")
-      [u].setAttribute("value", `${arrValues[u][1].toFixed(2)}`);
-  }
-  // att footer
-  if (arrValues.length == 0) {
-    tot = 0;
-    avgPrice = 0.0;
-    avgPrice = avgPrice.toFixed(2);
-  } else if (arrValues.length == 1) {
-    avgPrice = arrValues[0][1].toFixed(2);
-  } else {
-    avgPrice = (products / tot).toFixed(2);
-  }
+  keepValuesOnDisplay(arrValues);
+  handleValues(arrValues);
   attFooter();
-  // change unique form size
+  activedForm -= 1
+  console.log(activedForm)
   if (document.forms.length == 1) {
-    document.getElementsByClassName("form")[0].setAttribute("class", "form");
-  }
+    uniqueForm();
+  };
 };
 
 export const attFooter = () => {
@@ -158,7 +141,7 @@ const setBiggerForm = (activedForm) => {
     [activedForm + 1].setAttribute("class", "form is-bigger");
 };
 
-const showTrashButton = () => {
+const showTrashButton = (activedForm) => {
   document.getElementsByClassName("trash_button")[activedForm].className =
     "trash_button is-shown";
 };
@@ -193,5 +176,21 @@ const recalcValues = (arrValues, trashID) => {
 const fixID = (trashID) => {
   for (let u = trashID + 1; u < document.forms.length; u++) {
     document.getElementById(`trash${u}`).id = `trash${u - 1}`;
+  };
+};
+
+const uniqueForm = () => {
+  document.getElementsByClassName("form")[0].setAttribute("class", "form");
+};
+
+const handleValues = (arrValues) => {
+  if (arrValues.length == 0) {
+    tot = 0;
+    avgPrice = 0.0;
+    avgPrice = avgPrice.toFixed(2);
+  } else if (arrValues.length == 1) {
+    avgPrice = arrValues[0][1].toFixed(2);
+  } else {
+    avgPrice = (products / tot).toFixed(2);
   };
 };
