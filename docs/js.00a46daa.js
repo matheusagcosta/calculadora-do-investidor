@@ -123,12 +123,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reset = exports.attFooter = exports.removeForm = exports.onAddClick = void 0;
+exports.reset = exports.attFooter = exports.onAddClick = void 0;
 var avgPrice = 0;
 var tot = 0;
 var products = 0;
 var arrValues = [];
-var activedForm = 0;
+var activedInfo = 0;
 var valueQ = "";
 var valueP = "";
 window.addEventListener("keydown", function (e) {
@@ -146,73 +146,24 @@ var money = new Intl.NumberFormat("pt-BR", {
 });
 
 var onAddClick = function onAddClick() {
-  validateInputs(activedForm);
+  validateInputs(activedInfo);
   calcNewValues(valueQ, valueP);
-  generateNewForm(activedForm);
-  setBiggerForm(activedForm);
-  showTrashButton(activedForm);
+  generateNewInfo(activedInfo);
+  addTrashClick(activedInfo);
+  setBiggerInfo(activedInfo);
+  showTrashButton(activedInfo);
   keepValuesOnDisplay(arrValues);
   attFooter();
-  activedForm += 1;
+  activedInfo += 1;
 };
 
 exports.onAddClick = onAddClick;
 
-var removeForm = function removeForm(trashID) {
-  recalcValues(arrValues, trashID);
-  fixID(trashID);
-  document.forms[trashID].remove();
-  keepValuesOnDisplay(arrValues);
-  handleValues(arrValues);
-  attFooter();
-  activedForm -= 1;
-  console.log(activedForm);
-
-  if (document.forms.length == 1) {
-    uniqueForm();
-  }
-
-  ;
-};
-
-exports.removeForm = removeForm;
-
-var attFooter = function attFooter() {
-  document.getElementById("vTot").innerHTML = "".concat(tot);
-  document.getElementById("vPM").innerHTML = "R$ ".concat(avgPrice);
-
-  if (tot == 0 && avgPrice == 0) {
-    document.getElementById("foot").className = "foot";
-    document.getElementById("reset").className = "reset";
-  } else {
-    document.getElementById("foot").className = "foot is-bigger";
-    document.getElementById("reset").className = "reset is-shown";
-  }
-};
-
-exports.attFooter = attFooter;
-
-var reset = function reset() {
-  if (document.forms.length > 1) {
-    if (document.forms.length > 2) {
-      for (var w = document.forms.length - 2; w > 0; w--) {
-        removeForm(w);
-      }
-
-      removeForm(0);
-    } else {
-      removeForm(0);
-    }
-  }
-};
-
-exports.reset = reset;
-
-var validateInputs = function validateInputs(activedForm) {
+var validateInputs = function validateInputs(activedInfo) {
   var validateQuantity = new RegExp("[0-9]+");
   var validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
-  valueQ = document.getElementsByName("quantityN")[activedForm].value;
-  valueP = document.getElementsByName("priceN")[activedForm].value;
+  valueQ = document.getElementsByName("quantityN")[activedInfo].value;
+  valueP = document.getElementsByName("priceN")[activedInfo].value;
   valueQ = validateQuantity.exec(valueQ)[0];
   valueP = validatePrice.exec(valueP)[0];
 
@@ -243,8 +194,31 @@ var calcNewValues = function calcNewValues(valueQ, valueP) {
   ;
 };
 
+var setBiggerInfo = function setBiggerInfo(activedInfo) {
+  if (document.getElementsByClassName("info").length == 2) {
+    document.getElementsByClassName("info")[0].setAttribute("class", "info is-bigger");
+  }
+
+  document.getElementsByClassName("info")[activedInfo + 1].setAttribute("class", "info is-bigger");
+};
+
+var showTrashButton = function showTrashButton(activedInfo) {
+  document.getElementsByClassName("trash_button")[activedInfo].className = "trash_button is-shown";
+};
+
+var generateNewInfo = function generateNewInfo(activedInfo) {
+  var html = "\n    <div class=\"info\">\n      <div id=\"qInfo\">\n        <label for=\"quantityN\"  class=\"textInfo\" id=\"quantidade\">Quantidade:</label>\n        <input type=\"text\" class=\"valuesInfo\" name=\"quantityN\" id=\"quantityN\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\" required>\n      </div>\n      <div id=\"pInfo\">\n        <label for=\"priceN\" class=\"textInfo\" id=\"preco\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"valuesInfo\" name=\"priceN\" id=\"priceN\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\" required> \n      </div>\n      <div class=\"trash_button\" id=\"trash_button\">\n        <button class=\"trash\" id=\"trash".concat(activedInfo + 1, "\"></button>\n      </div>\n    </div>\n  ");
+  document.getElementById("section").innerHTML += html;
+};
+
+var addTrashClick = function addTrashClick(activedInfo) {
+  document.getElementById("trash".concat(activedInfo)).addEventListener("click", Element.remove = function remove() {
+    removeInfo(activedInfo);
+  });
+};
+
 var keepValuesOnDisplay = function keepValuesOnDisplay(arrValues) {
-  for (var u = 0; u < document.forms.length - 1; u++) {
+  for (var u = 0; u < document.getElementsByClassName("info").length - 1; u++) {
     document.getElementsByName("quantityN")[u].setAttribute("value", "".concat(arrValues[u][0]));
     document.getElementsByName("priceN")[u].setAttribute("value", "".concat(arrValues[u][1].toFixed(2)));
   }
@@ -252,21 +226,28 @@ var keepValuesOnDisplay = function keepValuesOnDisplay(arrValues) {
   ;
 };
 
-var setBiggerForm = function setBiggerForm(activedForm) {
-  if (document.forms.length == 2) {
-    document.getElementsByClassName("form")[0].setAttribute("class", "form is-bigger");
+var removeInfo = function removeInfo(trashID) {
+  console.log("entrei com trashID = ".concat(trashID));
+  document.getElementsByClassName("info")[trashID].remove();
+  recalcValues(arrValues, trashID);
+
+  for (var id = 0; id < document.getElementsByClassName("info").length; id++) {
+    changeTrashId(id);
+    removeTrashClick(id);
+    addTrashClick(id);
   }
 
-  document.getElementsByClassName("form")[activedForm + 1].setAttribute("class", "form is-bigger");
-};
+  ;
+  keepValuesOnDisplay(arrValues);
+  handleValues(arrValues);
+  attFooter();
+  activedInfo -= 1;
 
-var showTrashButton = function showTrashButton(activedForm) {
-  document.getElementsByClassName("trash_button")[activedForm].className = "trash_button is-shown";
-};
+  if (document.getElementsByClassName("info").length == 1) {
+    uniqueInfo();
+  }
 
-var generateNewForm = function generateNewForm(activedForm) {
-  var html = "\n    <form class=\"form\">\n      <div id=\"qForm\">\n        <label for=\"quantityN\"  class=\"textForm\" id=\"quantidade\">Quantidade:</label>\n        <input type=\"text\" class=\"valuesForm\" name=\"quantityN\" id=\"quantityN\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\" required>\n      </div>\n      <div id=\"pForm\">\n        <label for=\"priceN\" class=\"textForm\" id=\"preco\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"valuesForm\" name=\"priceN\" id=\"priceN\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\" required> \n      </div>\n      <div class=\"trash_button\" id=\"trash_button\">\n        <button class=\"trash\" id=\"trash".concat(activedForm + 1, "\"></button>\n      </div>\n    </form>\n  ");
-  document.getElementById("section").innerHTML += html;
+  ;
 };
 
 var recalcValues = function recalcValues(arrValues, trashID) {
@@ -279,16 +260,12 @@ var recalcValues = function recalcValues(arrValues, trashID) {
   ;
 };
 
-var fixID = function fixID(trashID) {
-  for (var u = trashID + 1; u < document.forms.length; u++) {
-    document.getElementById("trash".concat(u)).id = "trash".concat(u - 1);
-  }
-
-  ;
+var removeTrashClick = function removeTrashClick(id) {
+  document.getElementById("trash".concat(id)).removeEventListener("click", Element.remove);
 };
 
-var uniqueForm = function uniqueForm() {
-  document.getElementsByClassName("form")[0].setAttribute("class", "form");
+var changeTrashId = function changeTrashId(id) {
+  document.getElementsByClassName("trash")[id].setAttribute("id", "trash".concat(id));
 };
 
 var handleValues = function handleValues(arrValues) {
@@ -304,30 +281,49 @@ var handleValues = function handleValues(arrValues) {
 
   ;
 };
+
+var uniqueInfo = function uniqueInfo() {
+  document.getElementsByClassName("info")[0].setAttribute("class", "info");
+  activedInfo = 0;
+};
+
+var attFooter = function attFooter() {
+  document.getElementById("vTot").innerHTML = "".concat(tot);
+  document.getElementById("vPM").innerHTML = "R$ ".concat(avgPrice);
+
+  if (tot == 0 && avgPrice == 0) {
+    document.getElementById("foot").className = "foot";
+    document.getElementById("reset").className = "reset";
+  } else {
+    document.getElementById("foot").className = "foot is-bigger";
+    document.getElementById("reset").className = "reset is-shown";
+  }
+};
+
+exports.attFooter = attFooter;
+
+var reset = function reset() {
+  if (document.getElementsByClassName("info").length > 1) {
+    if (document.getElementsByClassName("info").length > 2) {
+      for (var w = document.getElementsByClassName("info").length - 2; w > 0; w--) {
+        removeInfo(w);
+      }
+
+      removeInfo(0);
+    } else {
+      removeInfo(0);
+    }
+  }
+};
+
+exports.reset = reset;
 },{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _code = require("./code");
 
-document.querySelector("#add").addEventListener("click", function () {
-  (0, _code.onAddClick)();
-  getTrashID();
-}); //document.querySelector('#trash0').addEventListener('click', removeForm);
+document.querySelector("#add").addEventListener("click", _code.onAddClick); //document.querySelector('#trash0').addEventListener('click', removeForm);
 //document.querySelector('#reset').addEventListener('click', reset);
-
-var getTrashID = function getTrashID() {
-  var _loop = function _loop(trashID) {
-    document.getElementById("trash".concat(trashID)).addEventListener("click", function () {
-      (0, _code.removeForm)(trashID);
-    });
-  };
-
-  for (var trashID = 0; trashID < document.forms.length - 1; trashID++) {
-    _loop(trashID);
-  }
-
-  ;
-};
 },{"./code":"js/code.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -356,7 +352,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62762" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65167" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -113,7 +113,7 @@ main {
   flex-direction: column;
 }
 
-.form {
+.info {
   background-color: #F8F8FF;
   border-radius: 10px;
   color: #313060;
@@ -127,37 +127,37 @@ main {
   transition: width .35s linear;
 }
 
-.form:first-child {
+.info:first-child {
   visibility: visible;
 }
 
-.form.is-bigger {
+.info.is-bigger {
   width: 423px;
 }
 
-.form.is-bigger:not(:first-child) {
+.info.is-bigger:not(:first-child) {
   margin-top: 25px;
 }
 
-#qForm {
+#qInfo {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-#pForm {
+#pInfo {
   position: relative;
   display: flex;
   flex-direction: column;
   margin-left: 15px ;
 }
 
-.textForm {
+.textInfo {
   position: relative;
   display: flex;
 }
 
-.valuesForm {
+.valuesInfo {
   position: relative;
   margin-top: 12px;
   border-radius: 4px;

@@ -1,17 +1,8 @@
-import { onAddClick, attFooter, removeForm, reset } from "./code";
+import { onAddClick, attFooter, reset } from "./code";
 
-document.querySelector("#add").addEventListener("click", () => {
-  onAddClick()
-  getTrashID()
-});
+document.querySelector("#add").addEventListener("click", onAddClick);
 
 //document.querySelector('#trash0').addEventListener('click', removeForm);
 //document.querySelector('#reset').addEventListener('click', reset);
 
-const getTrashID = () => {
-  for (let trashID = 0; trashID < document.forms.length-1; trashID ++) {
-    document.getElementById(`trash${trashID}`).addEventListener("click", () => {
-      removeForm(trashID)
-    });
-  };
-};
+
