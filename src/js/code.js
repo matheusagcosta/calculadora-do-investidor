@@ -32,13 +32,22 @@ const money = new Intl.NumberFormat("pt-BR", {
 export const onAddClick = () => {
 
   validateInputs(activedInfo);
+
   calcNewValues(valueQ, valueP);
+
   generateNewInfo(activedInfo);
-  addTrashClick(activedInfo);
+
   setBiggerInfo(activedInfo);
+
   showTrashButton(activedInfo);
+
   keepValuesOnDisplay(arrValues);
+
   attFooter();
+  
+  remTrashClick();
+
+  addTrashClick();
 
   activedInfo += 1;
 
@@ -116,10 +125,18 @@ const generateNewInfo = (activedInfo) => {
   document.getElementById("section").innerHTML += html;
 };
 
-const addTrashClick = (activedInfo) => {
-  document.getElementById(`trash${activedInfo}`).addEventListener("click", Element.remove = function remove(){
-    removeInfo(activedInfo);
-  });
+const addTrashClick = () => {
+  for (let id = 0; id < document.getElementsByClassName("trash").length - 1; id++){
+    document.getElementById(`trash${id}`).addEventListener("click", Element.rem = function(){
+      console.log(id)
+    });
+  };
+};
+
+const remTrashClick = () => {
+  for (let id = 0; id < document.getElementsByClassName("trash").length - 1; id++){
+    document.getElementById(`trash${id}`).removeEventListener("click", Element.rem);
+  };
 };
 
 const keepValuesOnDisplay = (arrValues) => {
@@ -136,17 +153,16 @@ const keepValuesOnDisplay = (arrValues) => {
 const removeInfo = (trashID) => {
 
   console.log(`entrei com trashID = ${trashID}`);
-  
+
   document.getElementsByClassName("info")[trashID].remove();
   
   recalcValues(arrValues, trashID);
 
   for (let id = 0; id < document.getElementsByClassName("info").length; id ++) {
     changeTrashId(id);
-    removeTrashClick(id);
-    addTrashClick(id);
   };
 
+  addTrashClick(trashID-1);
   keepValuesOnDisplay(arrValues);
   handleValues(arrValues);
   attFooter();
@@ -162,13 +178,9 @@ const removeInfo = (trashID) => {
 const recalcValues = (arrValues, trashID) => {
   if (arrValues[trashID]) {
     tot -= arrValues[trashID][0];
-  products -= arrValues[trashID][0] * arrValues[trashID][1];
-  arrValues.splice(trashID, 1);
+    products -= arrValues[trashID][0] * arrValues[trashID][1];
+    arrValues.splice(trashID, 1);
   };
-};
-
-const removeTrashClick = (id) => {
-  document.getElementById(`trash${id}`).removeEventListener("click", Element.remove);
 };
 
 const changeTrashId = (id) => {

@@ -149,11 +149,12 @@ var onAddClick = function onAddClick() {
   validateInputs(activedInfo);
   calcNewValues(valueQ, valueP);
   generateNewInfo(activedInfo);
-  addTrashClick(activedInfo);
   setBiggerInfo(activedInfo);
   showTrashButton(activedInfo);
   keepValuesOnDisplay(arrValues);
   attFooter();
+  remTrashClick();
+  addTrashClick();
   activedInfo += 1;
 };
 
@@ -211,10 +212,26 @@ var generateNewInfo = function generateNewInfo(activedInfo) {
   document.getElementById("section").innerHTML += html;
 };
 
-var addTrashClick = function addTrashClick(activedInfo) {
-  document.getElementById("trash".concat(activedInfo)).addEventListener("click", Element.remove = function remove() {
-    removeInfo(activedInfo);
-  });
+var addTrashClick = function addTrashClick() {
+  var _loop = function _loop(id) {
+    document.getElementById("trash".concat(id)).addEventListener("click", Element.rem = function () {
+      console.log(id);
+    });
+  };
+
+  for (var id = 0; id < document.getElementsByClassName("trash").length - 1; id++) {
+    _loop(id);
+  }
+
+  ;
+};
+
+var remTrashClick = function remTrashClick() {
+  for (var id = 0; id < document.getElementsByClassName("trash").length - 1; id++) {
+    document.getElementById("trash".concat(id)).removeEventListener("click", Element.rem);
+  }
+
+  ;
 };
 
 var keepValuesOnDisplay = function keepValuesOnDisplay(arrValues) {
@@ -233,11 +250,10 @@ var removeInfo = function removeInfo(trashID) {
 
   for (var id = 0; id < document.getElementsByClassName("info").length; id++) {
     changeTrashId(id);
-    removeTrashClick(id);
-    addTrashClick(id);
   }
 
   ;
+  addTrashClick(trashID - 1);
   keepValuesOnDisplay(arrValues);
   handleValues(arrValues);
   attFooter();
@@ -258,10 +274,6 @@ var recalcValues = function recalcValues(arrValues, trashID) {
   }
 
   ;
-};
-
-var removeTrashClick = function removeTrashClick(id) {
-  document.getElementById("trash".concat(id)).removeEventListener("click", Element.remove);
 };
 
 var changeTrashId = function changeTrashId(id) {
@@ -352,7 +364,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65167" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50436" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
