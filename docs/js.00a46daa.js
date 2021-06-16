@@ -152,9 +152,9 @@ var onAddClick = function onAddClick() {
   setBiggerInfo(activedInfo);
   showTrashButton(activedInfo);
   keepValuesOnDisplay(arrValues);
-  attFooter();
-  remTrashClick();
-  addTrashClick();
+  attFooter(); //remTrashClick(0);
+  //addTrashClick(0);
+
   activedInfo += 1;
 };
 
@@ -212,23 +212,49 @@ var generateNewInfo = function generateNewInfo(activedInfo) {
   document.getElementById("section").innerHTML += html;
 };
 
-var addTrashClick = function addTrashClick() {
-  var _loop = function _loop(id) {
-    document.getElementById("trash".concat(id)).addEventListener("click", Element.rem = function () {
-      console.log(id);
-    });
-  };
+var addTrashClick = function addTrashClick(option) {
+  var selector = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
 
-  for (var id = 0; id < document.getElementsByClassName("trash").length - 1; id++) {
-    _loop(id);
+  if (option == 0) {
+    var _loop = function _loop(id) {
+      document.getElementById("trash".concat(id)).addEventListener("click", Element.rem = function () {
+        console.log(id);
+      });
+    };
+
+    for (var id = 0; id < document.getElementsByClassName("trash").length; id++) {
+      _loop(id);
+    }
+
+    ;
+  } else if (option == 1) {
+    if (selector != -1) {
+      document.getElementById("trash".concat(selector)).addEventListener("click", Element.rem = function () {
+        console.log(10);
+      });
+    }
+
+    ;
   }
 
   ;
 };
 
-var remTrashClick = function remTrashClick() {
-  for (var id = 0; id < document.getElementsByClassName("trash").length - 1; id++) {
-    document.getElementById("trash".concat(id)).removeEventListener("click", Element.rem);
+var remTrashClick = function remTrashClick(option) {
+  var selector = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
+
+  if (option == 0) {
+    for (var id = 0; id < document.getElementsByClassName("info").length; id++) {
+      document.getElementById("trash".concat(id)).removeEventListener("click", Element.rem);
+    }
+
+    ;
+  } else if (option == 1) {
+    if (selector != -1) {
+      document.getElementById("trash".concat(selector)).removeEventListener("click", Element.rem);
+    }
+
+    ;
   }
 
   ;
@@ -246,14 +272,13 @@ var keepValuesOnDisplay = function keepValuesOnDisplay(arrValues) {
 var removeInfo = function removeInfo(trashID) {
   console.log("entrei com trashID = ".concat(trashID));
   document.getElementsByClassName("info")[trashID].remove();
-  recalcValues(arrValues, trashID);
 
   for (var id = 0; id < document.getElementsByClassName("info").length; id++) {
     changeTrashId(id);
   }
 
   ;
-  addTrashClick(trashID - 1);
+  recalcValues(arrValues, trashID);
   keepValuesOnDisplay(arrValues);
   handleValues(arrValues);
   attFooter();
@@ -364,7 +389,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50436" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58324" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

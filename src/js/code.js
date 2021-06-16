@@ -32,22 +32,14 @@ const money = new Intl.NumberFormat("pt-BR", {
 export const onAddClick = () => {
 
   validateInputs(activedInfo);
-
   calcNewValues(valueQ, valueP);
-
   generateNewInfo(activedInfo);
-
   setBiggerInfo(activedInfo);
-
   showTrashButton(activedInfo);
-
   keepValuesOnDisplay(arrValues);
-
   attFooter();
-  
-  remTrashClick();
-
-  addTrashClick();
+  //remTrashClick(0);
+  //addTrashClick(0);
 
   activedInfo += 1;
 
@@ -125,17 +117,31 @@ const generateNewInfo = (activedInfo) => {
   document.getElementById("section").innerHTML += html;
 };
 
-const addTrashClick = () => {
-  for (let id = 0; id < document.getElementsByClassName("trash").length - 1; id++){
-    document.getElementById(`trash${id}`).addEventListener("click", Element.rem = function(){
-      console.log(id)
-    });
+const addTrashClick = (option, selector=-1) => {
+  if (option == 0) {
+    for (let id = 0; id < document.getElementsByClassName("trash").length; id++){
+      document.getElementById(`trash${id}`).addEventListener("click", Element.rem = function(){
+        console.log(id);
+      });
+    };
+  } else if (option == 1) {
+      if (selector != -1) {
+        document.getElementById(`trash${selector}`).addEventListener("click", Element.rem = function(){
+          console.log(10)
+        });
+      };
   };
 };
 
-const remTrashClick = () => {
-  for (let id = 0; id < document.getElementsByClassName("trash").length - 1; id++){
-    document.getElementById(`trash${id}`).removeEventListener("click", Element.rem);
+const remTrashClick = (option, selector=-1) => {
+  if (option == 0) {
+    for (let id = 0; id < document.getElementsByClassName("info").length; id++){
+      document.getElementById(`trash${id}`).removeEventListener("click", Element.rem);
+    };
+  } else if (option == 1) {
+      if (selector != -1) {
+        document.getElementById(`trash${selector}`).removeEventListener("click", Element.rem);
+      };
   };
 };
 
@@ -156,20 +162,19 @@ const removeInfo = (trashID) => {
 
   document.getElementsByClassName("info")[trashID].remove();
   
-  recalcValues(arrValues, trashID);
+  
 
   for (let id = 0; id < document.getElementsByClassName("info").length; id ++) {
     changeTrashId(id);
   };
 
-  addTrashClick(trashID-1);
+  recalcValues(arrValues, trashID);
   keepValuesOnDisplay(arrValues);
   handleValues(arrValues);
   attFooter();
 
   activedInfo -= 1;
   
-
   if (document.getElementsByClassName("info").length == 1) {
     uniqueInfo();
   };
