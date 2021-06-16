@@ -2,6 +2,7 @@ let avgPrice = 0;
 let tot = 0;
 let products = 0;
 let arrValues = [];
+let arrFunct = [];
 let activedInfo = 0;
 let valueQ = "";
 let valueP = "";
@@ -38,11 +39,16 @@ export const onAddClick = () => {
   showTrashButton(activedInfo);
   keepValuesOnDisplay(arrValues);
   attFooter();
-  //remTrashClick(0);
-  //addTrashClick(0);
+  
+  for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
+    if (arrFunct[index]) {
+      remTrashClick(index);
+    };
+    addTrashClick(index);
+  };
 
   activedInfo += 1;
-
+  
 };
 
 const validateInputs = (activedInfo) => {
@@ -117,32 +123,20 @@ const generateNewInfo = (activedInfo) => {
   document.getElementById("section").innerHTML += html;
 };
 
-const addTrashClick = (option, selector=-1) => {
-  if (option == 0) {
-    for (let id = 0; id < document.getElementsByClassName("trash").length; id++){
-      document.getElementById(`trash${id}`).addEventListener("click", Element.rem = function(){
-        console.log(id);
-      });
-    };
-  } else if (option == 1) {
-      if (selector != -1) {
-        document.getElementById(`trash${selector}`).addEventListener("click", Element.rem = function(){
-          console.log(10)
-        });
-      };
+const addTrashClick = (selector) => {
+  const callRemove = () => {
+    console.log(selector);
+  };
+  document.getElementsByClassName("trash")[selector].addEventListener("click", callRemove)
+  if (arrFunct[selector]) {
+    arrFunct[selector] = callRemove;
+  } else {
+    arrFunct.push(callRemove);
   };
 };
 
-const remTrashClick = (option, selector=-1) => {
-  if (option == 0) {
-    for (let id = 0; id < document.getElementsByClassName("info").length; id++){
-      document.getElementById(`trash${id}`).removeEventListener("click", Element.rem);
-    };
-  } else if (option == 1) {
-      if (selector != -1) {
-        document.getElementById(`trash${selector}`).removeEventListener("click", Element.rem);
-      };
-  };
+const remTrashClick = (selector) => {
+  document.getElementsByClassName("trash")[selector].removeEventListener("click", arrFunct[selector]);
 };
 
 const keepValuesOnDisplay = (arrValues) => {
@@ -160,9 +154,9 @@ const removeInfo = (trashID) => {
 
   console.log(`entrei com trashID = ${trashID}`);
 
+  
+
   document.getElementsByClassName("info")[trashID].remove();
-  
-  
 
   for (let id = 0; id < document.getElementsByClassName("info").length; id ++) {
     changeTrashId(id);
