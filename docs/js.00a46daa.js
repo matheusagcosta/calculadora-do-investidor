@@ -224,7 +224,7 @@ var generateNewInfo = function generateNewInfo(activedInfo) {
 
 var addTrashClick = function addTrashClick(selector) {
   var callRemove = function callRemove() {
-    console.log(selector);
+    removeInfo(selector);
   };
 
   document.getElementsByClassName("trash")[selector].addEventListener("click", callRemove);
@@ -252,8 +252,22 @@ var keepValuesOnDisplay = function keepValuesOnDisplay(arrValues) {
 };
 
 var removeInfo = function removeInfo(trashID) {
-  console.log("entrei com trashID = ".concat(trashID));
+  for (var index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
+    if (arrFunct[index]) {
+      remTrashClick(index);
+    }
+
+    ;
+  }
+
+  ;
   document.getElementsByClassName("info")[trashID].remove();
+
+  for (var _index = 0; _index < document.getElementsByClassName("trash").length - 1; _index++) {
+    addTrashClick(_index);
+  }
+
+  ;
 
   for (var id = 0; id < document.getElementsByClassName("info").length; id++) {
     changeTrashId(id);
@@ -371,7 +385,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59549" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57669" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

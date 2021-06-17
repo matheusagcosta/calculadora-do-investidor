@@ -125,7 +125,7 @@ const generateNewInfo = (activedInfo) => {
 
 const addTrashClick = (selector) => {
   const callRemove = () => {
-    console.log(selector);
+    removeInfo(selector);
   };
   document.getElementsByClassName("trash")[selector].addEventListener("click", callRemove)
   if (arrFunct[selector]) {
@@ -152,11 +152,17 @@ const keepValuesOnDisplay = (arrValues) => {
 
 const removeInfo = (trashID) => {
 
-  console.log(`entrei com trashID = ${trashID}`);
-
-  
+  for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
+    if (arrFunct[index]) {
+      remTrashClick(index);
+    };
+  };
 
   document.getElementsByClassName("info")[trashID].remove();
+
+  for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
+    addTrashClick(index);
+  };
 
   for (let id = 0; id < document.getElementsByClassName("info").length; id ++) {
     changeTrashId(id);
@@ -168,7 +174,7 @@ const removeInfo = (trashID) => {
   attFooter();
 
   activedInfo -= 1;
-  
+
   if (document.getElementsByClassName("info").length == 1) {
     uniqueInfo();
   };
