@@ -1,5 +1,8 @@
-import { onAddClick, attFooter, wipeOut, reset } from "./code";
+import { onAddClick, attFooter, reset } from "./code";
 
 document.querySelector("#add").addEventListener("click", onAddClick);
-//document.querySelector('#trash0').addEventListener('click', wipeOut);
+
+//document.querySelector('#trash0').addEventListener('click', removeForm);
 //document.querySelector('#reset').addEventListener('click', reset);
+
+

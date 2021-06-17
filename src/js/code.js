@@ -2,10 +2,10 @@ let avgPrice = 0;
 let tot = 0;
 let products = 0;
 let arrValues = [];
-let activedForm = 0;
+let arrFunct = [];
+let activedInfo = 0;
 let valueQ = "";
 let valueP = "";
-let z = 0;
 
 window.addEventListener(
   "keydown",
@@ -32,98 +32,32 @@ const money = new Intl.NumberFormat("pt-BR", {
 
 export const onAddClick = () => {
 
-  validateInputs(activedForm);
+  validateInputs(activedInfo);
   calcNewValues(valueQ, valueP);
-  generateNewForm(activedForm);
-  setBiggerForm(activedForm);
-  showTrashButton();
+  generateNewInfo(activedInfo);
+  setBiggerInfo(activedInfo);
+  showTrashButton(activedInfo);
   keepValuesOnDisplay(arrValues);
   attFooter();
+  
+  for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
+    if (arrFunct[index]) {
+      remTrashClick(index);
+    };
+    addTrashClick(index);
+  };
 
-  activedForm += 1;
+  activedInfo += 1;
+  
 };
 
-export const attFooter = () => {
-  document.getElementById("vTot").innerHTML = `${tot}`;
-  document.getElementById("vPM").innerHTML = `R$ ${avgPrice}`;
-  if (tot == 0 && avgPrice == 0) {
-    document.getElementById("foot").className = "foot";
-    document.getElementById("reset").className = "reset";
-  } else {
-    document.getElementById("foot").className = "foot is-bigger";
-    document.getElementById("reset").className = "reset is-shown";
-  }
-};
-
-export const wipeOut = (z) => {
-  // redo calculations and remove itens from the array
-  if (arrValues[z]) {
-    tot -= arrValues[z][0];
-    products -= arrValues[z][0] * arrValues[z][1];
-    arrValues.splice(z, 1);
-  }
-  // change next sections' id's
-  for (u = z + 1; u < document.forms.length; u++) {
-    if (u == document.forms.length - 1) {
-      document
-        .getElementById("add")
-        .setAttribute("onclick", `calcPrice(${document.forms.length - 2})`);
-      document.getElementById(`trash${u}`).id = `trash${u - 1}`;
-    } else {
-      document
-        .getElementById(`trash${u}`)
-        .setAttribute("onclick", `wipeOut(${u - 1})`);
-      document.getElementById(`trash${u}`).id = `trash${u - 1}`;
-    }
-  }
-  // remove specified section
-  document.forms[z].remove();
-  // att values from forms
-  for (u = 0; u < document.forms.length - 1; u++) {
-    document
-      .getElementsByName("quantityN")
-      [u].setAttribute("value", `${arrValues[u][0]}`);
-    document
-      .getElementsByName("priceN")
-      [u].setAttribute("value", `${arrValues[u][1].toFixed(2)}`);
-  }
-  // att footer
-  if (arrValues.length == 0) {
-    tot = 0;
-    avgPrice = 0.0;
-    avgPrice = avgPrice.toFixed(2);
-  } else if (arrValues.length == 1) {
-    avgPrice = arrValues[0][1].toFixed(2);
-  } else {
-    avgPrice = (products / tot).toFixed(2);
-  }
-  attFooter();
-  // change unique form size
-  if (document.forms.length == 1) {
-    document.getElementsByClassName("form")[0].setAttribute("class", "form");
-  }
-};
-
-export const reset = () => {
-  if (document.forms.length > 1) {
-    if (document.forms.length > 2) {
-      for (w = document.forms.length - 2; w > 0; w--) {
-        wipeOut(w);
-      }
-      wipeOut(0);
-    } else {
-      wipeOut(0);
-    }
-  }
-};
-
-const validateInputs = (activedForm) => {
+const validateInputs = (activedInfo) => {
 
   const validateQuantity = new RegExp("[0-9]+");
   const validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
 
-  valueQ = document.getElementsByName("quantityN")[activedForm].value;
-  valueP = document.getElementsByName("priceN")[activedForm].value;
+  valueQ = document.getElementsByName("quantityN")[activedInfo].value;
+  valueP = document.getElementsByName("priceN")[activedInfo].value;
 
   valueQ = validateQuantity.exec(valueQ)[0];
   valueP = validatePrice.exec(valueP)[0];
@@ -154,8 +88,59 @@ const calcNewValues = (valueQ, valueP) => {
   };
 };
 
+const setBiggerInfo = (activedInfo) => {
+  if (document.getElementsByClassName("info").length == 2) {
+    document
+      .getElementsByClassName("info")[0]
+      .setAttribute("class", "info is-bigger");
+  }
+  document
+    .getElementsByClassName("info")
+    [activedInfo + 1].setAttribute("class", "info is-bigger");
+};
+
+const showTrashButton = (activedInfo) => {
+  document.getElementsByClassName("trash_button")[activedInfo].className =
+    "trash_button is-shown";
+};
+
+const generateNewInfo = (activedInfo) => {
+  const html = `
+    <div class="info">
+      <div id="qInfo">
+        <label for="quantityN"  class="textInfo" id="quantidade">Quantidade:</label>
+        <input type="text" class="valuesInfo" name="quantityN" id="quantityN" placeholder="0" autocomplete="off" min="0" value="" required>
+      </div>
+      <div id="pInfo">
+        <label for="priceN" class="textInfo" id="preco">Preço:</label>
+        <input type="text" class="valuesInfo" name="priceN" id="priceN" placeholder="R$ 0,00" autocomplete="off" min="0" value="" required> 
+      </div>
+      <div class="trash_button" id="trash_button">
+        <button class="trash" id="trash${activedInfo + 1}"></button>
+      </div>
+    </div>
+  `;
+  document.getElementById("section").innerHTML += html;
+};
+
+const addTrashClick = (selector) => {
+  const callRemove = () => {
+    removeInfo(selector);
+  };
+  document.getElementsByClassName("trash")[selector].addEventListener("click", callRemove)
+  if (arrFunct[selector]) {
+    arrFunct[selector] = callRemove;
+  } else {
+    arrFunct.push(callRemove);
+  };
+};
+
+const remTrashClick = (selector) => {
+  document.getElementsByClassName("trash")[selector].removeEventListener("click", arrFunct[selector]);
+};
+
 const keepValuesOnDisplay = (arrValues) => {
-  for (let u = 0; u < document.forms.length - 1; u++) {
+  for (let u = 0; u < document.getElementsByClassName("info").length - 1; u++) {
     document
       .getElementsByName("quantityN")
       [u].setAttribute("value", `${arrValues[u][0]}`);
@@ -165,40 +150,86 @@ const keepValuesOnDisplay = (arrValues) => {
   };
 };
 
-const setBiggerForm = (activedForm) => {
-  if (document.forms.length == 2) {
-    document
-      .getElementsByClassName("form")[0]
-      .setAttribute("class", "form is-bigger");
+const removeInfo = (trashID) => {
+
+  for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
+    if (arrFunct[index]) {
+      remTrashClick(index);
+    };
+  };
+
+  document.getElementsByClassName("info")[trashID].remove();
+
+  for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
+    addTrashClick(index);
+  };
+
+  for (let id = 0; id < document.getElementsByClassName("info").length; id ++) {
+    changeTrashId(id);
+  };
+
+  recalcValues(arrValues, trashID);
+  keepValuesOnDisplay(arrValues);
+  handleValues(arrValues);
+  attFooter();
+
+  activedInfo -= 1;
+
+  if (document.getElementsByClassName("info").length == 1) {
+    uniqueInfo();
+  };
+};
+
+const recalcValues = (arrValues, trashID) => {
+  if (arrValues[trashID]) {
+    tot -= arrValues[trashID][0];
+    products -= arrValues[trashID][0] * arrValues[trashID][1];
+    arrValues.splice(trashID, 1);
+  };
+};
+
+const changeTrashId = (id) => {
+    document.getElementsByClassName("trash")[id].setAttribute("id", `trash${id}`);
+};
+
+const handleValues = (arrValues) => {
+  if (arrValues.length == 0) {
+    tot = 0;
+    avgPrice = 0.0;
+    avgPrice = avgPrice.toFixed(2);
+  } else if (arrValues.length == 1) {
+    avgPrice = arrValues[0][1].toFixed(2);
+  } else {
+    avgPrice = (products / tot).toFixed(2);
+  };
+};
+
+const uniqueInfo = () => {
+  document.getElementsByClassName("info")[0].setAttribute("class", "info");
+  activedInfo = 0;
+};
+
+export const attFooter = () => {
+  document.getElementById("vTot").innerHTML = `${tot}`;
+  document.getElementById("vPM").innerHTML = `R$ ${avgPrice}`;
+  if (tot == 0 && avgPrice == 0) {
+    document.getElementById("foot").className = "foot";
+    document.getElementById("reset").className = "reset";
+  } else {
+    document.getElementById("foot").className = "foot is-bigger";
+    document.getElementById("reset").className = "reset is-shown";
   }
-  document
-    .getElementsByClassName("form")
-    [activedForm + 1].setAttribute("class", "form is-bigger");
 };
 
-const showTrashButton = () => {
-  document.getElementsByClassName("trash_button")[activedForm].className =
-    "trash_button is-shown";
-};
-
-const generateNewForm = (activedForm) => {
-  const html = `
-    <form class="form">
-      <div id="qForm">
-        <label for="quantityN"  class="textForm" id="quantidade">Quantidade:</label>
-        <input type="text" class="valuesForm" name="quantityN" id="quantityN" placeholder="0" autocomplete="off" min="0" value="" required>
-      </div>
-      <div id="pForm">
-        <label for="priceN" class="textForm" id="preco">Preço:</label>
-        <input type="text" class="valuesForm" name="priceN" id="priceN" placeholder="R$ 0,00" autocomplete="off" min="0" value="" required> 
-      </div>
-      <div class="trash_button" id="trash_button">
-        <button class="trash" id="trash${activedForm + 1}"></button>
-      </div>
-    </form>
-  `;
-  document.getElementById("section").innerHTML += html;
-  document
-    .getElementById(`trash${activedForm}`)
-    .setAttribute("onclick", `wipeOut(${activedForm})`);
+export const reset = () => {
+  if (document.getElementsByClassName("info").length > 1) {
+    if (document.getElementsByClassName("info").length > 2) {
+      for (let w = document.getElementsByClassName("info").length - 2; w > 0; w--) {
+        removeInfo(w);
+      }
+      removeInfo(0);
+    } else {
+      removeInfo(0);
+    }
+  }
 };

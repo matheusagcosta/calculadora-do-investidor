@@ -22,13 +22,12 @@ body {
 }
 
 button {
-  border: 1px solid;
   cursor: pointer;
   border: none;
 }
 
 button:focus {
-  border: 2px solid;
+  border: 1px solid;
   border-color: var(--colorDarkBlue);
   outline: 0;
   cursor: pointer;
@@ -41,7 +40,6 @@ input {
 }
 
 input:focus {
-  border: 2px solid;
   border-color: var(--colorDarkBlue);
 }
 
@@ -71,7 +69,6 @@ main {
   text-align: center;
   font-family: 'Nunito Sans', sans-serif;
   font-size: 30px;
-  font-weight: bold;
   line-height: 41px;
 }
 
@@ -116,13 +113,12 @@ main {
   flex-direction: column;
 }
 
-.form {
+.info {
   background-color: #F8F8FF;
   border-radius: 10px;
   color: #313060;
   display: flex;
   flex-direction: row;
-  margin-top: 25px;
   margin: auto;
   padding: 15px;
   font-family: 'Red Hat Text', sans-serif;
@@ -131,38 +127,37 @@ main {
   transition: width .35s linear;
 }
 
-.form:first-child {
+.info:first-child {
   visibility: visible;
 }
 
-.form.is-bigger {
+.info.is-bigger {
   width: 423px;
 }
 
-.form.is-bigger:not(:first-child) {
+.info.is-bigger:not(:first-child) {
   margin-top: 25px;
 }
 
-#qForm {
+#qInfo {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-#pForm {
+#pInfo {
   position: relative;
   display: flex;
   flex-direction: column;
   margin-left: 15px ;
 }
 
-.textForm {
+.textInfo {
   position: relative;
   display: flex;
 }
 
-.valuesForm {
-  display: flex;
+.valuesInfo {
   position: relative;
   margin-top: 12px;
   border-radius: 4px;
@@ -186,8 +181,6 @@ main {
   background-color: #05B595;
   display: flex;
   margin: 25px auto 0;
-  left: 0;
-  right: 0;
 }
 
 .trash {
@@ -255,8 +248,6 @@ main {
 .valuesFoot {
   position: relative;
   display: flex;
-  align-self: flex-start;
-  justify-self: flex-start;
   margin-top: 10px;
   font-size: 24px;
   font-weight: bold;
