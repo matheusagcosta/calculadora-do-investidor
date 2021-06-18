@@ -47,6 +47,11 @@ export const onAddClick = () => {
       };
       addTrashClick(index);
     };
+    
+    for (let count = 0; count < document.getElementsByClassName("info").length; count++) {
+      setBorderColor(`quantity${activedInfo}`, "none");
+      setBorderColor(`price${activedInfo}`, "none");
+    }
   
     activedInfo += 1;
   };
@@ -59,14 +64,18 @@ const handleComma = (valueP) => {
   return valueP;
 };
 
+const setBorderColor = (id, color) => {
+  document.getElementById(`${id}`).setAttribute("style", `border-color: ${color};`)
+};
+
 const visualError = (valueQ, valueP, activedInfo) => {
   let result = true;
   if (valueQ == 0) {
-    document.getElementsByName("quantityN")[activedInfo].setAttribute("style", "border-color: red;");
+    setBorderColor(`quantity${activedInfo}`, "red");
     result = false;
   };
   if (valueP == 0) {
-    document.getElementsByName("priceN")[activedInfo].setAttribute("style", "border-color: red;");
+    setBorderColor(`price${activedInfo}`, "red");
     result = false;
   };
   return result;

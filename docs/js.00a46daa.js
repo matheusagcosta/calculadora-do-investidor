@@ -165,6 +165,12 @@ var onAddClick = function onAddClick() {
     }
 
     ;
+
+    for (var count = 0; count < document.getElementsByClassName("info").length; count++) {
+      setBorderColor("quantity".concat(activedInfo), "none");
+      setBorderColor("price".concat(activedInfo), "none");
+    }
+
     activedInfo += 1;
   }
 
@@ -182,18 +188,22 @@ var handleComma = function handleComma(valueP) {
   return valueP;
 };
 
+var setBorderColor = function setBorderColor(id, color) {
+  document.getElementById("".concat(id)).setAttribute("style", "border-color: ".concat(color, ";"));
+};
+
 var visualError = function visualError(valueQ, valueP, activedInfo) {
   var result = true;
 
   if (valueQ == 0) {
-    document.getElementsByName("quantityN")[activedInfo].setAttribute("style", "border-color: red;");
+    setBorderColor("quantity".concat(activedInfo), "red");
     result = false;
   }
 
   ;
 
   if (valueP == 0) {
-    document.getElementsByName("priceN")[activedInfo].setAttribute("style", "border-color: red;");
+    setBorderColor("price".concat(activedInfo), "red");
     result = false;
   }
 
@@ -418,7 +428,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51265" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57887" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
