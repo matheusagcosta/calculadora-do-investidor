@@ -124,9 +124,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.reset = exports.attFooter = exports.onAddClick = void 0;
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 var avgPrice = 0;
 var tot = 0;
 var products = 0;
@@ -182,6 +179,21 @@ var onAddClick = function onAddClick() {
 
 exports.onAddClick = onAddClick;
 
+var validateInputs = function validateInputs(activedInfo) {
+  valueQ = document.getElementsByName("quantityN")[activedInfo].value;
+  valueP = document.getElementsByName("priceN")[activedInfo].value;
+
+  if (checkAll(valueQ, valueP, activedInfo)) {
+    valueQ = parseInt(valueQ);
+    valueP = parseFloat(handleComma(valueP));
+    return true;
+  } else {
+    return false;
+  }
+
+  ;
+};
+
 var handleComma = function handleComma(valueP) {
   if (valueP.replace(/,/g, ".")) {
     valueP = valueP.replace(/,/g, ".");
@@ -198,7 +210,7 @@ var setBorderColor = function setBorderColor(id, color) {
 var checkAll = function checkAll(valueQ, valueP, activedInfo) {
   var result = true;
   result = checkZeros(valueQ, valueP, activedInfo);
-  result = checkOnlyLetters(valueQ, valueP, activedInfo);
+  result = checkOnlyChar(valueQ, valueP, activedInfo);
   return result;
 };
 
@@ -221,44 +233,27 @@ var checkZeros = function checkZeros(valueQ, valueP, activedInfo) {
   return resultZeros;
 };
 
-var checkOnlyLetters = function checkOnlyLetters(valueQ, valueP, activedInfo) {
-  var resultOnlyLetters = true;
+var checkOnlyChar = function checkOnlyChar(valueQ, valueP, activedInfo) {
+  var resultOnlyChar = true;
   var validateQuantity = new RegExp("[0-9]+");
   var validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
-
-  var validationQ = _typeof(validateQuantity.exec(valueQ)[0]);
-
-  var validationP = _typeof(validatePrice.exec(valueP)[0]);
+  var validationQ = validateQuantity.exec(valueQ);
+  var validationP = validatePrice.exec(valueP);
 
   if (validationQ == null) {
     setBorderColor("quantity".concat(activedInfo), "red");
-    resultOnlyLetters = false;
+    resultOnlyChar = false;
   }
 
   ;
 
   if (validationP == null) {
     setBorderColor("price".concat(activedInfo), "red");
-    resultOnlyLetters = false;
+    resultOnlyChar = false;
   }
 
   ;
-  return resultOnlyLetters;
-};
-
-var validateInputs = function validateInputs(activedInfo) {
-  valueQ = document.getElementsByName("quantityN")[activedInfo].value;
-  valueP = document.getElementsByName("priceN")[activedInfo].value;
-
-  if (checkAll(valueQ, valueP, activedInfo)) {
-    valueQ = parseInt(valueQ);
-    valueP = parseFloat(handleComma(valueP));
-    return true;
-  } else {
-    return false;
-  }
-
-  ;
+  return resultOnlyChar;
 };
 
 var calcNewValues = function calcNewValues(valueQ, valueP) {
@@ -461,7 +456,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59260" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62043" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

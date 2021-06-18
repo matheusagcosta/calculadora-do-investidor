@@ -57,6 +57,20 @@ export const onAddClick = () => {
   };
 };
 
+const validateInputs = (activedInfo) => {
+
+  valueQ = document.getElementsByName("quantityN")[activedInfo].value;
+  valueP = document.getElementsByName("priceN")[activedInfo].value;
+  
+  if (checkAll(valueQ, valueP, activedInfo)) {
+    valueQ = parseInt(valueQ);
+    valueP = parseFloat(handleComma(valueP));
+    return true;
+  } else {
+    return false;
+  };
+};
+
 const handleComma = (valueP) => {
   if (valueP.replace(/,/g, ".")) {
     valueP = valueP.replace(/,/g, ".");
@@ -71,7 +85,7 @@ const setBorderColor = (id, color) => {
 const checkAll = (valueQ, valueP, activedInfo) => {
   let result = true;
   result = checkZeros(valueQ, valueP, activedInfo);
-  result = checkOnlyLetters(valueQ, valueP, activedInfo);
+  result = checkOnlyChar(valueQ, valueP, activedInfo);
   return result;
 };
 
@@ -88,39 +102,25 @@ const checkZeros = (valueQ, valueP, activedInfo) => {
   return resultZeros;
 };
 
-const checkOnlyLetters = (valueQ, valueP, activedInfo) => {
-  let resultOnlyLetters = true;
+const checkOnlyChar = (valueQ, valueP, activedInfo) => {
+  let resultOnlyChar = true;
   const validateQuantity = new RegExp("[0-9]+");
   const validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
 
-  let validationQ = typeof(validateQuantity.exec(valueQ)[0]);
-  let validationP = typeof(validatePrice.exec(valueP)[0]);
+  let validationQ = validateQuantity.exec(valueQ);
+  let validationP = validatePrice.exec(valueP);
 
   if (validationQ == null) {
     setBorderColor(`quantity${activedInfo}`, "red");
-    resultOnlyLetters = false;
+    resultOnlyChar = false;
   };
 
   if (validationP == null) {
     setBorderColor(`price${activedInfo}`, "red");
-    resultOnlyLetters = false;
+    resultOnlyChar = false;
   };
 
-  return resultOnlyLetters;
-};
-
-const validateInputs = (activedInfo) => {
-
-  valueQ = document.getElementsByName("quantityN")[activedInfo].value;
-  valueP = document.getElementsByName("priceN")[activedInfo].value;
-  
-  if (checkAll(valueQ, valueP, activedInfo)) {
-    valueQ = parseInt(valueQ);
-    valueP = parseFloat(handleComma(valueP));
-    return true;
-  } else {
-    return false;
-  };
+  return resultOnlyChar;
 };
 
 const calcNewValues = (valueQ, valueP) => {
