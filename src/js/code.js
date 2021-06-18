@@ -119,7 +119,6 @@ const checkOnlyChar = (valueQ, valueP, activedInfo) => {
     setBorderColor(`price${activedInfo}`, "red");
     resultOnlyChar = false;
   };
-
   return resultOnlyChar;
 };
 
