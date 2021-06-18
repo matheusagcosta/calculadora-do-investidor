@@ -204,6 +204,18 @@ var validateInputs = function validateInputs(activedInfo) {
   ;
   valueQ = parseInt(valueQ);
   valueP = parseFloat(handleComma(valueP));
+
+  if (valueQ == 0) {
+    visualError(0);
+  }
+
+  ;
+
+  if (valueP == 0) {
+    visualError(1);
+  }
+
+  ;
 };
 
 var calcNewValues = function calcNewValues(valueQ, valueP) {
@@ -237,7 +249,7 @@ var showTrashButton = function showTrashButton(activedInfo) {
 };
 
 var generateNewInfo = function generateNewInfo(activedInfo) {
-  var html = "\n    <div class=\"info\">\n      <div id=\"qInfo\">\n        <label for=\"quantityN\"  class=\"textInfo\" id=\"quantidade\">Quantidade:</label>\n        <input type=\"text\" class=\"valuesInfo\" name=\"quantityN\" id=\"quantityN\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\" required>\n      </div>\n      <div id=\"pInfo\">\n        <label for=\"priceN\" class=\"textInfo\" id=\"preco\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"valuesInfo\" name=\"priceN\" id=\"priceN\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\" required> \n      </div>\n      <div class=\"trash_button\" id=\"trash_button\">\n        <button class=\"trash\" id=\"trash".concat(activedInfo + 1, "\"></button>\n      </div>\n    </div>\n  ");
+  var html = "\n    <div class=\"info\">\n      <div class=\"qInfo\">\n        <label for=\"quantityN\"  class=\"textInfo\" id=\"quantidade\">Quantidade:</label>\n        <input type=\"text\" class=\"valuesInfo\" name=\"quantityN\" id=\"quantity".concat(activedInfo + 1, "\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\">\n      </div>\n      <div class=\"pInfo\">\n        <label for=\"priceN\" class=\"textInfo\" id=\"preco\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"valuesInfo\" name=\"priceN\" id=\"price").concat(activedInfo + 1, "\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\"> \n      </div>\n      <div class=\"trash_button\" id=\"trash_button\">\n        <button class=\"trash\" id=\"trash").concat(activedInfo + 1, "\"></button>\n      </div>\n    </div>\n  ");
   document.getElementById("section").innerHTML += html;
 };
 
@@ -289,7 +301,7 @@ var removeInfo = function removeInfo(trashID) {
   ;
 
   for (var id = 0; id < document.getElementsByClassName("info").length; id++) {
-    changeTrashId(id);
+    changeId(id);
   }
 
   ;
@@ -316,8 +328,10 @@ var recalcValues = function recalcValues(arrValues, trashID) {
   ;
 };
 
-var changeTrashId = function changeTrashId(id) {
+var changeId = function changeId(id) {
   document.getElementsByClassName("trash")[id].setAttribute("id", "trash".concat(id));
+  document.getElementsByName("quantityN")[id].setAttribute("id", "quantity".concat(id));
+  document.getElementsByName("priceN")[id].setAttribute("id", "price".concat(id));
 };
 
 var handleValues = function handleValues(arrValues) {
@@ -404,7 +418,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62911" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51360" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

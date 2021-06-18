@@ -139,13 +139,13 @@ main {
   margin-top: 25px;
 }
 
-#qInfo {
+.qInfo {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-#pInfo {
+.pInfo {
   position: relative;
   display: flex;
   flex-direction: column;

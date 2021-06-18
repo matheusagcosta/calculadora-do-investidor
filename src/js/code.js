@@ -57,9 +57,7 @@ const handleComma = (valueP) => {
   return valueP;
 };
 
-const visualError = (option) => {
-
-};
+const visualError = (option) => {};
 
 const validateInputs = (activedInfo) => {
 
@@ -83,6 +81,10 @@ const validateInputs = (activedInfo) => {
 
   valueQ = parseInt(valueQ);
   valueP = parseFloat(handleComma(valueP));
+
+  if (valueQ == 0) { visualError(0); };
+  if (valueP == 0) { visualError(1); };
+  
 };
 
 const calcNewValues = (valueQ, valueP) => {
@@ -121,13 +123,13 @@ const showTrashButton = (activedInfo) => {
 const generateNewInfo = (activedInfo) => {
   const html = `
     <div class="info">
-      <div id="qInfo">
+      <div class="qInfo">
         <label for="quantityN"  class="textInfo" id="quantidade">Quantidade:</label>
-        <input type="text" class="valuesInfo" name="quantityN" id="quantityN" placeholder="0" autocomplete="off" min="0" value="" required>
+        <input type="text" class="valuesInfo" name="quantityN" id="quantity${activedInfo + 1}" placeholder="0" autocomplete="off" min="0" value="">
       </div>
-      <div id="pInfo">
+      <div class="pInfo">
         <label for="priceN" class="textInfo" id="preco">Preço:</label>
-        <input type="text" class="valuesInfo" name="priceN" id="priceN" placeholder="R$ 0,00" autocomplete="off" min="0" value="" required> 
+        <input type="text" class="valuesInfo" name="priceN" id="price${activedInfo + 1}" placeholder="R$ 0,00" autocomplete="off" min="0" value=""> 
       </div>
       <div class="trash_button" id="trash_button">
         <button class="trash" id="trash${activedInfo + 1}"></button>
@@ -179,7 +181,7 @@ const removeInfo = (trashID) => {
   };
 
   for (let id = 0; id < document.getElementsByClassName("info").length; id ++) {
-    changeTrashId(id);
+    changeId(id);
   };
 
   recalcValues(arrValues, trashID);
@@ -202,8 +204,10 @@ const recalcValues = (arrValues, trashID) => {
   };
 };
 
-const changeTrashId = (id) => {
-    document.getElementsByClassName("trash")[id].setAttribute("id", `trash${id}`);
+const changeId = (id) => {
+  document.getElementsByClassName("trash")[id].setAttribute("id", `trash${id}`);
+  document.getElementsByName("quantityN")[id].setAttribute("id", `quantity${id}`);
+  document.getElementsByName("priceN")[id].setAttribute("id", `price${id}`);
 };
 
 const handleValues = (arrValues) => {
