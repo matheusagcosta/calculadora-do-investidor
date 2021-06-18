@@ -124,6 +124,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.reset = exports.attFooter = exports.onAddClick = void 0;
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 var avgPrice = 0;
 var tot = 0;
 var products = 0;
@@ -192,34 +195,64 @@ var setBorderColor = function setBorderColor(id, color) {
   document.getElementById("".concat(id)).setAttribute("style", "border-color: ".concat(color, ";"));
 };
 
-var visualError = function visualError(valueQ, valueP, activedInfo) {
+var checkAll = function checkAll(valueQ, valueP, activedInfo) {
   var result = true;
+  result = checkZeros(valueQ, valueP, activedInfo);
+  result = checkOnlyLetters(valueQ, valueP, activedInfo);
+  return result;
+};
+
+var checkZeros = function checkZeros(valueQ, valueP, activedInfo) {
+  var resultZeros = true;
 
   if (valueQ == 0) {
     setBorderColor("quantity".concat(activedInfo), "red");
-    result = false;
+    resultZeros = false;
   }
 
   ;
 
   if (valueP == 0) {
     setBorderColor("price".concat(activedInfo), "red");
-    result = false;
+    resultZeros = false;
   }
 
   ;
-  return result;
+  return resultZeros;
+};
+
+var checkOnlyLetters = function checkOnlyLetters(valueQ, valueP, activedInfo) {
+  var resultOnlyLetters = true;
+  var validateQuantity = new RegExp("[0-9]+");
+  var validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
+
+  var validationQ = _typeof(validateQuantity.exec(valueQ)[0]);
+
+  var validationP = _typeof(validatePrice.exec(valueP)[0]);
+
+  if (validationQ == null) {
+    setBorderColor("quantity".concat(activedInfo), "red");
+    resultOnlyLetters = false;
+  }
+
+  ;
+
+  if (validationP == null) {
+    setBorderColor("price".concat(activedInfo), "red");
+    resultOnlyLetters = false;
+  }
+
+  ;
+  return resultOnlyLetters;
 };
 
 var validateInputs = function validateInputs(activedInfo) {
-  var validateQuantity = new RegExp("[0-9]+");
-  var validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
   valueQ = document.getElementsByName("quantityN")[activedInfo].value;
   valueP = document.getElementsByName("priceN")[activedInfo].value;
 
-  if (visualError(valueQ, valueP, activedInfo)) {
-    valueQ = parseInt(validateQuantity.exec(valueQ)[0]);
-    valueP = parseFloat(handleComma(validatePrice.exec(valueP)[0]));
+  if (checkAll(valueQ, valueP, activedInfo)) {
+    valueQ = parseInt(valueQ);
+    valueP = parseFloat(handleComma(valueP));
     return true;
   } else {
     return false;
@@ -428,7 +461,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57887" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59260" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

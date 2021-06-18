@@ -47,7 +47,7 @@ export const onAddClick = () => {
       };
       addTrashClick(index);
     };
-    
+
     for (let count = 0; count < document.getElementsByClassName("info").length; count++) {
       setBorderColor(`quantity${activedInfo}`, "none");
       setBorderColor(`price${activedInfo}`, "none");
@@ -68,30 +68,55 @@ const setBorderColor = (id, color) => {
   document.getElementById(`${id}`).setAttribute("style", `border-color: ${color};`)
 };
 
-const visualError = (valueQ, valueP, activedInfo) => {
+const checkAll = (valueQ, valueP, activedInfo) => {
   let result = true;
+  result = checkZeros(valueQ, valueP, activedInfo);
+  result = checkOnlyLetters(valueQ, valueP, activedInfo);
+  return result;
+};
+
+const checkZeros = (valueQ, valueP, activedInfo) => {
+  let resultZeros = true;
   if (valueQ == 0) {
     setBorderColor(`quantity${activedInfo}`, "red");
-    result = false;
+    resultZeros = false;
   };
   if (valueP == 0) {
     setBorderColor(`price${activedInfo}`, "red");
-    result = false;
+    resultZeros = false;
   };
-  return result;
+  return resultZeros;
+};
+
+const checkOnlyLetters = (valueQ, valueP, activedInfo) => {
+  let resultOnlyLetters = true;
+  const validateQuantity = new RegExp("[0-9]+");
+  const validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
+
+  let validationQ = typeof(validateQuantity.exec(valueQ)[0]);
+  let validationP = typeof(validatePrice.exec(valueP)[0]);
+
+  if (validationQ == null) {
+    setBorderColor(`quantity${activedInfo}`, "red");
+    resultOnlyLetters = false;
+  };
+
+  if (validationP == null) {
+    setBorderColor(`price${activedInfo}`, "red");
+    resultOnlyLetters = false;
+  };
+
+  return resultOnlyLetters;
 };
 
 const validateInputs = (activedInfo) => {
 
-  const validateQuantity = new RegExp("[0-9]+");
-  const validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
-
   valueQ = document.getElementsByName("quantityN")[activedInfo].value;
   valueP = document.getElementsByName("priceN")[activedInfo].value;
   
-  if (visualError(valueQ, valueP, activedInfo)) {
-    valueQ = parseInt(validateQuantity.exec(valueQ)[0]);
-    valueP = parseFloat(handleComma(validatePrice.exec(valueP)[0]));
+  if (checkAll(valueQ, valueP, activedInfo)) {
+    valueQ = parseInt(valueQ);
+    valueP = parseFloat(handleComma(valueP));
     return true;
   } else {
     return false;
