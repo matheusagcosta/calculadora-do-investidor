@@ -170,21 +170,40 @@ var onAddClick = function onAddClick() {
 
 exports.onAddClick = onAddClick;
 
-var validateInputs = function validateInputs(activedInfo) {
-  var validateQuantity = new RegExp("[0-9]+");
-  var validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
-  valueQ = document.getElementsByName("quantityN")[activedInfo].value;
-  valueP = document.getElementsByName("priceN")[activedInfo].value;
-  valueQ = validateQuantity.exec(valueQ)[0];
-  valueP = validatePrice.exec(valueP)[0];
-
+var handleComma = function handleComma(valueP) {
   if (valueP.replace(/,/g, ".")) {
     valueP = valueP.replace(/,/g, ".");
   }
 
   ;
+  return valueP;
+};
+
+var visualError = function visualError(option) {};
+
+var validateInputs = function validateInputs(activedInfo) {
+  var validateQuantity = new RegExp("[0-9]+");
+  var validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
+  valueQ = document.getElementsByName("quantityN")[activedInfo].value;
+  valueP = document.getElementsByName("priceN")[activedInfo].value;
+
+  if (validateQuantity.exec(valueQ)[0]) {
+    valueQ = validateQuantity.exec(valueQ)[0];
+  } else {
+    visualError(0);
+  }
+
+  ;
+
+  if (validatePrice.exec(valueP)[0]) {
+    valueP = validatePrice.exec(valueP)[0];
+  } else {
+    visualError(1);
+  }
+
+  ;
   valueQ = parseInt(valueQ);
-  valueP = parseFloat(valueP);
+  valueP = parseFloat(handleComma(valueP));
 };
 
 var calcNewValues = function calcNewValues(valueQ, valueP) {
@@ -385,7 +404,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57669" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62911" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

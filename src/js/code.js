@@ -48,7 +48,17 @@ export const onAddClick = () => {
   };
 
   activedInfo += 1;
-  
+};
+
+const handleComma = (valueP) => {
+  if (valueP.replace(/,/g, ".")) {
+    valueP = valueP.replace(/,/g, ".");
+  };
+  return valueP;
+};
+
+const visualError = (option) => {
+
 };
 
 const validateInputs = (activedInfo) => {
@@ -59,16 +69,20 @@ const validateInputs = (activedInfo) => {
   valueQ = document.getElementsByName("quantityN")[activedInfo].value;
   valueP = document.getElementsByName("priceN")[activedInfo].value;
 
-  valueQ = validateQuantity.exec(valueQ)[0];
-  valueP = validatePrice.exec(valueP)[0];
-
-  if (valueP.replace(/,/g, ".")) {
-    valueP = valueP.replace(/,/g, ".");
+  if (validateQuantity.exec(valueQ)[0]) {
+    valueQ = validateQuantity.exec(valueQ)[0];
+  } else {
+    visualError(0);
+  };
+  
+  if (validatePrice.exec(valueP)[0]) {
+    valueP = validatePrice.exec(valueP)[0];
+  } else {
+    visualError(1);
   };
 
   valueQ = parseInt(valueQ);
-  valueP = parseFloat(valueP);
-
+  valueP = parseFloat(handleComma(valueP));
 };
 
 const calcNewValues = (valueQ, valueP) => {
