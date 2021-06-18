@@ -124,11 +124,11 @@ const generateNewInfo = (activedInfo) => {
   const html = `
     <div class="info">
       <div class="qInfo">
-        <label for="quantityN"  class="textInfo" id="quantidade">Quantidade:</label>
+        <label for="quantityN"  class="textInfo">Quantidade:</label>
         <input type="text" class="valuesInfo" name="quantityN" id="quantity${activedInfo + 1}" placeholder="0" autocomplete="off" min="0" value="">
       </div>
       <div class="pInfo">
-        <label for="priceN" class="textInfo" id="preco">Preço:</label>
+        <label for="priceN" class="textInfo">Preço:</label>
         <input type="text" class="valuesInfo" name="priceN" id="price${activedInfo + 1}" placeholder="R$ 0,00" autocomplete="off" min="0" value=""> 
       </div>
       <div class="trash_button" id="trash_button">

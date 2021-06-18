@@ -249,7 +249,7 @@ var showTrashButton = function showTrashButton(activedInfo) {
 };
 
 var generateNewInfo = function generateNewInfo(activedInfo) {
-  var html = "\n    <div class=\"info\">\n      <div class=\"qInfo\">\n        <label for=\"quantityN\"  class=\"textInfo\" id=\"quantidade\">Quantidade:</label>\n        <input type=\"text\" class=\"valuesInfo\" name=\"quantityN\" id=\"quantity".concat(activedInfo + 1, "\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\">\n      </div>\n      <div class=\"pInfo\">\n        <label for=\"priceN\" class=\"textInfo\" id=\"preco\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"valuesInfo\" name=\"priceN\" id=\"price").concat(activedInfo + 1, "\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\"> \n      </div>\n      <div class=\"trash_button\" id=\"trash_button\">\n        <button class=\"trash\" id=\"trash").concat(activedInfo + 1, "\"></button>\n      </div>\n    </div>\n  ");
+  var html = "\n    <div class=\"info\">\n      <div class=\"qInfo\">\n        <label for=\"quantityN\"  class=\"textInfo\">Quantidade:</label>\n        <input type=\"text\" class=\"valuesInfo\" name=\"quantityN\" id=\"quantity".concat(activedInfo + 1, "\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\">\n      </div>\n      <div class=\"pInfo\">\n        <label for=\"priceN\" class=\"textInfo\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"valuesInfo\" name=\"priceN\" id=\"price").concat(activedInfo + 1, "\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\"> \n      </div>\n      <div class=\"trash_button\" id=\"trash_button\">\n        <button class=\"trash\" id=\"trash").concat(activedInfo + 1, "\"></button>\n      </div>\n    </div>\n  ");
   document.getElementById("section").innerHTML += html;
 };
 
@@ -418,7 +418,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51360" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52172" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
