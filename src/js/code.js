@@ -32,22 +32,24 @@ const money = new Intl.NumberFormat("pt-BR", {
 
 export const onAddClick = () => {
 
-  validateInputs(activedInfo);
-  calcNewValues(valueQ, valueP);
-  generateNewInfo(activedInfo);
-  setBiggerInfo(activedInfo);
-  showTrashButton(activedInfo);
-  keepValuesOnDisplay(arrValues);
-  attFooter();
-  
-  for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
-    if (arrFunct[index]) {
-      remTrashClick(index);
+  if (validateInputs(activedInfo)) {
+    
+    calcNewValues(valueQ, valueP);
+    generateNewInfo(activedInfo);
+    setBiggerInfo(activedInfo);
+    showTrashButton(activedInfo);
+    keepValuesOnDisplay(arrValues);
+    attFooter();
+    
+    for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
+      if (arrFunct[index]) {
+        remTrashClick(index);
+      };
+      addTrashClick(index);
     };
-    addTrashClick(index);
+  
+    activedInfo += 1;
   };
-
-  activedInfo += 1;
 };
 
 const handleComma = (valueP) => {
@@ -57,7 +59,18 @@ const handleComma = (valueP) => {
   return valueP;
 };
 
-const visualError = (option) => {};
+const visualError = (valueQ, valueP, activedInfo) => {
+  let result = true;
+  if (valueQ == 0) {
+    document.getElementsByName("quantityN")[activedInfo].setAttribute("style", "border-color: red;");
+    result = false;
+  };
+  if (valueP == 0) {
+    document.getElementsByName("priceN")[activedInfo].setAttribute("style", "border-color: red;");
+    result = false;
+  };
+  return result;
+};
 
 const validateInputs = (activedInfo) => {
 
@@ -66,25 +79,14 @@ const validateInputs = (activedInfo) => {
 
   valueQ = document.getElementsByName("quantityN")[activedInfo].value;
   valueP = document.getElementsByName("priceN")[activedInfo].value;
-
-  if (validateQuantity.exec(valueQ)[0]) {
-    valueQ = validateQuantity.exec(valueQ)[0];
-  } else {
-    visualError(0);
-  };
   
-  if (validatePrice.exec(valueP)[0]) {
-    valueP = validatePrice.exec(valueP)[0];
+  if (visualError(valueQ, valueP, activedInfo)) {
+    valueQ = parseInt(validateQuantity.exec(valueQ)[0]);
+    valueP = parseFloat(handleComma(validatePrice.exec(valueP)[0]));
+    return true;
   } else {
-    visualError(1);
+    return false;
   };
-
-  valueQ = parseInt(valueQ);
-  valueP = parseFloat(handleComma(valueP));
-
-  if (valueQ == 0) { visualError(0); };
-  if (valueP == 0) { visualError(1); };
-  
 };
 
 const calcNewValues = (valueQ, valueP) => {

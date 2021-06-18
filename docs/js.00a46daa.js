@@ -147,25 +147,28 @@ var money = new Intl.NumberFormat("pt-BR", {
 });
 
 var onAddClick = function onAddClick() {
-  validateInputs(activedInfo);
-  calcNewValues(valueQ, valueP);
-  generateNewInfo(activedInfo);
-  setBiggerInfo(activedInfo);
-  showTrashButton(activedInfo);
-  keepValuesOnDisplay(arrValues);
-  attFooter();
+  if (validateInputs(activedInfo)) {
+    calcNewValues(valueQ, valueP);
+    generateNewInfo(activedInfo);
+    setBiggerInfo(activedInfo);
+    showTrashButton(activedInfo);
+    keepValuesOnDisplay(arrValues);
+    attFooter();
 
-  for (var index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
-    if (arrFunct[index]) {
-      remTrashClick(index);
+    for (var index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
+      if (arrFunct[index]) {
+        remTrashClick(index);
+      }
+
+      ;
+      addTrashClick(index);
     }
 
     ;
-    addTrashClick(index);
+    activedInfo += 1;
   }
 
   ;
-  activedInfo += 1;
 };
 
 exports.onAddClick = onAddClick;
@@ -179,7 +182,24 @@ var handleComma = function handleComma(valueP) {
   return valueP;
 };
 
-var visualError = function visualError(option) {};
+var visualError = function visualError(valueQ, valueP, activedInfo) {
+  var result = true;
+
+  if (valueQ == 0) {
+    document.getElementsByName("quantityN")[activedInfo].setAttribute("style", "border-color: red;");
+    result = false;
+  }
+
+  ;
+
+  if (valueP == 0) {
+    document.getElementsByName("priceN")[activedInfo].setAttribute("style", "border-color: red;");
+    result = false;
+  }
+
+  ;
+  return result;
+};
 
 var validateInputs = function validateInputs(activedInfo) {
   var validateQuantity = new RegExp("[0-9]+");
@@ -187,32 +207,12 @@ var validateInputs = function validateInputs(activedInfo) {
   valueQ = document.getElementsByName("quantityN")[activedInfo].value;
   valueP = document.getElementsByName("priceN")[activedInfo].value;
 
-  if (validateQuantity.exec(valueQ)[0]) {
-    valueQ = validateQuantity.exec(valueQ)[0];
+  if (visualError(valueQ, valueP, activedInfo)) {
+    valueQ = parseInt(validateQuantity.exec(valueQ)[0]);
+    valueP = parseFloat(handleComma(validatePrice.exec(valueP)[0]));
+    return true;
   } else {
-    visualError(0);
-  }
-
-  ;
-
-  if (validatePrice.exec(valueP)[0]) {
-    valueP = validatePrice.exec(valueP)[0];
-  } else {
-    visualError(1);
-  }
-
-  ;
-  valueQ = parseInt(valueQ);
-  valueP = parseFloat(handleComma(valueP));
-
-  if (valueQ == 0) {
-    visualError(0);
-  }
-
-  ;
-
-  if (valueP == 0) {
-    visualError(1);
+    return false;
   }
 
   ;
@@ -388,8 +388,8 @@ exports.reset = reset;
 
 var _code = require("./code");
 
-document.querySelector("#add").addEventListener("click", _code.onAddClick); //document.querySelector('#trash0').addEventListener('click', removeForm);
-//document.querySelector('#reset').addEventListener('click', reset);
+document.querySelector("#add").addEventListener("click", _code.onAddClick);
+document.querySelector('#reset').addEventListener('click', _code.reset); //document.querySelector('#trash0').addEventListener('click', removeForm);
 },{"./code":"js/code.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -418,7 +418,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52172" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51265" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
