@@ -426,7 +426,7 @@ exports.reset = reset;
 
 var _code = require("./code");
 
-document.querySelector("#add").addEventListener("click", _code.onAddClick);
+document.getElementById("add").addEventListener("click", _code.onAddClick);
 document.querySelector('#reset').addEventListener('click', _code.reset); //document.querySelector('#trash0').addEventListener('click', removeForm);
 },{"./code":"js/code.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -456,7 +456,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61091" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54815" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
