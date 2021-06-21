@@ -104,7 +104,9 @@ main {
 }
 
 .container {
+  display: flex;
   padding-bottom: 50px;
+  flex-direction: column;
 }
 
 .mid__price {
@@ -114,6 +116,7 @@ main {
 
 .mid__price_content {
   display: flex;
+  flex-direction: row;
 }
 
 .section  {
@@ -188,7 +191,7 @@ main {
   background-position: center;
   background-color: #05B595;
   display: flex;
-  margin: auto auto auto 25px;
+  margin: auto 25px auto 25px;
 }
 
 .trash {
@@ -215,42 +218,37 @@ main {
   visibility: visible;
 }
 
-.footer {
+.mid__price_results {
   background-color: #313060;
+  border-radius: 10px;
+  padding: 20px;
   color: white;
-  bottom: 0;
-  width: 100%;
   font-size: 20px;
-  height: 160px;
+  height: 200px;
   display: flex;
-  flex: 0 0 auto;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-family: 'Red Hat Text', sans-serif;  
+  font-family: 'Red Hat Text', sans-serif;
+  transition: height .35s linear;  
 }
 
-.foot {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  justify-content: space-between;
-  width: 369px;
-  transition: width .35s linear;
+
+.mid__price_results.is-bigger {
+  height: 255px;
 }
 
-.foot.is-bigger {
-  width: 423px;
+.price__mp_results {
+  padding-top: 25px;
 }
 
-.textFoot {
+.text__mp_results {
   position: relative;
   display: flex;
   justify-content: flex-start;
   font-size: 16px;
 }
 
-.valuesFoot {
+.values__mp_result {
   position: relative;
   display: flex;
   margin-top: 10px;
@@ -260,8 +258,8 @@ main {
 
 .reset {
   background-color: white;
-  position: relative;
   display: flex;
+  margin-top: 25px;
   border-radius: 35px;
   width: 39px;
   height: 39px;

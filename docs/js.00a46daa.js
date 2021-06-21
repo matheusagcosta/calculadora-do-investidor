@@ -396,10 +396,10 @@ var attFooter = function attFooter() {
   document.getElementById("vPM").innerHTML = "R$ ".concat(avgPrice);
 
   if (tot == 0 && avgPrice == 0) {
-    document.getElementById("foot").className = "foot";
+    document.getElementById("mid__price_results").className = "mid__price_results";
     document.getElementById("reset").className = "reset";
   } else {
-    document.getElementById("foot").className = "foot is-bigger";
+    document.getElementById("mid__price_results").className = "mid__price_results is-bigger";
     document.getElementById("reset").className = "reset is-shown";
   }
 };
@@ -456,7 +456,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54815" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61954" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

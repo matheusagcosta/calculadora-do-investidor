@@ -266,10 +266,10 @@ export const attFooter = () => {
   document.getElementById("vTot").innerHTML = `${tot}`;
   document.getElementById("vPM").innerHTML = `R$ ${avgPrice}`;
   if (tot == 0 && avgPrice == 0) {
-    document.getElementById("foot").className = "foot";
+    document.getElementById("mid__price_results").className = "mid__price_results";
     document.getElementById("reset").className = "reset";
   } else {
-    document.getElementById("foot").className = "foot is-bigger";
+    document.getElementById("mid__price_results").className = "mid__price_results is-bigger";
     document.getElementById("reset").className = "reset is-shown";
   }
 };
