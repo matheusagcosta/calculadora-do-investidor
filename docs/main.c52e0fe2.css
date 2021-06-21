@@ -52,10 +52,42 @@ input:focus {
   font-family: 'Nunito', sans-serif;
   font-size: 16px;
   font-weight: bold;
-  line-height: 22px;
   display: flex;
-  justify-content: center;
   flex: 0 0 auto;
+}
+
+.logo {
+  display: flex;
+}
+
+.header__info {
+  display: flex;
+  margin: 0 0 0 auto;
+}
+
+.header__link {
+  position: relative;
+  border-radius: 10px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.header__link:not(.is-active) {
+  color: var(--colorDarkBlue);
+}
+
+.header__link.is-active {
+  background-color: var(--colorDarkBlue);
+  color: var(--colorWhite);
+}
+
+.header__icon {
+  fill: var(--colorDarkBlue);
+  margin-right: 5px;
+}
+
+.header__link.is-active .header__icon {
+  fill: var(--colorWhite);
 }
 
 main {
@@ -70,38 +102,6 @@ main {
   font-family: 'Nunito Sans', sans-serif;
   font-size: 30px;
   line-height: 41px;
-}
-
-.header_navigation {
-  display: flex;
-}
-
-.header__link {
-  position: relative;
-  border-radius: 10px;
-  padding: 10px;
-  text-decoration: none;
-}
-
-.header__link:not(:first-of-type) {
-  margin-left: 10px;
-}
-
-.header__link:not(.is-active) {
-  color: var(--colorDarkBlue);
-}
-
-.header__link.is-active {
-  background-color: var(--colorDarkBlue);
-  color: var(--colorWhite);
-}
-
-.header__icon {
-  fill: var(--colorDarkBlue);
-}
-
-.header__link.is-active .header__icon {
-  fill: var(--colorWhite);
 }
 
 .container {
