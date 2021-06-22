@@ -44,7 +44,7 @@ input:focus {
 }
 
 .header {
-  background-color: #F8F8FF;
+  background-color: #F2F4FF;
   text-align: center;
   margin: 30px 30px 0 30px;
   border-radius: 7px;
@@ -96,6 +96,10 @@ input:focus {
   font-family: 'Nunito Sans', sans-serif;
 }
 
+.title__mp_ico {
+  margin-right: 10px;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -125,7 +129,7 @@ main {
 }
 
 .mid__price_info {
-  background-color: #F8F8FF;
+  background-color: #F2F4FF;
   border-radius: 10px;
   color: #313060;
   display: flex;
@@ -184,8 +188,8 @@ main {
 
 #add {
   border-radius: 20px;
-  width: 39px;
-  height: 39px;
+  width: 40px;
+  height: 40px;
   background-image: url(../svg/add.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -196,8 +200,8 @@ main {
 
 .trash {
   background-color: #B03500;
-  width: 39px;
-  height: 39px;
+  width: 40px;
+  height: 40px;
   border-radius: 20px;
   background-image: url(../svg/trash.svg);
   background-repeat: no-repeat;
@@ -259,13 +263,13 @@ main {
   background-color: white;
   display: flex;
   margin-top: 25px;
-  border-radius: 35px;
-  width: 39px;
-  height: 39px;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
   background-image: url(../svg/reset.svg);
   background-repeat: no-repeat;
   background-position: center;
-  transition: transform .6s linear .15s, opacity .5s linear;
+  transition: transform .5s linear .15s, opacity .5s linear;
   transform: rotate(0);
   transform-origin: center;
   position: absolute;
