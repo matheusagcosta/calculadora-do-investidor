@@ -119,12 +119,12 @@ main {
   flex-direction: row;
 }
 
-.section  {
+.mid__price_section  {
   display: flex;
   flex-direction: row;
 }
 
-.info {
+.mid__price_info {
   background-color: #F8F8FF;
   border-radius: 10px;
   color: #313060;
@@ -138,37 +138,37 @@ main {
   transition: height .35s linear;
 }
 
-.info.is-bigger {
+.mid__price_info.is-bigger {
   height: 255px;
 }
 
-.info:first-child {
+.mid__price_info:first-child {
   visibility: visible;
 }
 
-.info.is-bigger:not(:first-child) {
+.mid__price_info.is-bigger:not(:first-child) {
   margin-left: 25px;
 }
 
-.qInfo {
+.quantity__mp_info {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-.pInfo {
+.price__mp_info {
   position: relative;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 }
 
-.textInfo {
+.text__mp_info {
   position: relative;
   display: flex;
 }
 
-.valuesInfo {
+.values__mp_info {
   position: relative;
   margin-top: 12px;
   border-radius: 4px;
@@ -231,7 +231,6 @@ main {
   font-family: 'Red Hat Text', sans-serif;
   transition: height .35s linear;  
 }
-
 
 .mid__price_results.is-bigger {
   height: 255px;

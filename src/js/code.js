@@ -48,7 +48,7 @@ export const onAddClick = () => {
       addTrashClick(index);
     };
 
-    for (let count = 0; count < document.getElementsByClassName("info").length; count++) {
+    for (let count = 0; count < document.getElementsByClassName("mid__price_info").length; count++) {
       setBorderColor(`quantity${activedInfo}`, "none");
       setBorderColor(`price${activedInfo}`, "none");
     }
@@ -59,8 +59,8 @@ export const onAddClick = () => {
 
 const validateInputs = (activedInfo) => {
 
-  valueQ = document.getElementsByName("quantityN")[activedInfo].value;
-  valueP = document.getElementsByName("priceN")[activedInfo].value;
+  valueQ = document.getElementsByName("quantity__input_mp")[activedInfo].value;
+  valueP = document.getElementsByName("price__input_mp")[activedInfo].value;
   
   if (checkAll(valueQ, valueP, activedInfo)) {
     valueQ = parseInt(valueQ);
@@ -140,14 +140,14 @@ const calcNewValues = (valueQ, valueP) => {
 };
 
 const setBiggerInfo = (activedInfo) => {
-  if (document.getElementsByClassName("info").length == 2) {
+  if (document.getElementsByClassName("mid__price_info").length == 2) {
     document
-      .getElementsByClassName("info")[0]
-      .setAttribute("class", "info is-bigger");
+      .getElementsByClassName("mid__price_info")[0]
+      .setAttribute("class", "mid__price_info is-bigger");
   }
   document
-    .getElementsByClassName("info")
-    [activedInfo + 1].setAttribute("class", "info is-bigger");
+    .getElementsByClassName("mid__price_info")
+    [activedInfo + 1].setAttribute("class", "mid__price_info is-bigger");
 };
 
 const showTrashButton = (activedInfo) => {
@@ -157,21 +157,21 @@ const showTrashButton = (activedInfo) => {
 
 const generateNewInfo = (activedInfo) => {
   const html = `
-    <div class="info">
-      <div class="qInfo">
-        <label for="quantityN"  class="textInfo">Quantidade:</label>
-        <input type="text" class="valuesInfo" name="quantityN" id="quantity${activedInfo + 1}" placeholder="0" autocomplete="off" min="0" value="">
+    <div class="mid__price_info">
+      <div class="quantity__mp_info">
+        <label for="quantity__input_mp"  class="text__mp_info">Quantidade:</label>
+        <input type="text" class="values__mp_info" name="quantity__input_mp" id="quantity${activedInfo + 1}" placeholder="0" autocomplete="off" min="0" value="">
       </div>
-      <div class="pInfo">
-        <label for="priceN" class="textInfo">Preço:</label>
-        <input type="text" class="valuesInfo" name="priceN" id="price${activedInfo + 1}" placeholder="R$ 0,00" autocomplete="off" min="0" value=""> 
+      <div class="price__mp_info">
+        <label for="price__input_mp" class="text__mp_info">Preço:</label>
+        <input type="text" class="values__mp_info" name="price__input_mp" id="price${activedInfo + 1}" placeholder="R$ 0,00" autocomplete="off" min="0" value=""> 
       </div>
       <div class="trash_button" id="trash_button">
         <button class="trash" id="trash${activedInfo + 1}"></button>
       </div>
     </div>
   `;
-  document.getElementById("section").innerHTML += html;
+  document.getElementById("mid__price_section").innerHTML += html;
 };
 
 const addTrashClick = (selector) => {
@@ -191,12 +191,12 @@ const remTrashClick = (selector) => {
 };
 
 const keepValuesOnDisplay = (arrValues) => {
-  for (let u = 0; u < document.getElementsByClassName("info").length - 1; u++) {
+  for (let u = 0; u < document.getElementsByClassName("mid__price_info").length - 1; u++) {
     document
-      .getElementsByName("quantityN")
+      .getElementsByName("quantity__input_mp")
       [u].setAttribute("value", `${arrValues[u][0]}`);
     document
-      .getElementsByName("priceN")
+      .getElementsByName("price__input_mp")
       [u].setAttribute("value", `${arrValues[u][1].toFixed(2)}`);
   };
 };
@@ -209,13 +209,13 @@ const removeInfo = (trashID) => {
     };
   };
 
-  document.getElementsByClassName("info")[trashID].remove();
+  document.getElementsByClassName("mid__price_info")[trashID].remove();
 
   for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
     addTrashClick(index);
   };
 
-  for (let id = 0; id < document.getElementsByClassName("info").length; id ++) {
+  for (let id = 0; id < document.getElementsByClassName("mid__price_info").length; id ++) {
     changeId(id);
   };
 
@@ -226,7 +226,7 @@ const removeInfo = (trashID) => {
 
   activedInfo -= 1;
 
-  if (document.getElementsByClassName("info").length == 1) {
+  if (document.getElementsByClassName("mid__price_info").length == 1) {
     uniqueInfo();
   };
 };
@@ -241,8 +241,8 @@ const recalcValues = (arrValues, trashID) => {
 
 const changeId = (id) => {
   document.getElementsByClassName("trash")[id].setAttribute("id", `trash${id}`);
-  document.getElementsByName("quantityN")[id].setAttribute("id", `quantity${id}`);
-  document.getElementsByName("priceN")[id].setAttribute("id", `price${id}`);
+  document.getElementsByName("quantity__input_mp")[id].setAttribute("id", `quantity${id}`);
+  document.getElementsByName("price__input_mp")[id].setAttribute("id", `price${id}`);
 };
 
 const handleValues = (arrValues) => {
@@ -258,13 +258,13 @@ const handleValues = (arrValues) => {
 };
 
 const uniqueInfo = () => {
-  document.getElementsByClassName("info")[0].setAttribute("class", "info");
+  document.getElementsByClassName("mid__price_info")[0].setAttribute("class", "mid__price_info");
   activedInfo = 0;
 };
 
 export const attFooter = () => {
-  document.getElementById("vTot").innerHTML = `${tot}`;
-  document.getElementById("vPM").innerHTML = `R$ ${avgPrice}`;
+  document.getElementById("total__mp_result").innerHTML = `${tot}`;
+  document.getElementById("average__mp_result").innerHTML = `R$ ${avgPrice}`;
   if (tot == 0 && avgPrice == 0) {
     document.getElementById("mid__price_results").className = "mid__price_results";
     document.getElementById("reset").className = "reset";
@@ -275,9 +275,9 @@ export const attFooter = () => {
 };
 
 export const reset = () => {
-  if (document.getElementsByClassName("info").length > 1) {
-    if (document.getElementsByClassName("info").length > 2) {
-      for (let w = document.getElementsByClassName("info").length - 2; w > 0; w--) {
+  if (document.getElementsByClassName("mid__price_info").length > 1) {
+    if (document.getElementsByClassName("mid__price_info").length > 2) {
+      for (let w = document.getElementsByClassName("mid__price_info").length - 2; w > 0; w--) {
         removeInfo(w);
       }
       removeInfo(0);
