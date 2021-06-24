@@ -8,18 +8,13 @@
   box-sizing: border-box;
 }
 
-html {
-  height: 100%;
-  width: 100%;
-}
-
 body {
   background-color: white;
+  height: 100%;
   margin: 30px;
-  padding: 0px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  
 }
 
 button {
@@ -116,11 +111,14 @@ main {
 .mid__price_content {
   display: flex;
   flex-direction: row;
+  max-width: 100%;
 }
 
 .mid__price_section  {
   display: flex;
   flex-direction: row;
+  max-width: 100%;
+  overflow: auto;
 }
 
 .mid__price_info {
@@ -185,7 +183,7 @@ main {
   border-radius: 20px;
   width: 40px;
   height: 40px;
-  background-image: url(./add.d3e3ad13.svg);
+  background-image: url(/add.d3e3ad13.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-color: #05B595;
@@ -199,7 +197,7 @@ main {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background-image: url(./trash.0ef05b20.svg);
+  background-image: url(/trash.0ef05b20.svg);
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
@@ -222,7 +220,6 @@ main {
   background-color: #313060;
   border-radius: 10px;
   padding: 20px;
-  margin-right: 75px;
   color: white;
   font-size: 20px;
   height: 200px;
@@ -264,7 +261,7 @@ main {
   border-radius: 20px;
   width: 40px;
   height: 40px;
-  background-image: url(./reset.6c29aed7.svg);
+  background-image: url(/reset.6c29aed7.svg);
   background-repeat: no-repeat;
   background-position: center;
   transition: transform .5s linear .15s, opacity .5s linear;

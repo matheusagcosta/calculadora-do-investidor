@@ -8,18 +8,13 @@
   box-sizing: border-box;
 }
 
-html {
-  height: 100%;
-  width: 100%;
-}
-
 body {
   background-color: white;
+  height: 100%;
   margin: 30px;
-  padding: 0px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  
 }
 
 button {
@@ -116,11 +111,14 @@ main {
 .mid__price_content {
   display: flex;
   flex-direction: row;
+  max-width: 100%;
 }
 
 .mid__price_section  {
   display: flex;
   flex-direction: row;
+  max-width: 100%;
+  overflow: auto;
 }
 
 .mid__price_info {
@@ -222,7 +220,6 @@ main {
   background-color: #313060;
   border-radius: 10px;
   padding: 20px;
-  margin-right: 75px;
   color: white;
   font-size: 20px;
   height: 200px;
