@@ -4,6 +4,15 @@
   --colorRed: #FF0000;
 }
 
+::-webkit-scrollbar {
+  height: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--colorDarkBlue);
+  border-radius: 7px;
+}
+
 * {
   box-sizing: border-box;
 }
