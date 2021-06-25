@@ -192,7 +192,7 @@ main {
   border-radius: 20px;
   width: 40px;
   height: 40px;
-  background-image: url(./add.d3e3ad13.svg);
+  background-image: url(/add.d3e3ad13.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-color: #05B595;
@@ -206,7 +206,7 @@ main {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background-image: url(./trash.0ef05b20.svg);
+  background-image: url(/trash.0ef05b20.svg);
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
@@ -270,7 +270,7 @@ main {
   border-radius: 20px;
   width: 40px;
   height: 40px;
-  background-image: url(./reset.6c29aed7.svg);
+  background-image: url(/reset.6c29aed7.svg);
   background-repeat: no-repeat;
   background-position: center;
   transition: transform .5s linear .15s, opacity .5s linear;
