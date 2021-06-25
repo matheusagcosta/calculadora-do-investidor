@@ -48,7 +48,7 @@ export const onAddClick = () => {
       addTrashClick(index);
     };
 
-    for (let count = 0; count < document.getElementsByClassName("mid__price_info").length; count++) {
+    for (let count = 0; count < document.getElementsByClassName("mid-price--info").length; count++) {
       setBorderColor(`quantity${activedInfo}`, "none");
       setBorderColor(`price${activedInfo}`, "none");
     }
@@ -59,8 +59,8 @@ export const onAddClick = () => {
 
 const validateInputs = (activedInfo) => {
 
-  valueQ = document.getElementsByName("quantity__input_mp")[activedInfo].value;
-  valueP = document.getElementsByName("price__input_mp")[activedInfo].value;
+  valueQ = document.getElementsByName("quantity-mp__input")[activedInfo].value;
+  valueP = document.getElementsByName("price-mp__input")[activedInfo].value;
   
   if (checkAll(valueQ, valueP, activedInfo)) {
     valueQ = parseInt(valueQ);
@@ -140,38 +140,38 @@ const calcNewValues = (valueQ, valueP) => {
 };
 
 const setBiggerInfo = (activedInfo) => {
-  if (document.getElementsByClassName("mid__price_info").length == 2) {
+  if (document.getElementsByClassName("mid-price--info").length == 2) {
     document
-      .getElementsByClassName("mid__price_info")[0]
-      .setAttribute("class", "mid__price_info is-bigger");
+      .getElementsByClassName("mid-price--info")[0]
+      .setAttribute("class", "mid-price--info is-bigger");
   }
   document
-    .getElementsByClassName("mid__price_info")
-    [activedInfo + 1].setAttribute("class", "mid__price_info is-bigger");
+    .getElementsByClassName("mid-price--info")
+    [activedInfo + 1].setAttribute("class", "mid-price--info is-bigger");
 };
 
 const showTrashButton = (activedInfo) => {
-  document.getElementsByClassName("trash_button")[activedInfo].className =
-    "trash_button is-shown";
+  document.getElementsByClassName("trash-button")[activedInfo].className =
+    "trash-button is-shown";
 };
 
 const generateNewInfo = (activedInfo) => {
   const html = `
-    <div class="mid__price_info">
-      <div class="quantity__mp_info">
-        <label for="quantity__input_mp"  class="text__mp_info">Quantidade:</label>
-        <input type="text" class="values__mp_info" name="quantity__input_mp" id="quantity${activedInfo + 1}" placeholder="0" autocomplete="off" min="0" value="">
+    <div class="mid-price--info">
+      <div class="quantity-mp--info">
+        <label for="quantity-mp__input"  class="text-mp--info">Quantidade:</label>
+        <input type="text" class="values-mp--info" name="quantity-mp__input" id="quantity${activedInfo + 1}" placeholder="0" autocomplete="off" min="0" value="">
       </div>
-      <div class="price__mp_info">
-        <label for="price__input_mp" class="text__mp_info">Preço:</label>
-        <input type="text" class="values__mp_info" name="price__input_mp" id="price${activedInfo + 1}" placeholder="R$ 0,00" autocomplete="off" min="0" value=""> 
+      <div class="price-mp--info">
+        <label for="price-mp__input" class="text-mp--info">Preço:</label>
+        <input type="text" class="values-mp--info" name="price-mp__input" id="price${activedInfo + 1}" placeholder="R$ 0,00" autocomplete="off" min="0" value=""> 
       </div>
-      <div class="trash_button" id="trash_button">
+      <div class="trash-button" id="trash-button">
         <button class="trash" id="trash${activedInfo + 1}"></button>
       </div>
     </div>
   `;
-  document.getElementById("mid__price_section").innerHTML += html;
+  document.getElementById("mid-price--section").innerHTML += html;
 };
 
 const addTrashClick = (selector) => {
@@ -191,12 +191,12 @@ const remTrashClick = (selector) => {
 };
 
 const keepValuesOnDisplay = (arrValues) => {
-  for (let u = 0; u < document.getElementsByClassName("mid__price_info").length - 1; u++) {
+  for (let u = 0; u < document.getElementsByClassName("mid-price--info").length - 1; u++) {
     document
-      .getElementsByName("quantity__input_mp")
+      .getElementsByName("quantity-mp__input")
       [u].setAttribute("value", `${arrValues[u][0]}`);
     document
-      .getElementsByName("price__input_mp")
+      .getElementsByName("price-mp__input")
       [u].setAttribute("value", `${arrValues[u][1].toFixed(2)}`);
   };
 };
@@ -209,13 +209,13 @@ const removeInfo = (trashID) => {
     };
   };
 
-  document.getElementsByClassName("mid__price_info")[trashID].remove();
+  document.getElementsByClassName("mid-price--info")[trashID].remove();
 
   for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
     addTrashClick(index);
   };
 
-  for (let id = 0; id < document.getElementsByClassName("mid__price_info").length; id ++) {
+  for (let id = 0; id < document.getElementsByClassName("mid-price--info").length; id ++) {
     changeId(id);
   };
 
@@ -226,7 +226,7 @@ const removeInfo = (trashID) => {
 
   activedInfo -= 1;
 
-  if (document.getElementsByClassName("mid__price_info").length == 1) {
+  if (document.getElementsByClassName("mid-price--info").length == 1) {
     uniqueInfo();
   };
 };
@@ -241,8 +241,8 @@ const recalcValues = (arrValues, trashID) => {
 
 const changeId = (id) => {
   document.getElementsByClassName("trash")[id].setAttribute("id", `trash${id}`);
-  document.getElementsByName("quantity__input_mp")[id].setAttribute("id", `quantity${id}`);
-  document.getElementsByName("price__input_mp")[id].setAttribute("id", `price${id}`);
+  document.getElementsByName("quantity-mp__input")[id].setAttribute("id", `quantity${id}`);
+  document.getElementsByName("price-mp__input")[id].setAttribute("id", `price${id}`);
 };
 
 const handleValues = (arrValues) => {
@@ -258,26 +258,26 @@ const handleValues = (arrValues) => {
 };
 
 const uniqueInfo = () => {
-  document.getElementsByClassName("mid__price_info")[0].setAttribute("class", "mid__price_info");
+  document.getElementsByClassName("mid-price--info")[0].setAttribute("class", "mid-price--info");
   activedInfo = 0;
 };
 
 export const attFooter = () => {
-  document.getElementById("total__mp_result").innerHTML = `${tot}`;
-  document.getElementById("average__mp_result").innerHTML = `R$ ${avgPrice}`;
+  document.getElementById("results-mp--total").innerHTML = `${tot}`;
+  document.getElementById("results-mp--average").innerHTML = `R$ ${avgPrice}`;
   if (tot == 0 && avgPrice == 0) {
-    document.getElementById("mid__price_results").className = "mid__price_results";
+    document.getElementById("results").className = "results";
     document.getElementById("reset").className = "reset";
   } else {
-    document.getElementById("mid__price_results").className = "mid__price_results is-bigger";
+    document.getElementById("results").className = "results is-bigger";
     document.getElementById("reset").className = "reset is-shown";
   }
 };
 
 export const reset = () => {
-  if (document.getElementsByClassName("mid__price_info").length > 1) {
-    if (document.getElementsByClassName("mid__price_info").length > 2) {
-      for (let w = document.getElementsByClassName("mid__price_info").length - 2; w > 0; w--) {
+  if (document.getElementsByClassName("mid-price--info").length > 1) {
+    if (document.getElementsByClassName("mid-price--info").length > 2) {
+      for (let w = document.getElementsByClassName("mid-price--info").length - 2; w > 0; w--) {
         removeInfo(w);
       }
       removeInfo(0);

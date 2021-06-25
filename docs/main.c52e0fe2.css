@@ -72,7 +72,7 @@ main {
   display: flex;
 }
 
-.header__info {
+.header--info {
   display: flex;
   margin: 0 0 0 auto;
 }
@@ -108,29 +108,29 @@ main {
   font-family: 'Nunito Sans', sans-serif;
 }
 
-.title__mp_ico {
+.title__ico {
   margin-right: 10px;
 }
 
-.mid__price {
+.mid-price {
   display: flex;
   flex-direction: column;
 }
 
-.mid__price_content {
+.mid-price--content {
   display: flex;
   flex-direction: row;
   max-width: 100%;
 }
 
-.mid__price_section  {
+.mid-price--section {
   display: flex;
   flex-direction: row;
   max-width: 100%;
   overflow: auto;
 }
 
-.mid__price_info {
+.mid-price--info {
   background-color: #F2F4FF;
   border-radius: 10px;
   color: #313060;
@@ -144,37 +144,37 @@ main {
   transition: height .35s linear;
 }
 
-.mid__price_info.is-bigger {
+.mid-price--info.is-bigger {
   height: 255px;
 }
 
-.mid__price_info:first-child {
+.mid-price--info:first-child {
   visibility: visible;
 }
 
-.mid__price_info.is-bigger:not(:first-child) {
+.mid-price--info.is-bigger:not(:first-child) {
   margin-left: 25px;
 }
 
-.quantity__mp_info {
+.quantity-mp--info {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-.price__mp_info {
+.price-mp--info {
   position: relative;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 }
 
-.text__mp_info {
+.text-mp--info {
   position: relative;
   display: flex;
 }
 
-.values__mp_info {
+.values-mp--info {
   position: relative;
   margin-top: 12px;
   border-radius: 4px;
@@ -192,7 +192,7 @@ main {
   border-radius: 20px;
   width: 40px;
   height: 40px;
-  background-image: url(/add.d3e3ad13.svg);
+  background-image: url(./add.d3e3ad13.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-color: #05B595;
@@ -206,13 +206,13 @@ main {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background-image: url(/trash.0ef05b20.svg);
+  background-image: url(./trash.0ef05b20.svg);
   background-repeat: no-repeat;
   background-position: center;
   display: flex;
 }
 
-.trash_button {
+.trash-button {
   margin: 15px auto 0 auto;
   opacity: 0;
   transition: all .5s linear;
@@ -220,12 +220,12 @@ main {
   overflow: hidden;
 }
 
-.trash_button.is-shown {
+.trash-button.is-shown {
   opacity: 1;
   visibility: visible;
 }
 
-.mid__price_results {
+.results {
   background-color: #313060;
   border-radius: 10px;
   padding: 20px;
@@ -240,22 +240,22 @@ main {
   transition: height .35s linear;  
 }
 
-.mid__price_results.is-bigger {
+.results.is-bigger {
   height: 255px;
 }
 
-.price__mp_results {
+.results-mp--price {
   padding-top: 25px;
 }
 
-.text__mp_results {
+.results-mp--text {
   position: relative;
   display: flex;
   justify-content: flex-start;
   font-size: 16px;
 }
 
-.values__mp_result {
+.results-mp--values {
   position: relative;
   display: flex;
   margin-top: 10px;
@@ -270,7 +270,7 @@ main {
   border-radius: 20px;
   width: 40px;
   height: 40px;
-  background-image: url(/reset.6c29aed7.svg);
+  background-image: url(./reset.6c29aed7.svg);
   background-repeat: no-repeat;
   background-position: center;
   transition: transform .5s linear .15s, opacity .5s linear;
