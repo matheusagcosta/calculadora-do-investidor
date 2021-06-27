@@ -30,6 +30,17 @@ const money = new Intl.NumberFormat("pt-BR", {
   minimumFractionDigits: 2,
 });
 
+export const updateVal = () => {
+  console.log('a');
+};
+
+const addInputEvent = () => {
+  for (let id = 0; id < document.getElementsByClassName("mid-price--info").length; id++) {
+    document.getElementsByName("quantity-mp__input")[id].addEventListener("input", updateVal);
+    document.getElementsByName("price-mp__input")[id].addEventListener("input", updateVal);
+  };
+};
+
 export const onAddClick = () => {
 
   if (validateInputs(activedInfo)) {
@@ -52,6 +63,8 @@ export const onAddClick = () => {
       setBorderColor(`quantity${activedInfo}`, "none");
       setBorderColor(`price${activedInfo}`, "none");
     }
+
+    addInputEvent();
   
     activedInfo += 1;
   };
