@@ -215,50 +215,13 @@ var validateInputs = function validateInputs(activedInfo) {
   ;
 };
 
-var handleComma = function handleComma(valueP) {
-  if (valueP.replace(/,/g, ".")) {
-    valueP = valueP.replace(/,/g, ".");
-  }
-
-  ;
-  return valueP;
-};
-
-var setBorderColor = function setBorderColor(id, color) {
-  document.getElementById("".concat(id)).setAttribute("style", "border-color: ".concat(color, ";"));
-};
-
 var checkAll = function checkAll(valueQ, valueP, activedInfo) {
   var result = true;
-  result = checkZeros(valueQ, valueP, activedInfo);
-  result = checkOnlyChar(valueQ, valueP, activedInfo);
+  result = checkChar(valueQ, valueP, activedInfo);
   return result;
 };
 
-var checkZeros = function checkZeros(valueQ, valueP, activedInfo) {
-  var resultZeros = true;
-
-  if (valueQ == 0) {
-    setBorderColor("quantity".concat(activedInfo), "red");
-    document.getElementById("results-mp--total").innerHTML = "-";
-    document.getElementById("results-mp--average").innerHTML = "R$ -";
-    resultZeros = false;
-  }
-
-  ;
-
-  if (valueP == 0) {
-    setBorderColor("price".concat(activedInfo), "red");
-    document.getElementById("results-mp--total").innerHTML = "-";
-    document.getElementById("results-mp--average").innerHTML = "R$ -";
-    resultZeros = false;
-  }
-
-  ;
-  return resultZeros;
-};
-
-var checkOnlyChar = function checkOnlyChar(valueQ, valueP, activedInfo) {
+var checkChar = function checkChar(valueQ, valueP, activedInfo) {
   var resultOnlyChar = true;
   var validateQuantity = new RegExp("[0-9]+");
   var validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
@@ -283,6 +246,19 @@ var checkOnlyChar = function checkOnlyChar(valueQ, valueP, activedInfo) {
 
   ;
   return resultOnlyChar;
+};
+
+var handleComma = function handleComma(valueP) {
+  if (valueP.replace(/,/g, ".")) {
+    valueP = valueP.replace(/,/g, ".");
+  }
+
+  ;
+  return valueP;
+};
+
+var setBorderColor = function setBorderColor(id, color) {
+  document.getElementById("".concat(id)).setAttribute("style", "border-color: ".concat(color, ";"));
 };
 
 var calcValues = function calcValues(valueQ, valueP) {
@@ -525,7 +501,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61273" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55050" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

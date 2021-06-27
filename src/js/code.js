@@ -87,42 +87,14 @@ const validateInputs = (activedInfo) => {
   };
 };
 
-const handleComma = (valueP) => {
-  if (valueP.replace(/,/g, ".")) {
-    valueP = valueP.replace(/,/g, ".");
-  };
-  return valueP;
-};
-
-const setBorderColor = (id, color) => {
-  document.getElementById(`${id}`).setAttribute("style", `border-color: ${color};`)
-};
-
 const checkAll = (valueQ, valueP, activedInfo) => {
   let result = true;
-  result = checkZeros(valueQ, valueP, activedInfo);
-  result = checkOnlyChar(valueQ, valueP, activedInfo);
+  
+  result = checkChar(valueQ, valueP, activedInfo);
   return result;
 };
 
-const checkZeros = (valueQ, valueP, activedInfo) => {
-  let resultZeros = true;
-  if (valueQ == 0) {
-    setBorderColor(`quantity${activedInfo}`, "red");
-    document.getElementById("results-mp--total").innerHTML = `-`;
-    document.getElementById("results-mp--average").innerHTML = `R$ -`;
-    resultZeros = false;
-  };
-  if (valueP == 0) {
-    setBorderColor(`price${activedInfo}`, "red");
-    document.getElementById("results-mp--total").innerHTML = `-`;
-    document.getElementById("results-mp--average").innerHTML = `R$ -`;
-    resultZeros = false;
-  };
-  return resultZeros;
-};
-
-const checkOnlyChar = (valueQ, valueP, activedInfo) => {
+const checkChar = (valueQ, valueP, activedInfo) => {
   let resultOnlyChar = true;
   const validateQuantity = new RegExp("[0-9]+");
   const validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
@@ -144,6 +116,17 @@ const checkOnlyChar = (valueQ, valueP, activedInfo) => {
     resultOnlyChar = false;
   };
   return resultOnlyChar;
+};
+
+const handleComma = (valueP) => {
+  if (valueP.replace(/,/g, ".")) {
+    valueP = valueP.replace(/,/g, ".");
+  };
+  return valueP;
+};
+
+const setBorderColor = (id, color) => {
+  document.getElementById(`${id}`).setAttribute("style", `border-color: ${color};`)
 };
 
 const calcValues = (valueQ, valueP, choice="", index) => {
