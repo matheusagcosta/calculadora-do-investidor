@@ -123,12 +123,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reset = exports.attFooter = exports.onAddClick = exports.updateVal = void 0;
+exports.reset = exports.onAddClick = exports.updateVal = void 0;
 var avgPrice = 0;
 var tot = 0;
 var products = 0;
 var arrValues = [];
-var arrFunct = [];
+var arrFunctTrash = [];
+var arrFunctInput = [];
 var activedInfo = 0;
 var valueQ = "";
 var valueP = "";
@@ -146,20 +147,11 @@ var money = new Intl.NumberFormat("pt-BR", {
   minimumFractionDigits: 2
 });
 
-var updateVal = function updateVal() {
-  console.log('a');
+var updateVal = function updateVal(index) {
+  console.log(index);
 };
 
 exports.updateVal = updateVal;
-
-var addInputEvent = function addInputEvent() {
-  for (var id = 0; id < document.getElementsByClassName("mid-price--info").length; id++) {
-    document.getElementsByName("quantity-mp__input")[id].addEventListener("input", updateVal);
-    document.getElementsByName("price-mp__input")[id].addEventListener("input", updateVal);
-  }
-
-  ;
-};
 
 var onAddClick = function onAddClick() {
   if (validateInputs(activedInfo)) {
@@ -170,13 +162,13 @@ var onAddClick = function onAddClick() {
     keepValuesOnDisplay(arrValues);
     attFooter();
 
-    for (var index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
-      if (arrFunct[index]) {
-        remTrashClick(index);
+    for (var index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
+      if (arrFunctTrash[index]) {
+        remEvents(index);
       }
 
       ;
-      addTrashClick(index);
+      addEvents(index);
     }
 
     ;
@@ -186,7 +178,7 @@ var onAddClick = function onAddClick() {
       setBorderColor("price".concat(activedInfo), "none");
     }
 
-    addInputEvent();
+    ;
     activedInfo += 1;
   }
 
@@ -307,24 +299,40 @@ var generateNewInfo = function generateNewInfo(activedInfo) {
   document.getElementById("mid-price--section").innerHTML += html;
 };
 
-var addTrashClick = function addTrashClick(selector) {
+var addEvents = function addEvents(selector) {
   var callRemove = function callRemove() {
     removeInfo(selector);
   };
 
-  document.getElementsByClassName("trash")[selector].addEventListener("click", callRemove);
+  var callInput = function callInput() {
+    updateVal(selector);
+  };
 
-  if (arrFunct[selector]) {
-    arrFunct[selector] = callRemove;
+  document.getElementsByClassName("trash")[selector].addEventListener("click", callRemove);
+  document.getElementsByName("quantity-mp__input")[selector].addEventListener("input", callInput);
+  document.getElementsByName("price-mp__input")[selector].addEventListener("input", callInput);
+
+  if (arrFunctTrash[selector]) {
+    arrFunctTrash[selector] = callRemove;
   } else {
-    arrFunct.push(callRemove);
+    arrFunctTrash.push(callRemove);
+  }
+
+  ;
+
+  if (arrFunctInput[selector]) {
+    arrFunctInput[selector] = callInput;
+  } else {
+    arrFunctInput.push(callInput);
   }
 
   ;
 };
 
-var remTrashClick = function remTrashClick(selector) {
-  document.getElementsByClassName("trash")[selector].removeEventListener("click", arrFunct[selector]);
+var remEvents = function remEvents(selector) {
+  document.getElementsByClassName("trash")[selector].removeEventListener("click", arrFunctTrash[selector]);
+  document.getElementsByName("quantity-mp__input")[selector].removeEventListener("input", arrFunctInput[selector]);
+  document.getElementsByName("price-mp__input")[selector].removeEventListener("input", arrFunctInput[selector]);
 };
 
 var keepValuesOnDisplay = function keepValuesOnDisplay(arrValues) {
@@ -338,8 +346,8 @@ var keepValuesOnDisplay = function keepValuesOnDisplay(arrValues) {
 
 var removeInfo = function removeInfo(trashID) {
   for (var index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
-    if (arrFunct[index]) {
-      remTrashClick(index);
+    if (arrFunctTrash[index]) {
+      remEvents(index);
     }
 
     ;
@@ -349,7 +357,7 @@ var removeInfo = function removeInfo(trashID) {
   document.getElementsByClassName("mid-price--info")[trashID].remove();
 
   for (var _index = 0; _index < document.getElementsByClassName("trash").length - 1; _index++) {
-    addTrashClick(_index);
+    addEvents(_index);
   }
 
   ;
@@ -420,8 +428,6 @@ var attFooter = function attFooter() {
   }
 };
 
-exports.attFooter = attFooter;
-
 var reset = function reset() {
   if (document.getElementsByClassName("mid-price--info").length > 1) {
     if (document.getElementsByClassName("mid-price--info").length > 2) {
@@ -444,8 +450,6 @@ var _code = require("./code");
 
 document.querySelector("#add").addEventListener("click", _code.onAddClick);
 document.querySelector('#reset').addEventListener("click", _code.reset);
-document.getElementsByName("quantity-mp__input")[0].addEventListener("input", _code.updateVal);
-document.getElementsByName("price-mp__input")[0].addEventListener("input", _code.updateVal);
 },{"./code":"js/code.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -474,7 +478,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52648" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63699" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

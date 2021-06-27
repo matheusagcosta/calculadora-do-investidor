@@ -2,7 +2,8 @@ let avgPrice = 0;
 let tot = 0;
 let products = 0;
 let arrValues = [];
-let arrFunct = [];
+let arrFunctTrash = [];
+let arrFunctInput = [];
 let activedInfo = 0;
 let valueQ = "";
 let valueP = "";
@@ -30,15 +31,10 @@ const money = new Intl.NumberFormat("pt-BR", {
   minimumFractionDigits: 2,
 });
 
-export const updateVal = () => {
-  console.log('a');
-};
-
-const addInputEvent = () => {
-  for (let id = 0; id < document.getElementsByClassName("mid-price--info").length; id++) {
-    document.getElementsByName("quantity-mp__input")[id].addEventListener("input", updateVal);
-    document.getElementsByName("price-mp__input")[id].addEventListener("input", updateVal);
-  };
+export const updateVal = (index) => {
+    
+  console.log(index)
+    
 };
 
 export const onAddClick = () => {
@@ -52,19 +48,17 @@ export const onAddClick = () => {
     keepValuesOnDisplay(arrValues);
     attFooter();
     
-    for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
-      if (arrFunct[index]) {
-        remTrashClick(index);
+    for (let index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
+      if (arrFunctTrash[index]) {
+        remEvents(index);
       };
-      addTrashClick(index);
+      addEvents(index);
     };
 
     for (let count = 0; count < document.getElementsByClassName("mid-price--info").length; count++) {
       setBorderColor(`quantity${activedInfo}`, "none");
       setBorderColor(`price${activedInfo}`, "none");
-    }
-
-    addInputEvent();
+    };
   
     activedInfo += 1;
   };
@@ -187,20 +181,38 @@ const generateNewInfo = (activedInfo) => {
   document.getElementById("mid-price--section").innerHTML += html;
 };
 
-const addTrashClick = (selector) => {
+const addEvents = (selector) => {
+
   const callRemove = () => {
     removeInfo(selector);
   };
-  document.getElementsByClassName("trash")[selector].addEventListener("click", callRemove)
-  if (arrFunct[selector]) {
-    arrFunct[selector] = callRemove;
-  } else {
-    arrFunct.push(callRemove);
+
+  const callInput = () => {
+    updateVal(selector);
   };
+
+  document.getElementsByClassName("trash")[selector].addEventListener("click", callRemove);
+  document.getElementsByName("quantity-mp__input")[selector].addEventListener("input", callInput);
+  document.getElementsByName("price-mp__input")[selector].addEventListener("input", callInput);
+
+  if (arrFunctTrash[selector]) {
+    arrFunctTrash[selector] = callRemove;
+  } else {
+    arrFunctTrash.push(callRemove);
+  };
+
+  if (arrFunctInput[selector]) {
+    arrFunctInput[selector] = callInput;
+  } else {
+    arrFunctInput.push(callInput);
+  };
+
 };
 
-const remTrashClick = (selector) => {
-  document.getElementsByClassName("trash")[selector].removeEventListener("click", arrFunct[selector]);
+const remEvents = (selector) => {
+  document.getElementsByClassName("trash")[selector].removeEventListener("click", arrFunctTrash[selector]);
+  document.getElementsByName("quantity-mp__input")[selector].removeEventListener("input", arrFunctInput[selector]);
+  document.getElementsByName("price-mp__input")[selector].removeEventListener("input", arrFunctInput[selector]);
 };
 
 const keepValuesOnDisplay = (arrValues) => {
@@ -217,15 +229,15 @@ const keepValuesOnDisplay = (arrValues) => {
 const removeInfo = (trashID) => {
 
   for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
-    if (arrFunct[index]) {
-      remTrashClick(index);
+    if (arrFunctTrash[index]) {
+      remEvents(index);
     };
   };
 
   document.getElementsByClassName("mid-price--info")[trashID].remove();
 
   for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
-    addTrashClick(index);
+    addEvents(index);
   };
 
   for (let id = 0; id < document.getElementsByClassName("mid-price--info").length; id ++) {
@@ -275,7 +287,7 @@ const uniqueInfo = () => {
   activedInfo = 0;
 };
 
-export const attFooter = () => {
+const attFooter = () => {
   document.getElementById("results-mp--total").innerHTML = `${tot}`;
   document.getElementById("results-mp--average").innerHTML = `R$ ${avgPrice}`;
   if (tot == 0 && avgPrice == 0) {
