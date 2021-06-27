@@ -149,7 +149,7 @@ var money = new Intl.NumberFormat("pt-BR", {
 
 var updateVal = function updateVal(index) {
   if (validateInputs(index)) {
-    calcValues(valueQ, valueP, "update");
+    calcValues(valueQ, valueP, "update", index);
     keepValuesOnDisplay(arrValues);
     attFooter();
 
@@ -279,6 +279,7 @@ var checkOnlyChar = function checkOnlyChar(valueQ, valueP, activedInfo) {
 
 var calcValues = function calcValues(valueQ, valueP) {
   var choice = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+  var index = arguments.length > 3 ? arguments[3] : undefined;
 
   if (choice == "new") {
     var arrTemp = [];
@@ -288,19 +289,26 @@ var calcValues = function calcValues(valueQ, valueP) {
     arrTemp = [];
     tot += valueQ;
     products += valueQ * valueP;
-
-    if (arrValues.length == 1) {
-      avgPrice = arrValues[0][1].toFixed(2);
-    } else {
-      avgPrice = (products / tot).toFixed(2);
-    }
-
-    ;
   }
 
   ;
 
-  if (choice == "update") {}
+  if (choice == "update") {
+    tot -= arrValues[index][0];
+    products -= arrValues[index][0] * arrValues[index][1];
+    arrValues[index][0] = valueQ;
+    arrValues[index][1] = valueP;
+    tot += valueQ;
+    products += valueQ * valueP;
+  }
+
+  ;
+
+  if (arrValues.length == 1) {
+    avgPrice = arrValues[0][1].toFixed(2);
+  } else {
+    avgPrice = (products / tot).toFixed(2);
+  }
 
   ;
 };
@@ -501,7 +509,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63480" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57440" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -35,7 +35,7 @@ export const updateVal = (index) => {
     
   if (validateInputs(index)) {
     
-    calcValues(valueQ, valueP, "update");
+    calcValues(valueQ, valueP, "update", index);
     keepValuesOnDisplay(arrValues);
     attFooter();
     
@@ -140,7 +140,7 @@ const checkOnlyChar = (valueQ, valueP, activedInfo) => {
   return resultOnlyChar;
 };
 
-const calcValues = (valueQ, valueP, choice="") => {
+const calcValues = (valueQ, valueP, choice="", index) => {
   
   if (choice=="new") {
     let arrTemp = [];
@@ -150,15 +150,22 @@ const calcValues = (valueQ, valueP, choice="") => {
     arrTemp = [];
     tot += valueQ;
     products += valueQ * valueP;
-    if (arrValues.length == 1) {
-      avgPrice = arrValues[0][1].toFixed(2);
-    } else {
-      avgPrice = (products / tot).toFixed(2);
-    };
   };
 
-  if (choice=="update") {};
+  if (choice=="update") {
+    tot -= arrValues[index][0];
+    products -= arrValues[index][0] * arrValues[index][1];
+    arrValues[index][0] = valueQ;
+    arrValues[index][1] = valueP;
+    tot += valueQ;
+    products += valueQ * valueP;
+  };
 
+  if (arrValues.length == 1) {
+    avgPrice = arrValues[0][1].toFixed(2);
+  } else {
+    avgPrice = (products / tot).toFixed(2);
+  };
 };
 
 const setBiggerInfo = (activedInfo) => {
