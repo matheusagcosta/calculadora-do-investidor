@@ -40,8 +40,8 @@ export const updateVal = (index) => {
     attFooter();
     
     for (let count = 0; count < document.getElementsByClassName("mid-price--info").length; count++) {
-      setBorderColor(`quantity${index}`, "none");
-      setBorderColor(`price${index}`, "none");
+      setBorderColor(`quantity${count}`, "none");
+      setBorderColor(`price${count}`, "none");
     };
   };
 };
@@ -65,8 +65,8 @@ export const onAddClick = () => {
     };
 
     for (let count = 0; count < document.getElementsByClassName("mid-price--info").length; count++) {
-      setBorderColor(`quantity${activedInfo}`, "none");
-      setBorderColor(`price${activedInfo}`, "none");
+      setBorderColor(`quantity${count}`, "none");
+      setBorderColor(`price${count}`, "none");
     };
   
     activedInfo += 1;
@@ -109,10 +109,14 @@ const checkZeros = (valueQ, valueP, activedInfo) => {
   let resultZeros = true;
   if (valueQ == 0) {
     setBorderColor(`quantity${activedInfo}`, "red");
+    document.getElementById("results-mp--total").innerHTML = `-`;
+    document.getElementById("results-mp--average").innerHTML = `R$ -`;
     resultZeros = false;
   };
   if (valueP == 0) {
     setBorderColor(`price${activedInfo}`, "red");
+    document.getElementById("results-mp--total").innerHTML = `-`;
+    document.getElementById("results-mp--average").innerHTML = `R$ -`;
     resultZeros = false;
   };
   return resultZeros;
@@ -128,11 +132,15 @@ const checkOnlyChar = (valueQ, valueP, activedInfo) => {
 
   if (validationQ == null) {
     setBorderColor(`quantity${activedInfo}`, "red");
+    document.getElementById("results-mp--total").innerHTML = `-`;
+    document.getElementById("results-mp--average").innerHTML = `R$ -`;
     resultOnlyChar = false;
   };
 
   if (validationP == null) {
     setBorderColor(`price${activedInfo}`, "red");
+    document.getElementById("results-mp--total").innerHTML = `-`;
+    document.getElementById("results-mp--average").innerHTML = `R$ -`;
     resultOnlyChar = false;
   };
   return resultOnlyChar;

@@ -154,8 +154,8 @@ var updateVal = function updateVal(index) {
     attFooter();
 
     for (var count = 0; count < document.getElementsByClassName("mid-price--info").length; count++) {
-      setBorderColor("quantity".concat(index), "none");
-      setBorderColor("price".concat(index), "none");
+      setBorderColor("quantity".concat(count), "none");
+      setBorderColor("price".concat(count), "none");
     }
 
     ;
@@ -187,8 +187,8 @@ var onAddClick = function onAddClick() {
     ;
 
     for (var count = 0; count < document.getElementsByClassName("mid-price--info").length; count++) {
-      setBorderColor("quantity".concat(activedInfo), "none");
-      setBorderColor("price".concat(activedInfo), "none");
+      setBorderColor("quantity".concat(count), "none");
+      setBorderColor("price".concat(count), "none");
     }
 
     ;
@@ -240,6 +240,8 @@ var checkZeros = function checkZeros(valueQ, valueP, activedInfo) {
 
   if (valueQ == 0) {
     setBorderColor("quantity".concat(activedInfo), "red");
+    document.getElementById("results-mp--total").innerHTML = "-";
+    document.getElementById("results-mp--average").innerHTML = "R$ -";
     resultZeros = false;
   }
 
@@ -247,6 +249,8 @@ var checkZeros = function checkZeros(valueQ, valueP, activedInfo) {
 
   if (valueP == 0) {
     setBorderColor("price".concat(activedInfo), "red");
+    document.getElementById("results-mp--total").innerHTML = "-";
+    document.getElementById("results-mp--average").innerHTML = "R$ -";
     resultZeros = false;
   }
 
@@ -263,6 +267,8 @@ var checkOnlyChar = function checkOnlyChar(valueQ, valueP, activedInfo) {
 
   if (validationQ == null) {
     setBorderColor("quantity".concat(activedInfo), "red");
+    document.getElementById("results-mp--total").innerHTML = "-";
+    document.getElementById("results-mp--average").innerHTML = "R$ -";
     resultOnlyChar = false;
   }
 
@@ -270,6 +276,8 @@ var checkOnlyChar = function checkOnlyChar(valueQ, valueP, activedInfo) {
 
   if (validationP == null) {
     setBorderColor("price".concat(activedInfo), "red");
+    document.getElementById("results-mp--total").innerHTML = "-";
+    document.getElementById("results-mp--average").innerHTML = "R$ -";
     resultOnlyChar = false;
   }
 
@@ -517,7 +525,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61465" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56313" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
