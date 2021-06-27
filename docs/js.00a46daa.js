@@ -282,24 +282,13 @@ var calcValues = function calcValues(valueQ, valueP) {
   var index = arguments.length > 3 ? arguments[3] : undefined;
 
   if (choice == "new") {
-    var arrTemp = [];
-    arrTemp.push(valueQ);
-    arrTemp.push(valueP);
-    arrValues.push(arrTemp);
-    arrTemp = [];
-    tot += valueQ;
-    products += valueQ * valueP;
+    calcValues_new(valueQ, valueP);
   }
 
   ;
 
   if (choice == "update") {
-    tot -= arrValues[index][0];
-    products -= arrValues[index][0] * arrValues[index][1];
-    arrValues[index][0] = valueQ;
-    arrValues[index][1] = valueP;
-    tot += valueQ;
-    products += valueQ * valueP;
+    calcValues_update(valueQ, valueP, index);
   }
 
   ;
@@ -311,6 +300,25 @@ var calcValues = function calcValues(valueQ, valueP) {
   }
 
   ;
+};
+
+var calcValues_new = function calcValues_new(valueQ, valueP) {
+  var arrTemp = [];
+  arrTemp.push(valueQ);
+  arrTemp.push(valueP);
+  arrValues.push(arrTemp);
+  arrTemp = [];
+  tot += valueQ;
+  products += valueQ * valueP;
+};
+
+var calcValues_update = function calcValues_update(valueQ, valueP, index) {
+  tot -= arrValues[index][0];
+  products -= arrValues[index][0] * arrValues[index][1];
+  arrValues[index][0] = valueQ;
+  arrValues[index][1] = valueP;
+  tot += valueQ;
+  products += valueQ * valueP;
 };
 
 var setBiggerInfo = function setBiggerInfo(activedInfo) {
@@ -509,7 +517,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57440" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61465" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

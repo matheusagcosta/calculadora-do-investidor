@@ -43,8 +43,6 @@ export const updateVal = (index) => {
       setBorderColor(`quantity${index}`, "none");
       setBorderColor(`price${index}`, "none");
     };
-  
-
   };
 };
 
@@ -143,22 +141,11 @@ const checkOnlyChar = (valueQ, valueP, activedInfo) => {
 const calcValues = (valueQ, valueP, choice="", index) => {
   
   if (choice=="new") {
-    let arrTemp = [];
-    arrTemp.push(valueQ);
-    arrTemp.push(valueP);
-    arrValues.push(arrTemp);
-    arrTemp = [];
-    tot += valueQ;
-    products += valueQ * valueP;
+    calcValues_new(valueQ, valueP);
   };
 
   if (choice=="update") {
-    tot -= arrValues[index][0];
-    products -= arrValues[index][0] * arrValues[index][1];
-    arrValues[index][0] = valueQ;
-    arrValues[index][1] = valueP;
-    tot += valueQ;
-    products += valueQ * valueP;
+    calcValues_update(valueQ, valueP, index);
   };
 
   if (arrValues.length == 1) {
@@ -166,6 +153,29 @@ const calcValues = (valueQ, valueP, choice="", index) => {
   } else {
     avgPrice = (products / tot).toFixed(2);
   };
+};
+
+const calcValues_new = (valueQ, valueP) => {
+  let arrTemp = [];
+
+  arrTemp.push(valueQ);
+  arrTemp.push(valueP);
+  arrValues.push(arrTemp);
+  arrTemp = [];
+  tot += valueQ;
+  products += valueQ * valueP;
+
+};
+
+const calcValues_update = (valueQ, valueP, index) => {
+
+  tot -= arrValues[index][0];
+  products -= arrValues[index][0] * arrValues[index][1];
+  arrValues[index][0] = valueQ;
+  arrValues[index][1] = valueP;
+  tot += valueQ;
+  products += valueQ * valueP;
+
 };
 
 const setBiggerInfo = (activedInfo) => {
