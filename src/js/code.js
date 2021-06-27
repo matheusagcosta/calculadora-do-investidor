@@ -33,15 +33,26 @@ const money = new Intl.NumberFormat("pt-BR", {
 
 export const updateVal = (index) => {
     
-  console.log(index)
+  if (validateInputs(index)) {
     
+    calcValues(valueQ, valueP, "update");
+    keepValuesOnDisplay(arrValues);
+    attFooter();
+    
+    for (let count = 0; count < document.getElementsByClassName("mid-price--info").length; count++) {
+      setBorderColor(`quantity${index}`, "none");
+      setBorderColor(`price${index}`, "none");
+    };
+  
+
+  };
 };
 
 export const onAddClick = () => {
 
   if (validateInputs(activedInfo)) {
     
-    calcNewValues(valueQ, valueP);
+    calcValues(valueQ, valueP, "new");
     generateNewInfo(activedInfo);
     setBiggerInfo(activedInfo);
     showTrashButton(activedInfo);
@@ -129,21 +140,25 @@ const checkOnlyChar = (valueQ, valueP, activedInfo) => {
   return resultOnlyChar;
 };
 
-const calcNewValues = (valueQ, valueP) => {
-  let arrTemp = [];
-
-  arrTemp.push(valueQ);
-  arrTemp.push(valueP);
-  arrValues.push(arrTemp);
-  arrTemp = [];
-
-  tot += valueQ;
-  products += valueQ * valueP;
-  if (arrValues.length == 1) {
-    avgPrice = arrValues[0][1].toFixed(2);
-  } else {
-    avgPrice = (products / tot).toFixed(2);
+const calcValues = (valueQ, valueP, choice="") => {
+  
+  if (choice=="new") {
+    let arrTemp = [];
+    arrTemp.push(valueQ);
+    arrTemp.push(valueP);
+    arrValues.push(arrTemp);
+    arrTemp = [];
+    tot += valueQ;
+    products += valueQ * valueP;
+    if (arrValues.length == 1) {
+      avgPrice = arrValues[0][1].toFixed(2);
+    } else {
+      avgPrice = (products / tot).toFixed(2);
+    };
   };
+
+  if (choice=="update") {};
+
 };
 
 const setBiggerInfo = (activedInfo) => {

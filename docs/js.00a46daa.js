@@ -148,14 +148,27 @@ var money = new Intl.NumberFormat("pt-BR", {
 });
 
 var updateVal = function updateVal(index) {
-  console.log(index);
+  if (validateInputs(index)) {
+    calcValues(valueQ, valueP, "update");
+    keepValuesOnDisplay(arrValues);
+    attFooter();
+
+    for (var count = 0; count < document.getElementsByClassName("mid-price--info").length; count++) {
+      setBorderColor("quantity".concat(index), "none");
+      setBorderColor("price".concat(index), "none");
+    }
+
+    ;
+  }
+
+  ;
 };
 
 exports.updateVal = updateVal;
 
 var onAddClick = function onAddClick() {
   if (validateInputs(activedInfo)) {
-    calcNewValues(valueQ, valueP);
+    calcValues(valueQ, valueP, "new");
     generateNewInfo(activedInfo);
     setBiggerInfo(activedInfo);
     showTrashButton(activedInfo);
@@ -264,20 +277,30 @@ var checkOnlyChar = function checkOnlyChar(valueQ, valueP, activedInfo) {
   return resultOnlyChar;
 };
 
-var calcNewValues = function calcNewValues(valueQ, valueP) {
-  var arrTemp = [];
-  arrTemp.push(valueQ);
-  arrTemp.push(valueP);
-  arrValues.push(arrTemp);
-  arrTemp = [];
-  tot += valueQ;
-  products += valueQ * valueP;
+var calcValues = function calcValues(valueQ, valueP) {
+  var choice = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
 
-  if (arrValues.length == 1) {
-    avgPrice = arrValues[0][1].toFixed(2);
-  } else {
-    avgPrice = (products / tot).toFixed(2);
+  if (choice == "new") {
+    var arrTemp = [];
+    arrTemp.push(valueQ);
+    arrTemp.push(valueP);
+    arrValues.push(arrTemp);
+    arrTemp = [];
+    tot += valueQ;
+    products += valueQ * valueP;
+
+    if (arrValues.length == 1) {
+      avgPrice = arrValues[0][1].toFixed(2);
+    } else {
+      avgPrice = (products / tot).toFixed(2);
+    }
+
+    ;
   }
+
+  ;
+
+  if (choice == "update") {}
 
   ;
 };
@@ -478,7 +501,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63699" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63480" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
