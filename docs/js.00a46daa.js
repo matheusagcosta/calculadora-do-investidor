@@ -173,7 +173,7 @@ var onAddClick = function onAddClick() {
     keepValuesOnDisplay(arrValues);
     attFooter();
 
-    for (var index = 0; index < document.getElementsByClassName("mid-price--info").length; index++) {
+    for (var index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
       if (arrFunctTrash[index]) {
         remEvents(index);
       }
@@ -332,7 +332,7 @@ var showTrashButton = function showTrashButton(activedInfo) {
 };
 
 var generateNewInfo = function generateNewInfo(activedInfo) {
-  var html = "\n    <div class=\"mid-price--info\">\n      <div class=\"quantity-mp--info\">\n        <label for=\"quantity-mp__input\"  class=\"text-mp--info\">Quantidade:</label>\n        <input type=\"text\" class=\"values-mp--info\" name=\"quantity-mp__input\" id=\"quantity".concat(activedInfo + 1, "\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\">\n      </div>\n      <div class=\"price-mp--info\">\n        <label for=\"price-mp__input\" class=\"text-mp--info\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"values-mp--info\" name=\"price-mp__input\" id=\"price").concat(activedInfo + 1, "\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\"> \n      </div>\n      <div class=\"trash-button\" id=\"trash-button\">\n        <button class=\"trash\" id=\"trash").concat(activedInfo + 1, "\"></button>\n      </div>\n    </div>\n  ");
+  var html = "\n    <div class=\"mid-price--info\" id=\"mid-price--info".concat(activedInfo + 1, "\">\n      <div class=\"quantity-mp--info\">\n        <label for=\"quantity-mp__input\"  class=\"text-mp--info\">Quantidade:</label>\n        <input type=\"text\" class=\"values-mp--info\" name=\"quantity-mp__input\" id=\"quantity").concat(activedInfo + 1, "\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\">\n      </div>\n      <div class=\"price-mp--info\">\n        <label for=\"price-mp__input\" class=\"text-mp--info\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"values-mp--info\" name=\"price-mp__input\" id=\"price").concat(activedInfo + 1, "\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\"> \n      </div>\n      <div class=\"trash-button\" id=\"trash-button\">\n        <button class=\"trash\" id=\"trash").concat(activedInfo + 1, "\"></button>\n      </div>\n    </div>\n  ");
   document.getElementById("mid-price--section").innerHTML += html;
 };
 
@@ -384,7 +384,7 @@ var keepValuesOnDisplay = function keepValuesOnDisplay(arrValues) {
 };
 
 var removeInfo = function removeInfo(trashID) {
-  for (var index = 0; index < document.getElementsByClassName("trash").length; index++) {
+  for (var index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
     if (arrFunctTrash[index]) {
       remEvents(index);
     }
@@ -395,7 +395,7 @@ var removeInfo = function removeInfo(trashID) {
   ;
   document.getElementsByClassName("mid-price--info")[trashID].remove();
 
-  for (var _index = 0; _index < document.getElementsByClassName("trash").length; _index++) {
+  for (var _index = 0; _index < document.getElementsByClassName("trash").length - 1; _index++) {
     addEvents(_index);
   }
 
@@ -433,6 +433,7 @@ var changeId = function changeId(id) {
   document.getElementsByClassName("trash")[id].setAttribute("id", "trash".concat(id));
   document.getElementsByName("quantity-mp__input")[id].setAttribute("id", "quantity".concat(id));
   document.getElementsByName("price-mp__input")[id].setAttribute("id", "price".concat(id));
+  document.getElementsByClassName("mid-price--info")[id].setAttribute("id", "mid-price--info".concat(id));
 };
 
 var handleValues = function handleValues(arrValues) {
@@ -519,7 +520,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58350" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57075" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

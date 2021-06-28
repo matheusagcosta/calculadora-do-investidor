@@ -57,7 +57,7 @@ export const onAddClick = () => {
     keepValuesOnDisplay(arrValues);
     attFooter();
     
-    for (let index = 0; index < document.getElementsByClassName("mid-price--info").length; index++) {
+    for (let index = 0; index < document.getElementsByClassName("mid-price--info").length -1; index++) {
       if (arrFunctTrash[index]) {
         remEvents(index);
       };
@@ -196,7 +196,7 @@ const showTrashButton = (activedInfo) => {
 
 const generateNewInfo = (activedInfo) => {
   const html = `
-    <div class="mid-price--info">
+    <div class="mid-price--info" id="mid-price--info${activedInfo + 1}">
       <div class="quantity-mp--info">
         <label for="quantity-mp__input"  class="text-mp--info">Quantidade:</label>
         <input type="text" class="values-mp--info" name="quantity-mp__input" id="quantity${activedInfo + 1}" placeholder="0" autocomplete="off" min="0" value="">
@@ -263,7 +263,7 @@ const keepValuesOnDisplay = (arrValues) => {
 
 const removeInfo = (trashID) => {
 
-  for (let index = 0; index < document.getElementsByClassName("trash").length; index++) {
+  for (let index = 0; index < document.getElementsByClassName("trash").length -1; index++) {
     if (arrFunctTrash[index]) {
       remEvents(index);
     };
@@ -271,7 +271,7 @@ const removeInfo = (trashID) => {
 
   document.getElementsByClassName("mid-price--info")[trashID].remove();
 
-  for (let index = 0; index < document.getElementsByClassName("trash").length; index++) {
+  for (let index = 0; index < document.getElementsByClassName("trash").length -1; index++) {
     addEvents(index);
   };
 
@@ -303,6 +303,7 @@ const changeId = (id) => {
   document.getElementsByClassName("trash")[id].setAttribute("id", `trash${id}`);
   document.getElementsByName("quantity-mp__input")[id].setAttribute("id", `quantity${id}`);
   document.getElementsByName("price-mp__input")[id].setAttribute("id", `price${id}`);
+  document.getElementsByClassName("mid-price--info")[id].setAttribute("id", `mid-price--info${id}`)
 };
 
 const handleValues = (arrValues) => {
