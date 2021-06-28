@@ -123,7 +123,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reset = exports.onAddClick = exports.updateVal = void 0;
+exports.reset = exports.blockChar = exports.onAddClick = void 0;
 var avgPrice = 0;
 var tot = 0;
 var products = 0;
@@ -164,8 +164,6 @@ var updateVal = function updateVal(index) {
   ;
 };
 
-exports.updateVal = updateVal;
-
 var onAddClick = function onAddClick() {
   if (validateInputs(activedInfo)) {
     calcValues(valueQ, valueP, "new");
@@ -175,7 +173,7 @@ var onAddClick = function onAddClick() {
     keepValuesOnDisplay(arrValues);
     attFooter();
 
-    for (var index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
+    for (var index = 0; index < document.getElementsByClassName("mid-price--info").length; index++) {
       if (arrFunctTrash[index]) {
         remEvents(index);
       }
@@ -247,6 +245,22 @@ var checkChar = function checkChar(valueQ, valueP, activedInfo) {
   ;
   return resultOnlyChar;
 };
+
+var blockChar = function blockChar(evnt) {
+  var charCode = evnt.charCode;
+
+  if (charCode != 0) {
+    if (charCode < 44 || charCode > 57 || charCode == 45 || charCode == 47) {
+      evnt.preventDefault();
+    }
+
+    ;
+  }
+
+  ;
+};
+
+exports.blockChar = blockChar;
 
 var handleComma = function handleComma(valueP) {
   if (valueP.replace(/,/g, ".")) {
@@ -334,6 +348,8 @@ var addEvents = function addEvents(selector) {
   document.getElementsByClassName("trash")[selector].addEventListener("click", callRemove);
   document.getElementsByName("quantity-mp__input")[selector].addEventListener("input", callInput);
   document.getElementsByName("price-mp__input")[selector].addEventListener("input", callInput);
+  document.getElementsByName("quantity-mp__input")[selector].addEventListener("keypress", blockChar);
+  document.getElementsByName("price-mp__input")[selector].addEventListener("keypress", blockChar);
 
   if (arrFunctTrash[selector]) {
     arrFunctTrash[selector] = callRemove;
@@ -368,7 +384,7 @@ var keepValuesOnDisplay = function keepValuesOnDisplay(arrValues) {
 };
 
 var removeInfo = function removeInfo(trashID) {
-  for (var index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
+  for (var index = 0; index < document.getElementsByClassName("trash").length; index++) {
     if (arrFunctTrash[index]) {
       remEvents(index);
     }
@@ -379,7 +395,7 @@ var removeInfo = function removeInfo(trashID) {
   ;
   document.getElementsByClassName("mid-price--info")[trashID].remove();
 
-  for (var _index = 0; _index < document.getElementsByClassName("trash").length - 1; _index++) {
+  for (var _index = 0; _index < document.getElementsByClassName("trash").length; _index++) {
     addEvents(_index);
   }
 
@@ -473,6 +489,8 @@ var _code = require("./code");
 
 document.querySelector("#add").addEventListener("click", _code.onAddClick);
 document.querySelector('#reset').addEventListener("click", _code.reset);
+document.getElementsByName("quantity-mp__input")[0].addEventListener("keypress", _code.blockChar);
+document.getElementsByName("price-mp__input")[0].addEventListener("keypress", _code.blockChar);
 },{"./code":"js/code.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -501,7 +519,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55050" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58350" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

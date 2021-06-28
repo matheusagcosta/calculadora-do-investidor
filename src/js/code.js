@@ -31,7 +31,7 @@ const money = new Intl.NumberFormat("pt-BR", {
   minimumFractionDigits: 2,
 });
 
-export const updateVal = (index) => {
+const updateVal = (index) => {
     
   if (validateInputs(index)) {
     
@@ -57,7 +57,7 @@ export const onAddClick = () => {
     keepValuesOnDisplay(arrValues);
     attFooter();
     
-    for (let index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
+    for (let index = 0; index < document.getElementsByClassName("mid-price--info").length; index++) {
       if (arrFunctTrash[index]) {
         remEvents(index);
       };
@@ -116,6 +116,15 @@ const checkChar = (valueQ, valueP, activedInfo) => {
     resultOnlyChar = false;
   };
   return resultOnlyChar;
+};
+
+export const blockChar = (evnt) => {
+  let charCode = evnt.charCode;
+  if (charCode != 0) {
+    if (charCode < 44 || charCode > 57 || charCode == 45 || charCode==47) {
+      evnt.preventDefault();
+    };
+  };
 };
 
 const handleComma = (valueP) => {
@@ -217,6 +226,9 @@ const addEvents = (selector) => {
   document.getElementsByClassName("trash")[selector].addEventListener("click", callRemove);
   document.getElementsByName("quantity-mp__input")[selector].addEventListener("input", callInput);
   document.getElementsByName("price-mp__input")[selector].addEventListener("input", callInput);
+  document.getElementsByName("quantity-mp__input")[selector].addEventListener("keypress", blockChar);
+  document.getElementsByName("price-mp__input")[selector].addEventListener("keypress", blockChar);
+
 
   if (arrFunctTrash[selector]) {
     arrFunctTrash[selector] = callRemove;
@@ -251,7 +263,7 @@ const keepValuesOnDisplay = (arrValues) => {
 
 const removeInfo = (trashID) => {
 
-  for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
+  for (let index = 0; index < document.getElementsByClassName("trash").length; index++) {
     if (arrFunctTrash[index]) {
       remEvents(index);
     };
@@ -259,7 +271,7 @@ const removeInfo = (trashID) => {
 
   document.getElementsByClassName("mid-price--info")[trashID].remove();
 
-  for (let index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
+  for (let index = 0; index < document.getElementsByClassName("trash").length; index++) {
     addEvents(index);
   };
 
