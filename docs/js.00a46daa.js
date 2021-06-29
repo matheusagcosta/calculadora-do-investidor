@@ -123,7 +123,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reset = exports.blockChar = exports.onAddClick = void 0;
+exports.reset = exports.onAddClick = exports.updateVal = void 0;
 var avgPrice = 0;
 var tot = 0;
 var products = 0;
@@ -164,20 +164,18 @@ var updateVal = function updateVal(index) {
   ;
 };
 
+exports.updateVal = updateVal;
+
 var onAddClick = function onAddClick() {
   if (validateInputs(activedInfo)) {
-    if (arrValues.length == 0) {
-      calcValues(valueQ, valueP, "new");
-    }
-
-    ;
+    calcValues(valueQ, valueP, "new");
     generateNewInfo(activedInfo);
     setBiggerInfo(activedInfo);
     showTrashButton(activedInfo);
     keepValuesOnDisplay(arrValues);
     attFooter();
 
-    for (var index = 0; index < document.getElementsByClassName("mid-price--info").length; index++) {
+    for (var index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
       if (arrFunctTrash[index]) {
         remEvents(index);
       }
@@ -202,11 +200,11 @@ var onAddClick = function onAddClick() {
 
 exports.onAddClick = onAddClick;
 
-var validateInputs = function validateInputs(index) {
-  valueQ = document.getElementsByName("quantity-mp__input")[index].value;
-  valueP = document.getElementsByName("price-mp__input")[index].value;
+var validateInputs = function validateInputs(activedInfo) {
+  valueQ = document.getElementsByName("quantity-mp__input")[activedInfo].value;
+  valueP = document.getElementsByName("price-mp__input")[activedInfo].value;
 
-  if (checkAll(valueQ, valueP, index)) {
+  if (checkAll(valueQ, valueP, activedInfo)) {
     valueQ = parseInt(valueQ);
     valueP = parseFloat(handleComma(valueP));
     return true;
@@ -216,53 +214,6 @@ var validateInputs = function validateInputs(index) {
 
   ;
 };
-
-var checkAll = function checkAll(valueQ, valueP, index) {
-  var result = true;
-  result = checkChar(valueQ, valueP, index);
-  return result;
-};
-
-var checkChar = function checkChar(valueQ, valueP, index) {
-  var resultOnlyChar = true;
-  var validateQuantity = new RegExp("[0-9]+");
-  var validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
-  var validationQ = validateQuantity.exec(valueQ);
-  var validationP = validatePrice.exec(valueP);
-
-  if (validationQ == null) {
-    setBorderColor("quantity".concat(index), "red");
-    resultOnlyChar = false;
-    return resultOnlyChar;
-  }
-
-  ;
-
-  if (validationP == null) {
-    setBorderColor("price".concat(index), "red");
-    resultOnlyChar = false;
-    return resultOnlyChar;
-  }
-
-  ;
-  return resultOnlyChar;
-};
-
-var blockChar = function blockChar(evnt) {
-  var charCode = evnt.charCode;
-
-  if (charCode != 0) {
-    if (charCode < 44 || charCode > 57 || charCode == 45 || charCode == 47) {
-      evnt.preventDefault();
-    }
-
-    ;
-  }
-
-  ;
-};
-
-exports.blockChar = blockChar;
 
 var handleComma = function handleComma(valueP) {
   if (valueP.replace(/,/g, ".")) {
@@ -275,6 +226,63 @@ var handleComma = function handleComma(valueP) {
 
 var setBorderColor = function setBorderColor(id, color) {
   document.getElementById("".concat(id)).setAttribute("style", "border-color: ".concat(color, ";"));
+};
+
+var checkAll = function checkAll(valueQ, valueP, activedInfo) {
+  var result = true;
+  result = checkZeros(valueQ, valueP, activedInfo);
+  result = checkOnlyChar(valueQ, valueP, activedInfo);
+  return result;
+};
+
+var checkZeros = function checkZeros(valueQ, valueP, activedInfo) {
+  var resultZeros = true;
+
+  if (valueQ == 0) {
+    setBorderColor("quantity".concat(activedInfo), "red");
+    document.getElementById("results-mp--total").innerHTML = "-";
+    document.getElementById("results-mp--average").innerHTML = "R$ -";
+    resultZeros = false;
+  }
+
+  ;
+
+  if (valueP == 0) {
+    setBorderColor("price".concat(activedInfo), "red");
+    document.getElementById("results-mp--total").innerHTML = "-";
+    document.getElementById("results-mp--average").innerHTML = "R$ -";
+    resultZeros = false;
+  }
+
+  ;
+  return resultZeros;
+};
+
+var checkOnlyChar = function checkOnlyChar(valueQ, valueP, activedInfo) {
+  var resultOnlyChar = true;
+  var validateQuantity = new RegExp("[0-9]+");
+  var validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
+  var validationQ = validateQuantity.exec(valueQ);
+  var validationP = validatePrice.exec(valueP);
+
+  if (validationQ == null) {
+    setBorderColor("quantity".concat(activedInfo), "red");
+    document.getElementById("results-mp--total").innerHTML = "-";
+    document.getElementById("results-mp--average").innerHTML = "R$ -";
+    resultOnlyChar = false;
+  }
+
+  ;
+
+  if (validationP == null) {
+    setBorderColor("price".concat(activedInfo), "red");
+    document.getElementById("results-mp--total").innerHTML = "-";
+    document.getElementById("results-mp--average").innerHTML = "R$ -";
+    resultOnlyChar = false;
+  }
+
+  ;
+  return resultOnlyChar;
 };
 
 var calcValues = function calcValues(valueQ, valueP) {
@@ -313,11 +321,6 @@ var calcValues_new = function calcValues_new(valueQ, valueP) {
 };
 
 var calcValues_update = function calcValues_update(valueQ, valueP, index) {
-  if (index == document.getElementsByClassName("mid-price--info").length - 1 && !arrValues[index]) {
-    calcValues_new(valueQ, valueP);
-  }
-
-  ;
   tot -= arrValues[index][0];
   products -= arrValues[index][0] * arrValues[index][1];
   arrValues[index][0] = valueQ;
@@ -339,7 +342,7 @@ var showTrashButton = function showTrashButton(activedInfo) {
 };
 
 var generateNewInfo = function generateNewInfo(activedInfo) {
-  var html = "\n    <div class=\"mid-price--info\" id=\"mid-price--info".concat(activedInfo + 1, "\">\n      <div class=\"quantity-mp--info\">\n        <label for=\"quantity-mp__input\"  class=\"text-mp--info\">Quantidade:</label>\n        <input type=\"text\" class=\"values-mp--info\" name=\"quantity-mp__input\" id=\"quantity").concat(activedInfo + 1, "\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\">\n      </div>\n      <div class=\"price-mp--info\">\n        <label for=\"price-mp__input\" class=\"text-mp--info\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"values-mp--info\" name=\"price-mp__input\" id=\"price").concat(activedInfo + 1, "\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\"> \n      </div>\n      <div class=\"trash-button\" id=\"trash-button\">\n        <button class=\"trash\" id=\"trash").concat(activedInfo + 1, "\"></button>\n      </div>\n    </div>\n  ");
+  var html = "\n    <div class=\"mid-price--info\">\n      <div class=\"quantity-mp--info\">\n        <label for=\"quantity-mp__input\"  class=\"text-mp--info\">Quantidade:</label>\n        <input type=\"text\" class=\"values-mp--info\" name=\"quantity-mp__input\" id=\"quantity".concat(activedInfo + 1, "\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\">\n      </div>\n      <div class=\"price-mp--info\">\n        <label for=\"price-mp__input\" class=\"text-mp--info\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"values-mp--info\" name=\"price-mp__input\" id=\"price").concat(activedInfo + 1, "\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\"> \n      </div>\n      <div class=\"trash-button\" id=\"trash-button\">\n        <button class=\"trash\" id=\"trash").concat(activedInfo + 1, "\"></button>\n      </div>\n    </div>\n  ");
   document.getElementById("mid-price--section").innerHTML += html;
 };
 
@@ -355,8 +358,6 @@ var addEvents = function addEvents(selector) {
   document.getElementsByClassName("trash")[selector].addEventListener("click", callRemove);
   document.getElementsByName("quantity-mp__input")[selector].addEventListener("input", callInput);
   document.getElementsByName("price-mp__input")[selector].addEventListener("input", callInput);
-  document.getElementsByName("quantity-mp__input")[selector].addEventListener("keypress", blockChar);
-  document.getElementsByName("price-mp__input")[selector].addEventListener("keypress", blockChar);
 
   if (arrFunctTrash[selector]) {
     arrFunctTrash[selector] = callRemove;
@@ -391,7 +392,7 @@ var keepValuesOnDisplay = function keepValuesOnDisplay(arrValues) {
 };
 
 var removeInfo = function removeInfo(trashID) {
-  for (var index = 0; index < document.getElementsByClassName("trash").length; index++) {
+  for (var index = 0; index < document.getElementsByClassName("trash").length - 1; index++) {
     if (arrFunctTrash[index]) {
       remEvents(index);
     }
@@ -402,7 +403,7 @@ var removeInfo = function removeInfo(trashID) {
   ;
   document.getElementsByClassName("mid-price--info")[trashID].remove();
 
-  for (var _index = 0; _index < document.getElementsByClassName("trash").length; _index++) {
+  for (var _index = 0; _index < document.getElementsByClassName("trash").length - 1; _index++) {
     addEvents(_index);
   }
 
@@ -440,11 +441,10 @@ var changeId = function changeId(id) {
   document.getElementsByClassName("trash")[id].setAttribute("id", "trash".concat(id));
   document.getElementsByName("quantity-mp__input")[id].setAttribute("id", "quantity".concat(id));
   document.getElementsByName("price-mp__input")[id].setAttribute("id", "price".concat(id));
-  document.getElementsByClassName("mid-price--info")[id].setAttribute("id", "mid-price--info".concat(id));
 };
 
 var handleValues = function handleValues(arrValues) {
-  if (arrValues.length == 0 || arrValues.length == 1) {
+  if (arrValues.length == 0) {
     tot = 0;
     avgPrice = 0.0;
     avgPrice = avgPrice.toFixed(2);
@@ -476,31 +476,17 @@ var attFooter = function attFooter() {
 };
 
 var reset = function reset() {
-  if (document.getElementsByClassName("mid-price--info").length == 1) {
-    handleValues(arrValues);
-    calcValues_update(valueQ, valueP, 0);
-    arrValues = [0, 0];
-    attFooter();
-  }
-
-  ;
-
   if (document.getElementsByClassName("mid-price--info").length > 1) {
     if (document.getElementsByClassName("mid-price--info").length > 2) {
       for (var w = document.getElementsByClassName("mid-price--info").length - 2; w > 0; w--) {
         removeInfo(w);
       }
 
-      ;
       removeInfo(0);
     } else {
       removeInfo(0);
     }
-
-    ;
   }
-
-  ;
 };
 
 exports.reset = reset;
@@ -511,8 +497,6 @@ var _code = require("./code");
 
 document.querySelector("#add").addEventListener("click", _code.onAddClick);
 document.querySelector('#reset').addEventListener("click", _code.reset);
-document.getElementsByName("quantity-mp__input")[0].addEventListener("keypress", _code.blockChar);
-document.getElementsByName("price-mp__input")[0].addEventListener("keypress", _code.blockChar);
 },{"./code":"js/code.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -541,7 +525,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57889" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57015" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
