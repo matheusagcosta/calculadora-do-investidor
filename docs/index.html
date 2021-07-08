@@ -54,16 +54,16 @@
           Calcular Preço Médio
         </h1>
       </div>
-      <div class="mid-price--content">
-        <div class="mid-price--section" id="mid-price--section">
-          <div class="mid-price--info">
-            <div class="quantity-mp--info">
-              <label for="quantity-mp__input" class="text-mp--info">Quantidade:</label>
-              <input autofocus="" type="text" class="values-mp--info" name="quantity-mp__input" id="quantity0" title="Quantidade" placeholder="0" autocomplete="off" value="">
+      <div class="content">
+        <div class="section" id="mid-price--section">
+          <div class="info mid-price--info">
+            <div class="quantity--info">
+              <label for="quantity-mp__input" class="text--info">Quantidade:</label>
+              <input autofocus="" type="text" class="values--info values-mp--info" name="quantity-mp__input" id="quantity0" title="Quantidade" placeholder="0" autocomplete="off" value="">
             </div>
-            <div class="price-mp--info">
-              <label for="price-mp__input" class="text-mp--info">Preço:</label>
-              <input type="text" class="values-mp--info" name="price-mp__input" id="price0" title="Preço" placeholder="R$ 0,00" autocomplete="off" value="">
+            <div class="price--info">
+              <label for="price-mp__input" class="text--info">Preço:</label>
+              <input type="text" class="values--info values-mp--info" name="price-mp__input" id="price0" title="Preço" placeholder="R$ 0,00" autocomplete="off" value="">
             </div>
             <div class="trash-button" id="trash-button">
               <button class="trash" id="trash0"></button>
@@ -71,15 +71,15 @@
           </div>
         </div>
         <button id="add" value=""></button>
-        <div class="results" id="results">
-          <div class="results-mp">
+        <div class="results" id="results-mp">
+          <div>
             <div class="results-mp--quantity">
-              <label class="results-mp--text">Quantidade Total:</label>
-              <span class="results-mp--values" id="results-mp--total">0</span>
+              <label class="results--text">Quantidade Total:</label>
+              <span class="results--values" id="results-mp--total">0</span>
             </div>
             <div class="results-mp--price">
-              <label class="results-mp--text">Preço Médio:</label>
-              <span class="results-mp--values" id="results-mp--average">R$ 0.00</span>
+              <label class="results--text">Preço Médio:</label>
+              <span class="results--values" id="results-mp--average">R$ 0.00</span>
             </div>
             <button class="reset" id="reset"></button>
           </div>
@@ -95,7 +95,40 @@
           Simular Valorização  
         </h1>
       </div>
-      <div class="simulation--content"></div>
+      <div class="content">
+        <div class="section">
+          <div class="info simulation--info">
+            <div class="quantity--info">
+              <label for="quantity-simu__input" class="text--info">Quantidade:</label>
+              <input type="text" class="values--info" name="quantity-simu__input" id="quantity-simu" title="Quantidade" placeholder="0" autocomplete="off" value="">
+            </div>
+            <div class="price--info">
+              <label for="bPrice-simu__input">Preço de Compra:</label>
+              <input type="text" class="values--info" name="bPrice-simu__input" id="bPrice-simu" title="Preço de Compra" placeholder="R$ 0,00" autocomplete="off" value="">
+            </div>
+            <div class="price--info">
+              <label for="">Preço Alvo:</label>
+              <input type="text" class="values--info" name="tPrice-simu__input" id="tPrice-simu" title="Preço Alvo" placeholder="R$ 0,00" autocomplete="off" value="">
+            </div>
+          </div>
+        </div>
+        <div class="results" id="results-simu">
+          <div>
+            <div class="results-simu--quantity">
+              <label class="results--text">Inicial:</label>
+              <span class="results--values" id="results-simu-starter">0</span>
+            </div>
+            <div class="results-simu--price">
+              <label class="results--text">Valorização:</label>
+              <span class="results--values" id="results-simu-percent">R$ 0,00 (0%)</span>
+            </div>
+            <div class="results-simu--price">
+              <label class="results--text">Total:</label>
+              <span class="results--values" id="results-simu-total">R$ 0,00</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
   <script src="./js.00a46daa.js" defer=""></script>

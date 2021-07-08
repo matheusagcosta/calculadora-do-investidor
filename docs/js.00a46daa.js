@@ -218,9 +218,9 @@ var validateInputs = function validateInputs(activedInfo) {
 
 var makeReadOnly = function makeReadOnly() {
   for (var index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
-    document.getElementsByName("quantity-mp__input")[index].setAttribute("class", "values-mp--info readonly");
+    document.getElementsByName("quantity-mp__input")[index].setAttribute("class", "values--info values-mp--info readonly");
     document.getElementsByName("quantity-mp__input")[index].setAttribute("readonly", "true");
-    document.getElementsByName("price-mp__input")[index].setAttribute("class", "values-mp--info readonly");
+    document.getElementsByName("price-mp__input")[index].setAttribute("class", "values--info values-mp--info readonly");
     document.getElementsByName("price-mp__input")[index].setAttribute("readonly", "true");
   }
 
@@ -343,10 +343,10 @@ var calcValues_update = function calcValues_update(valueQ, valueP, index) {
 
 var setBiggerInfo = function setBiggerInfo(activedInfo) {
   if (document.getElementsByClassName("mid-price--info").length == 2) {
-    document.getElementsByClassName("mid-price--info")[0].setAttribute("class", "mid-price--info is-bigger");
+    document.getElementsByClassName("mid-price--info")[0].setAttribute("class", "info mid-price--info is-bigger");
   }
 
-  document.getElementsByClassName("mid-price--info")[activedInfo + 1].setAttribute("class", "mid-price--info is-bigger");
+  document.getElementsByClassName("mid-price--info")[activedInfo + 1].setAttribute("class", "info mid-price--info is-bigger");
 };
 
 var showTrashButton = function showTrashButton(activedInfo) {
@@ -354,7 +354,7 @@ var showTrashButton = function showTrashButton(activedInfo) {
 };
 
 var generateNewInfo = function generateNewInfo(activedInfo) {
-  var html = "\n    <div class=\"mid-price--info\">\n      <div class=\"quantity-mp--info\">\n        <label for=\"quantity-mp__input\"  class=\"text-mp--info\">Quantidade:</label>\n        <input type=\"text\" class=\"values-mp--info\" name=\"quantity-mp__input\" id=\"quantity".concat(activedInfo + 1, "\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\">\n      </div>\n      <div class=\"price-mp--info\">\n        <label for=\"price-mp__input\" class=\"text-mp--info\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"values-mp--info\" name=\"price-mp__input\" id=\"price").concat(activedInfo + 1, "\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\"> \n      </div>\n      <div class=\"trash-button\" id=\"trash-button\">\n        <button class=\"trash\" id=\"trash").concat(activedInfo + 1, "\"></button>\n      </div>\n    </div>\n  ");
+  var html = "\n    <div class=\"info mid-price--info\">\n      <div class=\"quantity--info\">\n        <label for=\"quantity-mp__input\"  class=\"text--info\">Quantidade:</label>\n        <input type=\"text\" class=\"values--info values-mp--info\" name=\"quantity-mp__input\" id=\"quantity".concat(activedInfo + 1, "\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\">\n      </div>\n      <div class=\"price--info\">\n        <label for=\"price-mp__input\" class=\"text--info\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"values--info values-mp--info\" name=\"price-mp__input\" id=\"price").concat(activedInfo + 1, "\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\"> \n      </div>\n      <div class=\"trash-button\" id=\"trash-button\">\n        <button class=\"trash\" id=\"trash").concat(activedInfo + 1, "\"></button>\n      </div>\n    </div>\n  ");
   document.getElementById("mid-price--section").innerHTML += html;
 };
 
@@ -470,7 +470,7 @@ var handleValues = function handleValues(arrValues) {
 };
 
 var uniqueInfo = function uniqueInfo() {
-  document.getElementsByClassName("mid-price--info")[0].setAttribute("class", "mid-price--info");
+  document.getElementsByClassName("mid-price--info")[0].setAttribute("class", "info mid-price--info");
   activedInfo = 0;
 };
 
@@ -479,10 +479,10 @@ var attFooter = function attFooter() {
   document.getElementById("results-mp--average").innerHTML = "R$ ".concat(avgPrice);
 
   if (tot == 0 && avgPrice == 0) {
-    document.getElementById("results").className = "results";
+    document.getElementById("results-mp").className = "results";
     document.getElementById("reset").className = "reset";
   } else {
-    document.getElementById("results").className = "results is-bigger";
+    document.getElementById("results-mp").className = "results is-bigger";
     document.getElementById("reset").className = "reset is-shown";
   }
 };
@@ -537,7 +537,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54509" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63815" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

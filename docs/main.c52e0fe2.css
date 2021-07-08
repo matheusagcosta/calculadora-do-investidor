@@ -112,35 +112,113 @@ main {
   margin-right: 10px;
 }
 
-.mid-price {
-  display: flex;
-  flex-direction: column;
-}
-
-.mid-price--content {
+.content {
   display: flex;
   flex-direction: row;
   max-width: 100%;
 }
 
-.mid-price--section {
+.section {
   display: flex;
   flex-direction: row;
   max-width: 100%;
   overflow: auto;
 }
 
-.mid-price--info {
+.info {
   background-color: #F2F4FF;
   border-radius: 10px;
   color: #313060;
   display: flex;
   flex-direction: column;
-  height: 200px;
   padding: 15px;
   font-family: 'Red Hat Text', sans-serif;
   font-size: 16px;
   line-height: 21px;
+}
+
+.text--info {
+  position: relative;
+  display: flex;
+}
+
+.values--info {
+  position: relative;
+  margin-top: 12px;
+  border-radius: 4px;
+  border-color: lightgray;
+  height: 41px;
+  display: flex;
+  padding: 10px;
+  font-size: 16px;
+  font-family: 'Red Hat Text', sans-serif;
+  color: #313060;
+}
+
+.values-mp--info {
+  width: 162px;
+}
+
+.quantity--info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.results {
+  background-color: #313060;
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Red Hat Text', sans-serif;
+  transition: height .35s linear;  
+}
+
+.results.is-bigger {
+  height: 255px;
+}
+
+.reset {
+  background-color: white;
+  display: flex;
+  margin-top: 25px;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  background-image: url(./reset.6c29aed7.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform .5s linear .15s, opacity .5s linear;
+  transform: rotate(0);
+  transform-origin: center;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.reset.is-shown {
+  position: relative;
+  visibility: visible;
+  opacity: 1;
+}
+
+.reset:hover {
+  transform:rotate(360deg);
+  cursor: pointer;
+}
+
+.mid-price {
+  display: flex;
+  flex-direction: column;
+}
+
+.mid-price--info {
+  height: 200px;
   transition: height .35s linear;
 }
 
@@ -156,36 +234,30 @@ main {
   margin-left: 25px;
 }
 
-.quantity-mp--info {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.price-mp--info {
+.price--info {
   position: relative;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
 }
 
-.text-mp--info {
-  position: relative;
-  display: flex;
+.results-mp--price {
+  padding-top: 25px;
 }
 
-.values-mp--info {
+.results--text {
   position: relative;
-  margin-top: 12px;
-  border-radius: 4px;
-  border-color: lightgray;
-  width: 162px;
-  height: 41px;
   display: flex;
-  padding: 10px;
+  justify-content: flex-start;
   font-size: 16px;
-  font-family: 'Red Hat Text', sans-serif;
-  color: #313060;
+}
+
+.results--values {
+  position: relative;
+  display: flex;
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .readonly:focus {
@@ -229,71 +301,18 @@ main {
   visibility: visible;
 }
 
-.results {
-  background-color: #313060;
-  border-radius: 10px;
-  padding: 20px;
-  color: white;
-  font-size: 20px;
-  height: 200px;
-  display: flex;
-  flex: 0 0 auto;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Red Hat Text', sans-serif;
-  transition: height .35s linear;  
+.simulation--info {
+  height: 315px;
+  width: 306px;
+  margin-right: 15px;
 }
 
-.results.is-bigger {
-  height: 255px;
+.results-simu--price {
+  padding-top: 30px;
 }
 
-.results-mp--price {
-  padding-top: 25px;
-}
-
-.results-mp--text {
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  font-size: 16px;
-}
-
-.results-mp--values {
-  position: relative;
-  display: flex;
-  margin-top: 10px;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.reset {
-  background-color: white;
-  display: flex;
-  margin-top: 25px;
-  border-radius: 20px;
-  width: 40px;
-  height: 40px;
-  background-image: url(./reset.6c29aed7.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  transition: transform .5s linear .15s, opacity .5s linear;
-  transform: rotate(0);
-  transform-origin: center;
-  position: absolute;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.reset.is-shown {
-  position: relative;
-  visibility: visible;
-  opacity: 1;
-}
-
-.reset:hover {
-  transform:rotate(360deg);
-  cursor: pointer;
+#results-simu-starter {
+  color: #A7B0FF;
 }
 
 @media only screen and (max-width: 768px) {

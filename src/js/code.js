@@ -90,9 +90,9 @@ const validateInputs = (activedInfo) => {
 
 const makeReadOnly = () => {
   for (let index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
-    document.getElementsByName("quantity-mp__input")[index].setAttribute("class", "values-mp--info readonly");
+    document.getElementsByName("quantity-mp__input")[index].setAttribute("class", "values--info values-mp--info readonly");
     document.getElementsByName("quantity-mp__input")[index].setAttribute("readonly", "true");
-    document.getElementsByName("price-mp__input")[index].setAttribute("class", "values-mp--info readonly");
+    document.getElementsByName("price-mp__input")[index].setAttribute("class", "values--info values-mp--info readonly");
     document.getElementsByName("price-mp__input")[index].setAttribute("readonly", "true");
   };
 };  
@@ -200,11 +200,11 @@ const setBiggerInfo = (activedInfo) => {
   if (document.getElementsByClassName("mid-price--info").length == 2) {
     document
       .getElementsByClassName("mid-price--info")[0]
-      .setAttribute("class", "mid-price--info is-bigger");
+      .setAttribute("class", "info mid-price--info is-bigger");
   }
   document
     .getElementsByClassName("mid-price--info")
-    [activedInfo + 1].setAttribute("class", "mid-price--info is-bigger");
+    [activedInfo + 1].setAttribute("class", "info mid-price--info is-bigger");
 };
 
 const showTrashButton = (activedInfo) => {
@@ -214,14 +214,14 @@ const showTrashButton = (activedInfo) => {
 
 const generateNewInfo = (activedInfo) => {
   const html = `
-    <div class="mid-price--info">
-      <div class="quantity-mp--info">
-        <label for="quantity-mp__input"  class="text-mp--info">Quantidade:</label>
-        <input type="text" class="values-mp--info" name="quantity-mp__input" id="quantity${activedInfo + 1}" placeholder="0" autocomplete="off" min="0" value="">
+    <div class="info mid-price--info">
+      <div class="quantity--info">
+        <label for="quantity-mp__input"  class="text--info">Quantidade:</label>
+        <input type="text" class="values--info values-mp--info" name="quantity-mp__input" id="quantity${activedInfo + 1}" placeholder="0" autocomplete="off" min="0" value="">
       </div>
-      <div class="price-mp--info">
-        <label for="price-mp__input" class="text-mp--info">Preço:</label>
-        <input type="text" class="values-mp--info" name="price-mp__input" id="price${activedInfo + 1}" placeholder="R$ 0,00" autocomplete="off" min="0" value=""> 
+      <div class="price--info">
+        <label for="price-mp__input" class="text--info">Preço:</label>
+        <input type="text" class="values--info values-mp--info" name="price-mp__input" id="price${activedInfo + 1}" placeholder="R$ 0,00" autocomplete="off" min="0" value=""> 
       </div>
       <div class="trash-button" id="trash-button">
         <button class="trash" id="trash${activedInfo + 1}"></button>
@@ -333,7 +333,7 @@ const handleValues = (arrValues) => {
 };
 
 const uniqueInfo = () => {
-  document.getElementsByClassName("mid-price--info")[0].setAttribute("class", "mid-price--info");
+  document.getElementsByClassName("mid-price--info")[0].setAttribute("class", "info mid-price--info");
   activedInfo = 0;
 };
 
@@ -341,10 +341,10 @@ const attFooter = () => {
   document.getElementById("results-mp--total").innerHTML = `${tot}`;
   document.getElementById("results-mp--average").innerHTML = `R$ ${avgPrice}`;
   if (tot == 0 && avgPrice == 0) {
-    document.getElementById("results").className = "results";
+    document.getElementById("results-mp").className = "results";
     document.getElementById("reset").className = "reset";
   } else {
-    document.getElementById("results").className = "results is-bigger";
+    document.getElementById("results-mp").className = "results is-bigger";
     document.getElementById("reset").className = "reset is-shown";
   }
 };
