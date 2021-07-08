@@ -188,6 +188,10 @@ main {
   color: #313060;
 }
 
+.readonly:focus {
+  border-color: lightgray;
+}
+
 #add {
   border-radius: 20px;
   width: 40px;

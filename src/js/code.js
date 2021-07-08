@@ -90,7 +90,9 @@ const validateInputs = (activedInfo) => {
 
 const makeReadOnly = () => {
   for (let index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
+    document.getElementsByName("quantity-mp__input")[index].setAttribute("class", "values-mp--info readonly");
     document.getElementsByName("quantity-mp__input")[index].setAttribute("readonly", "true");
+    document.getElementsByName("price-mp__input")[index].setAttribute("class", "values-mp--info readonly");
     document.getElementsByName("price-mp__input")[index].setAttribute("readonly", "true");
   };
 };  

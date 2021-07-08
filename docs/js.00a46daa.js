@@ -218,7 +218,9 @@ var validateInputs = function validateInputs(activedInfo) {
 
 var makeReadOnly = function makeReadOnly() {
   for (var index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
+    document.getElementsByName("quantity-mp__input")[index].setAttribute("class", "values-mp--info readonly");
     document.getElementsByName("quantity-mp__input")[index].setAttribute("readonly", "true");
+    document.getElementsByName("price-mp__input")[index].setAttribute("class", "values-mp--info readonly");
     document.getElementsByName("price-mp__input")[index].setAttribute("readonly", "true");
   }
 
@@ -535,7 +537,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50102" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54906" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
