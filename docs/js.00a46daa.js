@@ -173,6 +173,7 @@ var onAddClick = function onAddClick() {
     setBiggerInfo(activedInfo);
     showTrashButton(activedInfo);
     keepValuesOnDisplay(arrValues);
+    makeReadOnly();
     attFooter();
 
     for (var index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
@@ -210,6 +211,15 @@ var validateInputs = function validateInputs(activedInfo) {
     return true;
   } else {
     return false;
+  }
+
+  ;
+};
+
+var makeReadOnly = function makeReadOnly() {
+  for (var index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
+    document.getElementsByName("quantity-mp__input")[index].setAttribute("readonly", "true");
+    document.getElementsByName("price-mp__input")[index].setAttribute("readonly", "true");
   }
 
   ;
@@ -525,7 +535,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64477" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50102" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

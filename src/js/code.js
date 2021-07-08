@@ -55,6 +55,7 @@ export const onAddClick = () => {
     setBiggerInfo(activedInfo);
     showTrashButton(activedInfo);
     keepValuesOnDisplay(arrValues);
+    makeReadOnly();
     attFooter();
     
     for (let index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
@@ -86,6 +87,13 @@ const validateInputs = (activedInfo) => {
     return false;
   };
 };
+
+const makeReadOnly = () => {
+  for (let index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
+    document.getElementsByName("quantity-mp__input")[index].setAttribute("readonly", "true");
+    document.getElementsByName("price-mp__input")[index].setAttribute("readonly", "true");
+  };
+};  
 
 const handleComma = (valueP) => {
   if (valueP.replace(/,/g, ".")) {
