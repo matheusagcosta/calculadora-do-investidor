@@ -354,7 +354,7 @@ var showTrashButton = function showTrashButton(activedInfo) {
 };
 
 var generateNewInfo = function generateNewInfo(activedInfo) {
-  var html = "\n    <div class=\"info mid-price--info\">\n      <div class=\"quantity--info\">\n        <label for=\"quantity-mp__input\"  class=\"text--info\">Quantidade:</label>\n        <input type=\"text\" class=\"values--info values-mp--info\" name=\"quantity-mp__input\" id=\"quantity".concat(activedInfo + 1, "\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\">\n      </div>\n      <div class=\"price--info\">\n        <label for=\"price-mp__input\" class=\"text--info\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"values--info values-mp--info\" name=\"price-mp__input\" id=\"price").concat(activedInfo + 1, "\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\"> \n      </div>\n      <div class=\"trash-button\" id=\"trash-button\">\n        <button class=\"trash\" id=\"trash").concat(activedInfo + 1, "\"></button>\n      </div>\n    </div>\n  ");
+  var html = "\n    <div class=\"info mid-price--info\">\n      <div class=\"quantity--info\">\n        <label for=\"quantity-mp__input\"  class=\"text--info\">Quantidade:</label>\n        <input type=\"text\" class=\"values--info values-mp--info\" name=\"quantity-mp__input\" id=\"quantity".concat(activedInfo + 1, "\" placeholder=\"0\" autocomplete=\"off\" min=\"0\" value=\"\">\n      </div>\n      <div class=\"price--info\">\n        <label for=\"price-mp__input\" class=\"text--info\">Pre\xE7o:</label>\n        <input type=\"text\" class=\"values--info values-mp--info\" name=\"price-mp__input\" id=\"price").concat(activedInfo + 1, "\" placeholder=\"R$ 0,00\" autocomplete=\"off\" min=\"0\" value=\"\"> \n      </div>\n      <div class=\"trash-button\">\n        <button class=\"trash\" id=\"trash").concat(activedInfo + 1, "\" title=\"Limpar\"></button>\n      </div>\n    </div>\n  ");
   document.getElementById("mid-price--section").innerHTML += html;
 };
 
@@ -397,7 +397,7 @@ var remEvents = function remEvents(selector) {
 var keepValuesOnDisplay = function keepValuesOnDisplay(arrValues) {
   for (var u = 0; u < document.getElementsByClassName("mid-price--info").length - 1; u++) {
     document.getElementsByName("quantity-mp__input")[u].setAttribute("value", "".concat(arrValues[u][0]));
-    document.getElementsByName("price-mp__input")[u].setAttribute("value", "".concat(arrValues[u][1].toFixed(2)));
+    document.getElementsByName("price-mp__input")[u].setAttribute("value", "".concat(money.format(arrValues[u][1].toFixed(2))));
   }
 
   ;
@@ -537,7 +537,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63815" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52819" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

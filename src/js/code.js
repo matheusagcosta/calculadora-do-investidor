@@ -223,8 +223,8 @@ const generateNewInfo = (activedInfo) => {
         <label for="price-mp__input" class="text--info">Preço:</label>
         <input type="text" class="values--info values-mp--info" name="price-mp__input" id="price${activedInfo + 1}" placeholder="R$ 0,00" autocomplete="off" min="0" value=""> 
       </div>
-      <div class="trash-button" id="trash-button">
-        <button class="trash" id="trash${activedInfo + 1}"></button>
+      <div class="trash-button">
+        <button class="trash" id="trash${activedInfo + 1}" title="Limpar"></button>
       </div>
     </div>
   `;
@@ -272,7 +272,7 @@ const keepValuesOnDisplay = (arrValues) => {
       [u].setAttribute("value", `${arrValues[u][0]}`);
     document
       .getElementsByName("price-mp__input")
-      [u].setAttribute("value", `${arrValues[u][1].toFixed(2)}`);
+      [u].setAttribute("value", `${money.format(arrValues[u][1].toFixed(2))}`);
   };
 };
 
