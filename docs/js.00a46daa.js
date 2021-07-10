@@ -504,14 +504,69 @@ var reset = function reset() {
 };
 
 exports.reset = reset;
-},{}],"js/index.js":[function(require,module,exports) {
+},{}],"js/simulation.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.blockChar = void 0;
+
+var _midprice = require("./midprice");
+
+var blockChar = function blockChar(evnt) {
+  var charCode = evnt.charCode;
+
+  if (charCode != 0) {
+    if (charCode < 44 || charCode > 57 || charCode == 45 || charCode == 47) {
+      evnt.preventDefault();
+    }
+
+    ;
+  }
+
+  ;
+};
+
+exports.blockChar = blockChar;
+
+var handleComma = function handleComma(str) {
+  if (str.replace(/,/g, ".")) {
+    str = str.replace(/,/g, ".");
+  }
+
+  ;
+  return str;
+};
+
+var getQuant = function getQuant() {
+  var simuQuant = document.getElementById("quantity-simu").value;
+};
+
+var getBuyPrice = function getBuyPrice() {
+  var simuBprice = document.getElementById("Bprice-simu").value;
+};
+
+var getTargetPrice = function getTargetPrice() {
+  var simuTprice = document.getElementById("Tprice-simu").value;
+};
+
+var calculations = function calculations() {};
+
+var attSimuResults = function attSimuResults(quant, Bprice, Tprice, percent) {};
+},{"./midprice":"js/midprice.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _midprice = require("./midprice");
 
+var _simulation = require("./simulation");
+
 document.querySelector("#add").addEventListener("click", _midprice.onAddClick);
-document.querySelector('#reset').addEventListener("click", _midprice.reset);
-},{"./midprice":"js/midprice.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+document.querySelector("#reset").addEventListener("click", _midprice.reset);
+document.querySelector("#quantity-simu").addEventListener("keypress", _simulation.blockChar);
+document.querySelector("#Bprice-simu").addEventListener("keypress", _simulation.blockChar);
+document.querySelector("#Tprice-simu").addEventListener("keypress", _simulation.blockChar);
+},{"./midprice":"js/midprice.js","./simulation":"js/simulation.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -539,7 +594,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57926" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57947" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

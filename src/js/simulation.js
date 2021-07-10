@@ -1,58 +1,12 @@
 import { setBorderColor } from "./midprice";
 
-const validateFloat = new RegExp("[0-9]+[\.]?[0-9]*");
-const validateInt = new RegExp("[0-9]+");
-
-const blockChar = (evnt) => {
+export const blockChar = (evnt) => {
   let charCode = evnt.charCode;
   if (charCode != 0) {
     if (charCode < 44 || charCode > 57 || charCode == 45 || charCode==47) {
       evnt.preventDefault();
     };
   };
-};
-
-const getQuant = () => {
-  let simuQuant = document.getElementById("quantity-simu").value;
-
-  simuQuant = validateInt.exec(simuQuant)[0];
-  simuQuant = parseInt(simuQuant);
-  
-  return simuQuant;
-};
-
-const getBuyPrice = () => {
-
-  let simuBprice = document.getElementById("Bprice-simu").value;
-
-  simuBprice = handleComma(simuBprice);
-
-  if (validateFloat.exec(simuBprice) != null) {
-    simuBprice = validateFloat.exec(simuBprice)[0];
-    simuBprice = parseFloat(simuBprice).toFixed(2); //retorna string
-
-    return [true, parseFloat(simuBprice)];
-  } 
-  else if (validateInt.exec(simuBprice) != null) {
-    simuBprice = validateInt.exec(simuBprice)[0];
-    simuBprice = parseFloat(simuBprice).toFixed(2); //retorna string
-
-    return [true, parseFloat(simuBprice)];
-  }
-  else {
-    setBorderColor("Bprice-simu", "red");
-    return [false]
-  };
-
-};
-
-const getTargetPrice = () => {
-  let simuTprice = document.getElementById("Tprice-simu").value;
-
-  simuTprice = handleComma(simuTprice);
-  simuTprice = validateFloat.exec(simuTprice)[0];
-
-  return simuTprice;
 };
 
 const handleComma = (str) => {
@@ -63,11 +17,24 @@ const handleComma = (str) => {
   return str;
 };
 
-const calculations = () => {
+const getQuant = () => {
+  let simuQuant = document.getElementById("quantity-simu").value;
+
+  
+};
+
+const getBuyPrice = () => {
+
+  let simuBprice = document.getElementById("Bprice-simu").value;
+
 
 };
 
-
-const attSimuResults = (quant, Bprice, Tprice, percent) => {
+const getTargetPrice = () => {
+  let simuTprice = document.getElementById("Tprice-simu").value;
 
 };
+
+const calculations = () => {};
+
+const attSimuResults = (quant, Bprice, Tprice, percent) => {};
