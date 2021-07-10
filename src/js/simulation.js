@@ -43,8 +43,23 @@ const getTargetPrice = () => {
   return parseFloat(simuTprice);
 };
 
-const calculations = () => {};
+const calculations = () => {
+  let quant = getQuant();
+  let Bprice = getBuyPrice();
+  let Tprice = getTargetPrice();
 
-const attSimuResults = (quant, Bprice, Tprice, percent) => {
+  let start = (quant * Bprice).toFixed(2);
+  
+  let valorization = (quant * (Tprice - Bprice)).toFixed(2);
+
+  let percent = ((Tprice / Bprice) - 1)*100;
+  percent = percent.toFixed(2);
+  
+  let total = (quant * Tprice).toFixed(2);
+
+  return [start, valorization, percent, total];
+};
+
+const attSimuResults = (start, valorization, percent, total) => {
 
 };  

@@ -562,9 +562,19 @@ var getTargetPrice = function getTargetPrice() {
   return parseFloat(simuTprice);
 };
 
-var calculations = function calculations() {};
+var calculations = function calculations() {
+  var quant = getQuant();
+  var Bprice = getBuyPrice();
+  var Tprice = getTargetPrice();
+  var start = (quant * Bprice).toFixed(2);
+  var valorization = (quant * (Tprice - Bprice)).toFixed(2);
+  var percent = (Tprice / Bprice - 1) * 100;
+  percent = percent.toFixed(2);
+  var total = (quant * Tprice).toFixed(2);
+  return [start, valorization, percent, total];
+};
 
-var attSimuResults = function attSimuResults(quant, Bprice, Tprice, percent) {};
+var attSimuResults = function attSimuResults(start, valorization, percent, total) {};
 },{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
@@ -605,7 +615,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59633" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64601" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
