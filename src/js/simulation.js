@@ -3,6 +3,15 @@ import { setBorderColor } from "./midprice";
 const validateFloat = new RegExp("[0-9]+[\.]?[0-9]*");
 const validateInt = new RegExp("[0-9]+");
 
+const blockChar = (evnt) => {
+  let charCode = evnt.charCode;
+  if (charCode != 0) {
+    if (charCode < 44 || charCode > 57 || charCode == 45 || charCode==47) {
+      evnt.preventDefault();
+    };
+  };
+};
+
 const getQuant = () => {
   let simuQuant = document.getElementById("quantity-simu").value;
 
