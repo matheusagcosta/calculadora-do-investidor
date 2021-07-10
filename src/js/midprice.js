@@ -37,7 +37,7 @@ export const updateVal = (index) => {
     
     calcValues(valueQ, valueP, "update", index);
     keepValuesOnDisplay(arrValues);
-    attFooter();
+    attMPResults();
     
     for (let count = 0; count < document.getElementsByClassName("mid-price--info").length; count++) {
       setBorderColor(`quantity${count}`, "none");
@@ -56,7 +56,7 @@ export const onAddClick = () => {
     showTrashButton(activedInfo);
     keepValuesOnDisplay(arrValues);
     makeReadOnly();
-    attFooter();
+    attMPResults();
     
     for (let index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
       if (arrFunctTrash[index]) {
@@ -104,7 +104,7 @@ const handleComma = (valueP) => {
   return valueP;
 };
 
-const setBorderColor = (id, color) => {
+export const setBorderColor = (id, color) => {
   document.getElementById(`${id}`).setAttribute("style", `border-color: ${color};`)
 };
 
@@ -297,7 +297,7 @@ const removeInfo = (trashID) => {
   recalcValues(arrValues, trashID);
   keepValuesOnDisplay(arrValues);
   handleValues(arrValues);
-  attFooter();
+  attMPResults();
 
   activedInfo -= 1;
 
@@ -337,7 +337,7 @@ const uniqueInfo = () => {
   activedInfo = 0;
 };
 
-const attFooter = () => {
+const attMPResults = () => {
   document.getElementById("results-mp--total").innerHTML = `${tot}`;
   document.getElementById("results-mp--average").innerHTML = `R$ ${avgPrice}`;
   if (tot == 0 && avgPrice == 0) {

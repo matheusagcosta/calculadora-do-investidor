@@ -117,13 +117,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/code.js":[function(require,module,exports) {
+})({"js/midprice.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reset = exports.onAddClick = exports.updateVal = void 0;
+exports.reset = exports.setBorderColor = exports.onAddClick = exports.updateVal = void 0;
 var avgPrice = 0;
 var tot = 0;
 var products = 0;
@@ -151,7 +151,7 @@ var updateVal = function updateVal(index) {
   if (validateInputs(index)) {
     calcValues(valueQ, valueP, "update", index);
     keepValuesOnDisplay(arrValues);
-    attFooter();
+    attMPResults();
 
     for (var count = 0; count < document.getElementsByClassName("mid-price--info").length; count++) {
       setBorderColor("quantity".concat(count), "none");
@@ -174,7 +174,7 @@ var onAddClick = function onAddClick() {
     showTrashButton(activedInfo);
     keepValuesOnDisplay(arrValues);
     makeReadOnly();
-    attFooter();
+    attMPResults();
 
     for (var index = 0; index < document.getElementsByClassName("mid-price--info").length - 1; index++) {
       if (arrFunctTrash[index]) {
@@ -239,6 +239,8 @@ var handleComma = function handleComma(valueP) {
 var setBorderColor = function setBorderColor(id, color) {
   document.getElementById("".concat(id)).setAttribute("style", "border-color: ".concat(color, ";"));
 };
+
+exports.setBorderColor = setBorderColor;
 
 var checkAll = function checkAll(valueQ, valueP, activedInfo) {
   var result = true;
@@ -429,7 +431,7 @@ var removeInfo = function removeInfo(trashID) {
   recalcValues(arrValues, trashID);
   keepValuesOnDisplay(arrValues);
   handleValues(arrValues);
-  attFooter();
+  attMPResults();
   activedInfo -= 1;
 
   if (document.getElementsByClassName("mid-price--info").length == 1) {
@@ -474,7 +476,7 @@ var uniqueInfo = function uniqueInfo() {
   activedInfo = 0;
 };
 
-var attFooter = function attFooter() {
+var attMPResults = function attMPResults() {
   document.getElementById("results-mp--total").innerHTML = "".concat(tot);
   document.getElementById("results-mp--average").innerHTML = "R$ ".concat(avgPrice);
 
@@ -505,11 +507,11 @@ exports.reset = reset;
 },{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
-var _code = require("./code");
+var _midprice = require("./midprice");
 
-document.querySelector("#add").addEventListener("click", _code.onAddClick);
-document.querySelector('#reset').addEventListener("click", _code.reset);
-},{"./code":"js/code.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+document.querySelector("#add").addEventListener("click", _midprice.onAddClick);
+document.querySelector('#reset').addEventListener("click", _midprice.reset);
+},{"./midprice":"js/midprice.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -537,7 +539,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52819" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60883" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
