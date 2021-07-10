@@ -512,8 +512,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.blockChar = void 0;
 
-var _midprice = require("./midprice");
-
+//tom de vermelho => #F5899D;
 var blockChar = function blockChar(evnt) {
   var charCode = evnt.charCode;
 
@@ -541,20 +540,32 @@ var handleComma = function handleComma(str) {
 
 var getQuant = function getQuant() {
   var simuQuant = document.getElementById("quantity-simu").value;
+  simuQuant = handleComma(simuQuant);
+  simuQuant = parseInt(simuQuant); //retorna uma string 
+
+  return parseInt(simuQuant);
 };
 
 var getBuyPrice = function getBuyPrice() {
   var simuBprice = document.getElementById("Bprice-simu").value;
+  simuBprice = handleComma(simuBprice);
+  simuBprice = parseFloat(simuBprice).toFixed(2); //retorna uma string
+
+  return parseFloat(simuBprice);
 };
 
 var getTargetPrice = function getTargetPrice() {
   var simuTprice = document.getElementById("Tprice-simu").value;
+  simuTprice = handleComma(simuTprice);
+  simuTprice = parseFloat(simuTprice).toFixed(2); //retorna uma string
+
+  return parseFloat(simuTprice);
 };
 
 var calculations = function calculations() {};
 
 var attSimuResults = function attSimuResults(quant, Bprice, Tprice, percent) {};
-},{"./midprice":"js/midprice.js"}],"js/index.js":[function(require,module,exports) {
+},{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _midprice = require("./midprice");
@@ -594,7 +605,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57947" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59633" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

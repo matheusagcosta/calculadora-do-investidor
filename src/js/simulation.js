@@ -1,5 +1,4 @@
-import { setBorderColor } from "./midprice";
-
+//tom de vermelho => #F5899D;
 export const blockChar = (evnt) => {
   let charCode = evnt.charCode;
   if (charCode != 0) {
@@ -20,21 +19,32 @@ const handleComma = (str) => {
 const getQuant = () => {
   let simuQuant = document.getElementById("quantity-simu").value;
 
-  
+  simuQuant = handleComma(simuQuant);
+  simuQuant = parseInt(simuQuant); //retorna uma string 
+
+  return parseInt(simuQuant);
 };
 
 const getBuyPrice = () => {
-
   let simuBprice = document.getElementById("Bprice-simu").value;
 
+  simuBprice = handleComma(simuBprice);
+  simuBprice = parseFloat(simuBprice).toFixed(2); //retorna uma string
 
+  return parseFloat(simuBprice);
 };
 
 const getTargetPrice = () => {
   let simuTprice = document.getElementById("Tprice-simu").value;
 
+  simuTprice = handleComma(simuTprice);
+  simuTprice = parseFloat(simuTprice).toFixed(2); //retorna uma string
+
+  return parseFloat(simuTprice);
 };
 
 const calculations = () => {};
 
-const attSimuResults = (quant, Bprice, Tprice, percent) => {};
+const attSimuResults = (quant, Bprice, Tprice, percent) => {
+
+};  
