@@ -510,7 +510,9 @@ exports.reset = reset;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.blockChar = void 0;
+exports.attSimuResults = exports.blockChar = void 0;
+
+var _midprice = require("./midprice");
 
 //tom de vermelho => #F5899D;
 var blockChar = function blockChar(evnt) {
@@ -540,6 +542,12 @@ var handleComma = function handleComma(str) {
 
 var getQuant = function getQuant() {
   var simuQuant = document.getElementById("quantity-simu").value;
+
+  if (simuQuant == "") {
+    return simuQuant;
+  }
+
+  ;
   simuQuant = handleComma(simuQuant);
   simuQuant = parseInt(simuQuant); //retorna uma string 
 
@@ -548,6 +556,12 @@ var getQuant = function getQuant() {
 
 var getBuyPrice = function getBuyPrice() {
   var simuBprice = document.getElementById("Bprice-simu").value;
+
+  if (simuBprice == "") {
+    return simuBprice;
+  }
+
+  ;
   simuBprice = handleComma(simuBprice);
   simuBprice = parseFloat(simuBprice).toFixed(2); //retorna uma string
 
@@ -556,26 +570,90 @@ var getBuyPrice = function getBuyPrice() {
 
 var getTargetPrice = function getTargetPrice() {
   var simuTprice = document.getElementById("Tprice-simu").value;
+
+  if (simuTprice == "") {
+    return simuTprice;
+  }
+
+  ;
   simuTprice = handleComma(simuTprice);
   simuTprice = parseFloat(simuTprice).toFixed(2); //retorna uma string
 
   return parseFloat(simuTprice);
 };
 
+var checkCondition = function checkCondition(quant, Bprice, Tprice) {
+  var condition = [true, true, true];
+
+  if (quant == "") {
+    condition[0] = false;
+  }
+
+  ;
+
+  if (Bprice == "") {
+    condition[1] = false;
+  }
+
+  ;
+
+  if (Tprice == "") {
+    condition[2] = false;
+  }
+
+  ;
+  return condition;
+};
+
 var calculations = function calculations() {
   var quant = getQuant();
   var Bprice = getBuyPrice();
   var Tprice = getTargetPrice();
+  var condition = checkCondition(quant, Bprice, Tprice);
   var start = (quant * Bprice).toFixed(2);
   var valorization = (quant * (Tprice - Bprice)).toFixed(2);
   var percent = (Tprice / Bprice - 1) * 100;
   percent = percent.toFixed(2);
   var total = (quant * Tprice).toFixed(2);
-  return [start, valorization, percent, total];
+  return [condition, start, valorization, percent, total];
 };
 
-var attSimuResults = function attSimuResults(start, valorization, percent, total) {};
-},{}],"js/index.js":[function(require,module,exports) {
+var attSimuResults = function attSimuResults() {
+  var results = calculations();
+
+  if (results[0][0] && results[0][1]) {
+    document.getElementById("results-simu-starter").innerHTML = "R$ ".concat(results[1]);
+  } else {
+    document.getElementById("results-simu-starter").innerHTML = "R$ 0,00";
+  }
+
+  ;
+
+  if (results[0][1] && results[0][2]) {
+    document.getElementById("results-simu-percent").innerHTML = "R$ 0,00 (".concat(results[3], "%)");
+  } else {
+    document.getElementById("results-simu-percent").innerHTML = "R$ 0,00 (0%)";
+  }
+
+  ;
+
+  if (results[0][0] && results[0][2]) {
+    document.getElementById("results-simu-total").innerHTML = "R$ ".concat(results[4]);
+  } else {
+    document.getElementById("results-simu-total").innerHTML = "R$ 0,00";
+  }
+
+  ;
+
+  if (results[0][0] && results[0][1] && results[0][2]) {
+    document.getElementById("results-simu-percent").innerHTML = "R$ ".concat(results[2], " (").concat(results[3], "%)");
+  }
+
+  ;
+};
+
+exports.attSimuResults = attSimuResults;
+},{"./midprice":"js/midprice.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _midprice = require("./midprice");
@@ -585,8 +663,11 @@ var _simulation = require("./simulation");
 document.querySelector("#add").addEventListener("click", _midprice.onAddClick);
 document.querySelector("#reset").addEventListener("click", _midprice.reset);
 document.querySelector("#quantity-simu").addEventListener("keypress", _simulation.blockChar);
+document.querySelector("#quantity-simu").addEventListener("input", _simulation.attSimuResults);
 document.querySelector("#Bprice-simu").addEventListener("keypress", _simulation.blockChar);
+document.querySelector("#Bprice-simu").addEventListener("input", _simulation.attSimuResults);
 document.querySelector("#Tprice-simu").addEventListener("keypress", _simulation.blockChar);
+document.querySelector("#Tprice-simu").addEventListener("input", _simulation.attSimuResults);
 },{"./midprice":"js/midprice.js","./simulation":"js/simulation.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -615,7 +696,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64601" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58141" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
