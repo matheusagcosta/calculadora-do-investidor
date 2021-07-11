@@ -179,6 +179,10 @@ main {
   transition: height .35s linear;  
 }
 
+.results span {
+  color: #DBDEF9;
+}
+
 .results.is-bigger {
   height: 255px;
 }

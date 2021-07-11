@@ -512,9 +512,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.attSimuResults = exports.blockChar = void 0;
 
-var _midprice = require("./midprice");
-
-//tom de vermelho => #F5899D;
 var blockChar = function blockChar(evnt) {
   var charCode = evnt.charCode;
 
@@ -631,8 +628,10 @@ var attSimuResults = function attSimuResults() {
 
   if (results[0][1] && results[0][2]) {
     document.getElementById("results-simu-percent").innerHTML = "R$ 0,00 (".concat(results[3], "%)");
+    checkPercent(results[3]);
   } else {
     document.getElementById("results-simu-percent").innerHTML = "R$ 0,00 (0%)";
+    setColor("results-simu-percent", "#DBDEF9");
   }
 
   ;
@@ -647,13 +646,30 @@ var attSimuResults = function attSimuResults() {
 
   if (results[0][0] && results[0][1] && results[0][2]) {
     document.getElementById("results-simu-percent").innerHTML = "R$ ".concat(results[2], " (").concat(results[3], "%)");
+    checkPercent(results[3]);
   }
 
   ;
 };
 
 exports.attSimuResults = attSimuResults;
-},{"./midprice":"js/midprice.js"}],"js/index.js":[function(require,module,exports) {
+
+var setColor = function setColor(id, hex) {
+  document.getElementById("".concat(id)).setAttribute("style", "color: ".concat(hex, ";"));
+};
+
+var checkPercent = function checkPercent(percent) {
+  if (percent > 0) {
+    setColor("results-simu-percent", "#89F5E2");
+  } else if (percent < 0) {
+    setColor("results-simu-percent", "#F5899D");
+  } else {
+    setColor("results-simu-percent", "#DBDEF9");
+  }
+
+  ;
+};
+},{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _midprice = require("./midprice");
@@ -696,7 +712,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58141" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62699" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

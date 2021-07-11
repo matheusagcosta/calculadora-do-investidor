@@ -1,6 +1,3 @@
-import { setBorderColor } from "./midprice";
-
-//tom de vermelho => #F5899D;
 export const blockChar = (evnt) => {
   let charCode = evnt.charCode;
   if (charCode != 0) {
@@ -97,7 +94,11 @@ export const attSimuResults = () => {
 
   if (results[0][1] && results[0][2]) {
     document.getElementById("results-simu-percent").innerHTML = `R$ 0,00 (${results[3]}%)`;
-  } else { document.getElementById("results-simu-percent").innerHTML = "R$ 0,00 (0%)"; };
+    checkPercent(results[3]);
+  } else {
+    document.getElementById("results-simu-percent").innerHTML = "R$ 0,00 (0%)";
+    setColor("results-simu-percent", "#DBDEF9");
+  };
 
   if (results[0][0] && results[0][2]) {
     document.getElementById("results-simu-total").innerHTML = `R$ ${results[4]}`;
@@ -105,6 +106,16 @@ export const attSimuResults = () => {
 
   if (results[0][0] && results[0][1] && results[0][2]) {
     document.getElementById("results-simu-percent").innerHTML = `R$ ${results[2]} (${results[3]}%)`;
+    checkPercent(results[3]);
   };
+};
 
-};  
+const setColor = (id, hex) => {
+  document.getElementById(`${id}`).setAttribute("style", `color: ${hex};`)
+};
+
+const checkPercent = (percent) => {
+  if (percent > 0) { setColor("results-simu-percent", "#89F5E2"); } 
+  else if (percent < 0) { setColor("results-simu-percent", "#F5899D"); }
+  else { setColor("results-simu-percent", "#DBDEF9"); };
+};
