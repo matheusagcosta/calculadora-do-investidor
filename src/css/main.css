@@ -325,17 +325,26 @@ main {
   margin-right: 15px;
 }
 
-.results-percentage {
-  min-width: 175px;
-  margin-right: 52.25px;
-}
-
 .results-percent--text {
   justify-content: center;
 }
 
 .results-percent--values {
   justify-content: center;
+}
+
+.results-percentage-left {
+  min-width: 175px;
+  margin-right: 52.25px;
+}
+
+.results-percentage-middle {
+  min-width: 212px;
+  margin-right: 52.25px;
+}
+
+.results-percentage-right {
+  min-width: 151px;
 }
 
 @media only screen and (max-width: 768px) {
