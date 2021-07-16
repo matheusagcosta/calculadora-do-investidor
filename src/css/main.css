@@ -319,6 +319,24 @@ main {
   color: #A7B0FF;
 }
 
+.percentage-info {
+  width: 230px;
+  height: 193px;
+  margin-right: 15px;
+}
+
+.results-percentage {
+  min-width: 175px;
+}
+
+.results-percent--text {
+  justify-content: center;
+}
+
+.results-percent--values {
+  justify-content: center;
+}
+
 @media only screen and (max-width: 768px) {
   
   .header__link {
