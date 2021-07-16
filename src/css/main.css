@@ -327,6 +327,7 @@ main {
 
 .results-percentage {
   min-width: 175px;
+  margin-right: 52.25px;
 }
 
 .results-percent--text {
