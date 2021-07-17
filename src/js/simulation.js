@@ -7,12 +7,37 @@ export const blockChar = (evnt) => {
   };
 };
 
-const handleComma = (str) => {
+export const handleComma = (str) => {
   if (str.replace(/,/g, ".")) {
     str = str.replace(/,/g, ".");
   };
 
   return str;
+};
+
+export const attSimuResults = () => {
+  let results = calculations();
+
+  if (results[0][0] && results[0][1]) {
+    document.getElementById("results-simu-starter").innerHTML = `R$ ${results[1]}`;
+  } else { document.getElementById("results-simu-starter").innerHTML = "R$ 0,00"; };
+
+  if (results[0][1] && results[0][2]) {
+    document.getElementById("results-simu-percent").innerHTML = `R$ 0,00 (${results[3]}%)`;
+    checkPercent(results[3]);
+  } else {
+    document.getElementById("results-simu-percent").innerHTML = "R$ 0,00 (0%)";
+    setColor("results-simu-percent", "#DBDEF9");
+  };
+
+  if (results[0][0] && results[0][2]) {
+    document.getElementById("results-simu-total").innerHTML = `R$ ${results[4]}`;
+  } else { document.getElementById("results-simu-total").innerHTML = "R$ 0,00"; };
+
+  if (results[0][0] && results[0][1] && results[0][2]) {
+    document.getElementById("results-simu-percent").innerHTML = `R$ ${results[2]} (${results[3]}%)`;
+    checkPercent(results[3]);
+  };
 };
 
 const getQuant = () => {
@@ -83,31 +108,6 @@ const calculations = () => {
   let total = (quant * Tprice).toFixed(2);
 
   return [condition, start, valorization, percent, total];
-};
-
-export const attSimuResults = () => {
-  let results = calculations();
-
-  if (results[0][0] && results[0][1]) {
-    document.getElementById("results-simu-starter").innerHTML = `R$ ${results[1]}`;
-  } else { document.getElementById("results-simu-starter").innerHTML = "R$ 0,00"; };
-
-  if (results[0][1] && results[0][2]) {
-    document.getElementById("results-simu-percent").innerHTML = `R$ 0,00 (${results[3]}%)`;
-    checkPercent(results[3]);
-  } else {
-    document.getElementById("results-simu-percent").innerHTML = "R$ 0,00 (0%)";
-    setColor("results-simu-percent", "#DBDEF9");
-  };
-
-  if (results[0][0] && results[0][2]) {
-    document.getElementById("results-simu-total").innerHTML = `R$ ${results[4]}`;
-  } else { document.getElementById("results-simu-total").innerHTML = "R$ 0,00"; };
-
-  if (results[0][0] && results[0][1] && results[0][2]) {
-    document.getElementById("results-simu-percent").innerHTML = `R$ ${results[2]} (${results[3]}%)`;
-    checkPercent(results[3]);
-  };
 };
 
 const setColor = (id, hex) => {

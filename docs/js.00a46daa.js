@@ -510,7 +510,7 @@ exports.reset = reset;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.attSimuResults = exports.blockChar = void 0;
+exports.attSimuResults = exports.handleComma = exports.blockChar = void 0;
 
 var blockChar = function blockChar(evnt) {
   var charCode = evnt.charCode;
@@ -536,6 +536,47 @@ var handleComma = function handleComma(str) {
   ;
   return str;
 };
+
+exports.handleComma = handleComma;
+
+var attSimuResults = function attSimuResults() {
+  var results = calculations();
+
+  if (results[0][0] && results[0][1]) {
+    document.getElementById("results-simu-starter").innerHTML = "R$ ".concat(results[1]);
+  } else {
+    document.getElementById("results-simu-starter").innerHTML = "R$ 0,00";
+  }
+
+  ;
+
+  if (results[0][1] && results[0][2]) {
+    document.getElementById("results-simu-percent").innerHTML = "R$ 0,00 (".concat(results[3], "%)");
+    checkPercent(results[3]);
+  } else {
+    document.getElementById("results-simu-percent").innerHTML = "R$ 0,00 (0%)";
+    setColor("results-simu-percent", "#DBDEF9");
+  }
+
+  ;
+
+  if (results[0][0] && results[0][2]) {
+    document.getElementById("results-simu-total").innerHTML = "R$ ".concat(results[4]);
+  } else {
+    document.getElementById("results-simu-total").innerHTML = "R$ 0,00";
+  }
+
+  ;
+
+  if (results[0][0] && results[0][1] && results[0][2]) {
+    document.getElementById("results-simu-percent").innerHTML = "R$ ".concat(results[2], " (").concat(results[3], "%)");
+    checkPercent(results[3]);
+  }
+
+  ;
+};
+
+exports.attSimuResults = attSimuResults;
 
 var getQuant = function getQuant() {
   var simuQuant = document.getElementById("quantity-simu").value;
@@ -615,45 +656,6 @@ var calculations = function calculations() {
   return [condition, start, valorization, percent, total];
 };
 
-var attSimuResults = function attSimuResults() {
-  var results = calculations();
-
-  if (results[0][0] && results[0][1]) {
-    document.getElementById("results-simu-starter").innerHTML = "R$ ".concat(results[1]);
-  } else {
-    document.getElementById("results-simu-starter").innerHTML = "R$ 0,00";
-  }
-
-  ;
-
-  if (results[0][1] && results[0][2]) {
-    document.getElementById("results-simu-percent").innerHTML = "R$ 0,00 (".concat(results[3], "%)");
-    checkPercent(results[3]);
-  } else {
-    document.getElementById("results-simu-percent").innerHTML = "R$ 0,00 (0%)";
-    setColor("results-simu-percent", "#DBDEF9");
-  }
-
-  ;
-
-  if (results[0][0] && results[0][2]) {
-    document.getElementById("results-simu-total").innerHTML = "R$ ".concat(results[4]);
-  } else {
-    document.getElementById("results-simu-total").innerHTML = "R$ 0,00";
-  }
-
-  ;
-
-  if (results[0][0] && results[0][1] && results[0][2]) {
-    document.getElementById("results-simu-percent").innerHTML = "R$ ".concat(results[2], " (").concat(results[3], "%)");
-    checkPercent(results[3]);
-  }
-
-  ;
-};
-
-exports.attSimuResults = attSimuResults;
-
 var setColor = function setColor(id, hex) {
   document.getElementById("".concat(id)).setAttribute("style", "color: ".concat(hex, ";"));
 };
@@ -669,12 +671,194 @@ var checkPercent = function checkPercent(percent) {
 
   ;
 };
-},{}],"js/index.js":[function(require,module,exports) {
+},{}],"js/percentage.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.attLeftPercentResults = void 0;
+
+var _simulation = require("./simulation");
+
+var attLeftPercentResults = function attLeftPercentResults(location) {
+  if (location == "left") {
+    var resultL = calculationsLeft();
+
+    if (resultL[0]) {
+      document.getElementById("results-percent-left").innerHTML = "".concat(resultL[1].toFixed(2));
+    } else {
+      document.getElementById("results-percent-left").innerHTML = "0";
+    }
+
+    ;
+  }
+
+  ;
+
+  if (location == "middle") {
+    var resultM = calculationsMiddle();
+
+    if (resultM[0]) {
+      document.getElementById("results-percent-middle").innerHTML = "".concat(resultM[1].toFixed(2));
+      console.log(resultM);
+    } else {
+      document.getElementById("results-percent-middle").innerHTML = "0";
+    }
+
+    ;
+  }
+
+  ;
+
+  if (location == "right") {
+    var resultR = calculationsRight();
+
+    if (resultR[0]) {
+      document.getElementById("results-percent-right").innerHTML = "".concat(resultR[1].toFixed(2), "%");
+      console.log(resultR);
+    } else {
+      document.getElementById("results-percent-right").innerHTML = "0%";
+    }
+
+    ;
+  }
+
+  ;
+};
+
+exports.attLeftPercentResults = attLeftPercentResults;
+
+var getLeftPercent = function getLeftPercent() {
+  var leftPercent = document.getElementById("percentage-percentLeft").value;
+
+  if (leftPercent == "") {
+    return leftPercent;
+  }
+
+  ;
+  leftPercent = (0, _simulation.handleComma)(leftPercent);
+  leftPercent = parseFloat(leftPercent); //retorna uma string
+
+  return parseFloat(leftPercent);
+};
+
+var getLeftAmount = function getLeftAmount() {
+  var leftAmount = document.getElementById("amount-percentLeft").value;
+
+  if (leftAmount == "") {
+    return leftAmount;
+  }
+
+  ;
+  leftAmount = (0, _simulation.handleComma)(leftAmount);
+  leftAmount = parseFloat(leftAmount); //retorna uma string
+
+  return parseFloat(leftAmount);
+};
+
+var calculationsLeft = function calculationsLeft() {
+  var leftPercent = getLeftPercent();
+  var leftAmount = getLeftAmount();
+
+  if (leftPercent == "" || leftAmount == "") {
+    return [false];
+  }
+
+  ;
+  var leftResult = leftAmount * (leftPercent / 100);
+  return [true, leftResult];
+};
+
+var getMiddlePortion = function getMiddlePortion() {
+  var middlePortion = document.getElementById("portion-percentMiddle").value;
+
+  if (middlePortion == "") {
+    return middlePortion;
+  }
+
+  ;
+  middlePortion = (0, _simulation.handleComma)(middlePortion);
+  middlePortion = parseFloat(middlePortion); //retorna uma string
+
+  return parseFloat(middlePortion);
+};
+
+var getMiddlePercent = function getMiddlePercent() {
+  var middlePercent = document.getElementById("percentage-percentMiddle").value;
+
+  if (middlePercent == "") {
+    return middlePercent;
+  }
+
+  ;
+  middlePercent = (0, _simulation.handleComma)(middlePercent);
+  middlePercent = parseFloat(middlePercent); //retorna uma string
+
+  return parseFloat(middlePercent);
+};
+
+var calculationsMiddle = function calculationsMiddle() {
+  var middlePortion = getMiddlePortion();
+  var middlePercent = getMiddlePercent();
+
+  if (middlePortion == "" || middlePercent == "" || middlePercent == 0) {
+    return [false];
+  }
+
+  ;
+  var middleResult = middlePortion / (middlePercent / 100);
+  return [true, middleResult];
+};
+
+var getRightPortion = function getRightPortion() {
+  var rightPortion = document.getElementById("portion-percentRight").value;
+
+  if (rightPortion == "") {
+    return rightPortion;
+  }
+
+  ;
+  rightPortion = (0, _simulation.handleComma)(rightPortion);
+  rightPortion = parseFloat(rightPortion); //retorna uma string
+
+  return parseFloat(rightPortion);
+};
+
+var getRightTotal = function getRightTotal() {
+  var rightTotal = document.getElementById("total-percentRight").value;
+
+  if (rightTotal == "") {
+    return rightTotal;
+  }
+
+  ;
+  rightTotal = (0, _simulation.handleComma)(rightTotal);
+  rightTotal = parseFloat(rightTotal); //retorna uma string
+
+  return parseFloat(rightTotal);
+};
+
+var calculationsRight = function calculationsRight() {
+  var rightPortion = getRightPortion();
+  var rightTotal = getRightTotal();
+
+  if (rightPortion == "" || rightTotal == "" || rightTotal == 0) {
+    return [false];
+  }
+
+  ;
+  var rightResult = rightPortion / rightTotal * 100;
+  return [true, rightResult];
+};
+},{"./simulation":"js/simulation.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _midprice = require("./midprice");
 
 var _simulation = require("./simulation");
+
+var _percentage = require("./percentage");
 
 document.querySelector("#add").addEventListener("click", _midprice.onAddClick);
 document.querySelector("#reset").addEventListener("click", _midprice.reset);
@@ -684,7 +868,31 @@ document.querySelector("#Bprice-simu").addEventListener("keypress", _simulation.
 document.querySelector("#Bprice-simu").addEventListener("input", _simulation.attSimuResults);
 document.querySelector("#Tprice-simu").addEventListener("keypress", _simulation.blockChar);
 document.querySelector("#Tprice-simu").addEventListener("input", _simulation.attSimuResults);
-},{"./midprice":"js/midprice.js","./simulation":"js/simulation.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+document.querySelector("#percentage-percentLeft").addEventListener("keypress", _simulation.blockChar);
+document.querySelector("#percentage-percentLeft").addEventListener("input", function () {
+  (0, _percentage.attLeftPercentResults)("left");
+});
+document.querySelector("#amount-percentLeft").addEventListener("keypress", _simulation.blockChar);
+document.querySelector("#amount-percentLeft").addEventListener("input", function () {
+  (0, _percentage.attLeftPercentResults)("left");
+});
+document.querySelector("#portion-percentMiddle").addEventListener("keypress", _simulation.blockChar);
+document.querySelector("#portion-percentMiddle").addEventListener("input", function () {
+  (0, _percentage.attLeftPercentResults)("middle");
+});
+document.querySelector("#percentage-percentMiddle").addEventListener("keypress", _simulation.blockChar);
+document.querySelector("#percentage-percentMiddle").addEventListener("input", function () {
+  (0, _percentage.attLeftPercentResults)("middle");
+});
+document.querySelector("#portion-percentRight").addEventListener("keypress", _simulation.blockChar);
+document.querySelector("#portion-percentRight").addEventListener("input", function () {
+  (0, _percentage.attLeftPercentResults)("right");
+});
+document.querySelector("#total-percentRight").addEventListener("keypress", _simulation.blockChar);
+document.querySelector("#total-percentRight").addEventListener("input", function () {
+  (0, _percentage.attLeftPercentResults)("right");
+});
+},{"./midprice":"js/midprice.js","./simulation":"js/simulation.js","./percentage":"js/percentage.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -712,7 +920,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56393" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64267" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
