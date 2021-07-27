@@ -1,6 +1,6 @@
-import { onAddClick, reset } from "./midprice";
-import { blockChar, attSimuResults } from "./simulation";
-import { attLeftPercentResults } from "./percentage";
+import { onAddClick, reset } from "./js/midprice";
+import { blockChar, attSimuResults } from "./js/simulation";
+import { attLeftPercentResults } from "./js/percentage";
 
 document.querySelector("#add").addEventListener("click", onAddClick);
 document.querySelector("#reset").addEventListener("click", reset);
