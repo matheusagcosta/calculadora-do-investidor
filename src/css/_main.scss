@@ -25,18 +25,6 @@ body {
   flex-direction: column;
 }
 
-button {
-  cursor: pointer;
-  border: none;
-}
-
-button:focus {
-  border: 1px solid;
-  border-color: var(--colorDarkBlue);
-  outline: 0;
-  cursor: pointer;
-}
-
 input {
   border: 1px solid;
   outline: 0;
@@ -124,35 +112,6 @@ main {
   flex-direction: column;
 }
 
-.reset {
-  background-color: white;
-  display: flex;
-  margin-top: 25px;
-  border-radius: 20px;
-  width: 40px;
-  height: 40px;
-  background-image: url(../svg/reset.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  transition: transform .5s linear .15s, opacity .5s linear;
-  transform: rotate(0);
-  transform-origin: center;
-  position: absolute;
-  visibility: hidden;
-  opacity: 0;
-}
-
-.reset.is-shown {
-  position: relative;
-  visibility: visible;
-  opacity: 1;
-}
-
-.reset:hover {
-  transform:rotate(360deg);
-  cursor: pointer;
-}
-
 .mid-price {
   display: flex;
   flex-direction: column;
@@ -186,43 +145,6 @@ main {
   border-color: lightgray;
 }
 
-#add {
-  border-radius: 20px;
-  width: 40px;
-  height: 40px;
-  background-image: url(../svg/add.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #05B595;
-  display: flex;
-  flex: 0 0 auto;
-  margin: auto 25px auto 25px;
-}
-
-.trash {
-  background-color: #B03500;
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  background-image: url(../svg/trash.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  display: flex;
-}
-
-.trash-button {
-  margin: 15px auto 0 auto;
-  opacity: 0;
-  transition: all .5s linear;
-  visibility: hidden;
-  overflow: hidden;
-}
-
-.trash-button.is-shown {
-  opacity: 1;
-  visibility: visible;
-}
-
 .simulation--info {
   height: 315px;
   min-width: 306px;
@@ -253,10 +175,6 @@ main {
 
   .content {
     flex-direction: column;
-  }
-
-  #add {
-    margin: 25px 0 25px 0;
   }
 
   .simulation--info {
