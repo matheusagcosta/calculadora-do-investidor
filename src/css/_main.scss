@@ -47,8 +47,6 @@ input:focus {
   border-color: var(--colorDarkBlue);
 }
 
-
-
 main {
   display: flex;
 }
@@ -61,8 +59,6 @@ main {
 .logo {
   display: flex;
 }
-
-
 
 .title {
   display: flex;
@@ -128,28 +124,6 @@ main {
   flex-direction: column;
 }
 
-.results {
-  background-color: #313060;
-  border-radius: 10px;
-  padding: 20px;
-  color: white;
-  font-size: 20px;
-  display: flex;
-  flex: 0 0 auto;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Red Hat Text', sans-serif;
-  transition: height .35s linear;  
-}
-
-.results span {
-  color: #DBDEF9;
-}
-
-.results.is-bigger {
-  height: 255px;
-}
-
 .reset {
   background-color: white;
   display: flex;
@@ -208,25 +182,6 @@ main {
   margin-top: 20px;
 }
 
-.results-mp--price {
-  padding-top: 25px;
-}
-
-.results--text {
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  font-size: 16px;
-}
-
-.results--values {
-  position: relative;
-  display: flex;
-  margin-top: 10px;
-  font-size: 24px;
-  font-weight: bold;
-}
-
 .readonly:focus {
   border-color: lightgray;
 }
@@ -274,10 +229,6 @@ main {
   margin-right: 15px;
 }
 
-.results-simu--price {
-  padding-top: 30px;
-}
-
 #results-simu-starter {
   color: #A7B0FF;
 }
@@ -294,22 +245,6 @@ main {
   flex: auto auto 0;
 }
 
-.results-percent--text {
-  justify-content: center;
-}
-
-.results-percent--values {
-  justify-content: center;
-}
-
-.results-percentage-left {
-  margin-right: 52.25px;
-}
-
-.results-percentage-middle {
-  margin-right: 52.25px;
-}
-
 @media only screen and (max-width: 768px) {
   
   .title {
@@ -323,12 +258,6 @@ main {
   #add {
     margin: 25px 0 25px 0;
   }
-
-  .results {
-    justify-content: start;
-  }
-
-  
 
   .simulation--info {
     margin-bottom: 15px;
@@ -362,25 +291,6 @@ main {
 
   .percentage-info {
     width: 186px;
-  }
-
-  .results-percentage-left {
-    
-    margin-right: 0;
-    justify-content: center;
-  }
-
-  .results-percentage-middle {
-    
-    justify-content: center;
-  }
-
-  .results-percentage-right {
-    justify-content: center;
-  }
-
-  .results-percent--text {
-    flex-wrap: wrap;
   }
 
 }

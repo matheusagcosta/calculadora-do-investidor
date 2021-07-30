@@ -1,0 +1,88 @@
+.results {
+  background-color: #313060;
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Red Hat Text', sans-serif;
+  transition: height .35s linear;  
+
+  & span {
+    color: #DBDEF9;
+  }
+  
+  &.is-bigger {
+    height: 255px;
+  }
+
+  &-mp--price {
+    padding-top: 25px;
+  }
+  
+  &--text {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 16px;
+  }
+  
+  &--values {
+    position: relative;
+    display: flex;
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &-simu--price {
+    padding-top: 30px;
+  }
+
+  &-percent--text {
+    justify-content: center;
+  }
+  
+  &-percent--values {
+    justify-content: center;
+  }
+  
+  &-percentage-left {
+    margin-right: 52.25px;
+  }
+  
+  &-percentage-middle {
+    margin-right: 52.25px;
+  }
+
+  @media only screen and (max-width: 768px) {
+
+    & {
+      justify-content: start;
+    }
+
+    &-percentage-left {
+    
+      margin-right: 0;
+      justify-content: center;
+    }
+  
+    &-percentage-middle {
+      
+      justify-content: center;
+    }
+  
+    &-percentage-right {
+      justify-content: center;
+    }
+  
+    &-percent--text {
+      flex-wrap: wrap;
+    }
+
+  }
+
+}
