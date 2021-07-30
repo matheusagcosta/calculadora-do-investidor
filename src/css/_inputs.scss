@@ -1,0 +1,10 @@
+input {
+  border: 1px solid;
+  outline: 0;
+  font-family: 'Red Hat Text', sans-serif;
+
+  input:focus {
+    border-color: var(--colorDarkBlue);
+  }
+  
+}
