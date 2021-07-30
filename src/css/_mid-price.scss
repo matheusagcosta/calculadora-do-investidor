@@ -1,0 +1,22 @@
+.mid-price {
+  display: flex;
+  flex-direction: column;
+
+  &--info {
+    height: 200px;
+    transition: height .35s linear;
+  }
+  
+  &--info.is-bigger {
+    height: 255px;
+  }
+  
+  &--info:first-child {
+    visibility: visible;
+  }
+  
+  &--info.is-bigger:not(:first-child) {
+    margin-left: 25px;
+  }
+
+}

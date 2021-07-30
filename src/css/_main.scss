@@ -112,28 +112,6 @@ main {
   flex-direction: column;
 }
 
-.mid-price {
-  display: flex;
-  flex-direction: column;
-}
-
-.mid-price--info {
-  height: 200px;
-  transition: height .35s linear;
-}
-
-.mid-price--info.is-bigger {
-  height: 255px;
-}
-
-.mid-price--info:first-child {
-  visibility: visible;
-}
-
-.mid-price--info.is-bigger:not(:first-child) {
-  margin-left: 25px;
-}
-
 .price--info {
   position: relative;
   display: flex;
