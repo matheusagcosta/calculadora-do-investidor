@@ -1,9 +1,5 @@
 .header {
-  position: sticky;
-  top: 30px;
-  z-index: 100;
   background-color: #F2F4FF;
-  width: 100%;
   margin-bottom: 30px;
   border-radius: 7px;
   padding: 15px;
@@ -13,19 +9,15 @@
   display: flex;
 
   &__link {
-    display: none;
+    position: relative;
+    border-radius: 10px;
+    padding: 10px;
+    text-decoration: none;
   }
   
   &--info {
     display: flex;
     margin: 0 0 0 auto;
-  }
-  
-  &__link {
-    position: relative;
-    border-radius: 10px;
-    padding: 10px;
-    text-decoration: none;
   }
   
   &__link:not(.is-active) {
