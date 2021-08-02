@@ -1,6 +1,9 @@
 import { onAddClick, reset } from "./js/midprice";
 import { blockChar, attSimuResults } from "./js/simulation";
 import { attLeftPercentResults } from "./js/percentage";
+import { dropDown } from "./js/dropdown";
+
+document.querySelector(".drop-down").addEventListener("click", dropDown);
 
 document.querySelector("#add").addEventListener("click", onAddClick);
 document.querySelector("#reset").addEventListener("click", reset);
