@@ -37,6 +37,14 @@
   &__link.is-active .header__icon {
     fill: var(--colorWhite);
   }
+
+  @media only screen and (max-width: 680px) {
+  
+    &--info {
+      display: none;
+    }
+    
+  }  
   
 }
 

@@ -51,7 +51,7 @@ main {
 .content {
   display: flex;
   flex-direction: row;
-  max-width: 100%;
+  width: 100%;
 }
 
 .section {
@@ -114,7 +114,7 @@ main {
 
 .simulation--info {
   height: 315px;
-  min-width: 306px;
+  width: 306px;
   margin-right: 15px;
 }
 
@@ -123,8 +123,8 @@ main {
 }
 
 .percentage-info {
-  width: 230px;
-  height: 193px;
+  //width: 230px;
+  //height: 193px;
   margin-right: 15px;
 }
 
@@ -134,21 +134,15 @@ main {
   flex: auto auto 0;
 }
 
-@media only screen and (max-width: 768px) {
-  
+@media only screen and (max-width: 408px) {
+
   .title {
-    font-size: 13px;
+    font-size: 11px;
   }
 
-  .content {
-    flex-direction: column;
-  }
+}
 
-  .simulation--info {
-    margin-bottom: 15px;
-    width: 100%;
-    margin-right: 0;
-  }
+@media only screen and (max-width: 413px) {
 
   .section {
     -ms-overflow-style: none;  /* IE and Edge */
@@ -158,24 +152,66 @@ main {
   .section::-webkit-scrollbar {
     display: none;
   }
-
-  .percent-left {
+  
+  .content {
     width: 100%;
-    flex-direction: row;
+    flex-direction: column;
   }
 
-  .percent-middle {
-    flex-direction: row;
-    margin-top: 15px;
-  }
-
-  .percent-right {
-    flex-direction: row;
-    margin-top: 15px;
+  .simulation--info {
+    width: 100%;
+    margin: 0 0 15px 0;
   }
 
   .percentage-info {
-    width: 186px;
+    width: 100%;
+    margin: 0;
+  }
+
+}
+
+@media only screen and (min-width: 414px) {
+
+  .section {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .section::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .content {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .simulation--info {
+    width: 100%;
+    margin: 0 0 15px 0;
+  }
+
+  .percentage-info {
+    width: 100%;
+    margin: 0;
+  }
+
+  .section-percent {
+    flex-basis: 50%;
+  }
+
+  .content .percent-left {
+    flex-direction: row;
+  }
+
+  .content .percent-middle {
+    margin-top: 15px;
+    flex-direction: row;
+  }
+
+  .content .percent-right {
+    margin-top: 15px;
+    flex-direction: row;
   }
 
 }
