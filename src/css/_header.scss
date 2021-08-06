@@ -15,11 +15,6 @@
     text-decoration: none;
   }
   
-  &--info {
-    display: flex;
-    margin: 0 0 0 auto;
-  }
-  
   &__link:not(.is-active) {
     color: var(--colorDarkBlue);
   }

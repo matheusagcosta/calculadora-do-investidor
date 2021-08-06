@@ -13,9 +13,9 @@
   @media only screen and (max-width: 768px) {
 
     &__items {
+      display: none;
       position: absolute;
       width: 100%;
-      display: none;
       flex-direction: column;
       left: 0;
       top: 70px;
@@ -31,6 +31,15 @@
       display: none;
     }
 
+    &__items {
+      margin: 0 0 0 auto;
+      align-self: center;
+    }
+
   }
 
+}
+
+.show {
+  display: flex;
 }

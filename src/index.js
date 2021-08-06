@@ -43,3 +43,12 @@ document.querySelector("#total-percentRight").addEventListener("keypress", block
 document.querySelector("#total-percentRight").addEventListener("input", function() {
   attLeftPercentResults("right");
 });
+
+window.onclick = function(event) {
+  if (!event.target.matches('.drop-down')) {
+
+    let dropdown = document.getElementsByClassName("drop-down__items")[0];
+
+    if (dropdown.classList.contains('show')) { dropdown.classList.remove('show'); };
+  };
+};
