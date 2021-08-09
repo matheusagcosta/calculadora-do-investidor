@@ -1,0 +1,45 @@
+.drop-down {
+  display: flex;
+  align-self: center;
+  margin: 0 0 0 auto;
+  background-color: #F8F8FF; 
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-image: url(../svg/dropd.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+
+  @media only screen and (max-width: 768px) {
+
+    &__items {
+      display: none;
+      position: absolute;
+      width: 100%;
+      flex-direction: column;
+      left: 0;
+      top: 70px;
+      background-color: #F2F4FF;
+      border-radius: 7px;
+    }
+
+  }
+
+  @media only screen and (min-width: 769px) {
+    
+    & {
+      display: none;
+    }
+
+    &__items {
+      margin: 0 0 0 auto;
+      align-self: center;
+    }
+
+  }
+
+}
+
+.show {
+  display: flex;
+}

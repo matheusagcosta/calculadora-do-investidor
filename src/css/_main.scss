@@ -36,6 +36,7 @@ main {
 
 .logo {
   display: flex;
+  align-self: center;
 }
 
 .title {
@@ -51,7 +52,7 @@ main {
 .content {
   display: flex;
   flex-direction: row;
-  max-width: 100%;
+  width: 100%;
 }
 
 .section {
@@ -112,19 +113,11 @@ main {
   border-color: lightgray;
 }
 
-.simulation--info {
-  height: 315px;
-  min-width: 306px;
-  margin-right: 15px;
-}
-
 #results-simu-starter {
   color: #A7B0FF;
 }
 
 .percentage-info {
-  width: 230px;
-  height: 193px;
   margin-right: 15px;
 }
 
@@ -134,48 +127,112 @@ main {
   flex: auto auto 0;
 }
 
-@media only screen and (max-width: 768px) {
-  
+@media only screen and (max-width: 408px) {
+
   .title {
-    font-size: 13px;
+    font-size: 11px;
   }
 
+}
+
+@media only screen and (max-width: 413px) {
+  
   .content {
+    width: 100%;
     flex-direction: column;
   }
 
   .simulation--info {
-    margin-bottom: 15px;
     width: 100%;
-    margin-right: 0;
-  }
-
-  .section {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-
-  .section::-webkit-scrollbar {
-    display: none;
-  }
-
-  .percent-left {
-    width: 100%;
-    flex-direction: row;
-  }
-
-  .percent-middle {
-    flex-direction: row;
-    margin-top: 15px;
-  }
-
-  .percent-right {
-    flex-direction: row;
-    margin-top: 15px;
+    margin: 0 0 15px 0;
   }
 
   .percentage-info {
-    width: 186px;
+    width: 100%;
+    margin: 0;
+  }
+
+}
+
+@media only screen and (min-width: 414px) {
+  
+  .content {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .simulation--info {
+    width: 100%;
+    margin: 0 0 15px 0;
+  }
+
+  .percentage-info {
+    width: 100%;
+    margin: 0;
+  }
+
+  .section-percent {
+    flex-basis: 50%;
+  }
+
+  .content .percent-left {
+    flex-direction: row;
+  }
+
+  .content .percent-middle {
+    margin-top: 15px;
+    flex-direction: row;
+  }
+
+  .content .percent-right {
+    margin-top: 15px;
+    flex-direction: row;
+  }
+
+}
+
+@media only screen and (min-width: 769px) {
+
+  .content {
+    flex-direction: row;
+  }
+
+  .simulation--info {
+    margin: 0 15px 0 0;
+    height: 315px;
+    width: 306px;
+  }
+
+  .content-percent {
+    flex-direction: column;
+  }
+
+}
+
+@media only screen and (min-width: 1008px) {
+
+  .percentage-info {
+    display: flex;
+  }
+
+  .section-percent {
+    flex-basis: auto;
+  }
+
+}
+
+@media only screen and (min-width: 1200px) {
+
+  .content-percent {
+    flex-direction: row;
+  }
+
+  .content .percent-middle {
+    margin: 0;
+  }
+
+  .content .percent-right {
+    margin: 0;
   }
 
 }
