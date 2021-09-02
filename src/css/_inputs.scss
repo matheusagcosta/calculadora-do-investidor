@@ -3,7 +3,7 @@ input {
   outline: 0;
   font-family: 'Red Hat Text', sans-serif;
 
-  input:focus {
+  &:focus {
     border-color: var(--colorDarkBlue);
   }
   
