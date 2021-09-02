@@ -46,9 +46,9 @@ const getQuant = () => {
   if (simuQuant=="") { return simuQuant; };
 
   simuQuant = handleComma(simuQuant);
-  simuQuant = parseInt(simuQuant); //retorna uma string 
+  simuQuant = parseFloat(simuQuant); //string return
 
-  return parseInt(simuQuant);
+  return parseFloat(simuQuant);
 };
 
 const getBuyPrice = () => {

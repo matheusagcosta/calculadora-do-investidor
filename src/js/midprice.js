@@ -80,7 +80,7 @@ const validateInputs = (activedInfo) => {
   valueP = document.getElementsByName("price-mp__input")[activedInfo].value;
   
   if (checkAll(valueQ, valueP, activedInfo)) {
-    valueQ = parseInt(valueQ);
+    valueQ = parseFloat(handleComma(valueQ));
     valueP = parseFloat(handleComma(valueP));
     return true;
   } else {
@@ -134,11 +134,10 @@ const checkZeros = (valueQ, valueP, activedInfo) => {
 
 const checkOnlyChar = (valueQ, valueP, activedInfo) => {
   let resultOnlyChar = true;
-  const validateQuantity = new RegExp("[0-9]+");
-  const validatePrice = new RegExp("[0-9]+(,|.)?[0-9]*");
+  const validateVal = new RegExp("[0-9]+(,|.)?[0-9]*");
 
-  let validationQ = validateQuantity.exec(valueQ);
-  let validationP = validatePrice.exec(valueP);
+  let validationQ = validateVal.exec(valueQ);
+  let validationP = validateVal.exec(valueP);
 
   if (validationQ == null) {
     setBorderColor(`quantity${activedInfo}`, "red");
