@@ -4711,6 +4711,11 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
+simulation@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/simulation/-/simulation-0.0.1.tgz#a4df4d20529d4d4823417205d2b43f7325651424"
+  integrity sha512-b9kg2HzBkquIqWzzYJMFXK8WI/XwvOsjhip6rQzUs6VG7kQhC0y4eFY2nuuJFrgr2ytukWKbpaYDuBQBitC08w==
+
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"

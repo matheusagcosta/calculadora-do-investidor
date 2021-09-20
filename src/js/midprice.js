@@ -1,3 +1,5 @@
+import { blockChar } from "./simulation"
+
 let avgPrice = 0;
 let tot = 0;
 let products = 0;
@@ -69,9 +71,18 @@ export const onAddClick = () => {
       setBorderColor(`quantity${count}`, "none");
       setBorderColor(`price${count}`, "none");
     };
+
+    addBlockChar();
   
     activedInfo += 1;
   };
+};
+
+const addBlockChar = () => {
+  
+  document.querySelector(`#quantity${activedInfo+1}`).addEventListener("keypress", blockChar)
+  document.querySelector(`#price${activedInfo+1}`).addEventListener("keypress", blockChar)
+  
 };
 
 const validateInputs = (activedInfo) => {

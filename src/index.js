@@ -8,6 +8,9 @@ document.querySelector(".drop-down").addEventListener("click", dropDown);
 document.querySelector("#add").addEventListener("click", onAddClick);
 document.querySelector("#reset").addEventListener("click", reset);
 
+document.querySelector("#quantity0").addEventListener("keypress", blockChar)
+document.querySelector("#price0").addEventListener("keypress", blockChar)
+
 document.querySelector("#quantity-simu").addEventListener("keypress", blockChar);
 document.querySelector("#quantity-simu").addEventListener("input", attSimuResults);
 
